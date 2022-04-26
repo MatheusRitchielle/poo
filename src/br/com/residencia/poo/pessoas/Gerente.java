@@ -15,7 +15,7 @@ public class Gerente extends Funcionario {
 	public Gerente() {
 		
 	}
-	public byte getIdAgencia() {
+	public int getIdAgencia() {
 		return idAgencia;
 	}
 

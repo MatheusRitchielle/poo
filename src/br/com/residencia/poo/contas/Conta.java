@@ -15,7 +15,7 @@ public abstract class Conta extends Agencia {
 	protected int id;
 	protected String login;
 	protected int idAgencia;
-	protected String tipoConta;
+	public String tipoConta;
 	protected int numeroConta;
 	protected Date dataAberta;
 	protected boolean status;

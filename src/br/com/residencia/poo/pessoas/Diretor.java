@@ -10,13 +10,13 @@ public class Diretor extends Funcionario{
 
 	protected int idDiretor;
 	protected int qtdAgencia;
-	protected byte idAgencia;
+	protected int idAgencia;
 	
 	List<Agencia> agencias = new ArrayList<>();
 	
 
-	public Integer getIdDiretor() {
-		return idDiretor;
+	public int getIdDiretor() {
+		return(byte) idDiretor;
 	}
 
 	public void setIdDiretor(Integer idDiretor) {
@@ -32,7 +32,7 @@ public class Diretor extends Funcionario{
 	}
 
 	public int getIdAgencia() {
-		return idAgencia;
+		return(byte) idAgencia;
 	}
 
 	public void setIdAgencia(int idAgencia) {
