@@ -2,23 +2,24 @@ package br.com.residencia.poo.agencias;
 
 public class Agencia {
 	
-	protected byte idAgencia;
-	protected byte idDiretor;
+	protected int idAgencia;
+	protected int idDiretor;
 	protected String endereco;
+	protected int numeroAgencia;
 	
-	public byte getIdAgencia() {
+	public int getIdAgencia() {
 		return idAgencia;
 	}
 
-	public void setIdAgencia(byte idAgencia) {
+	public void setIdAgencia(int idAgencia) {
 		this.idAgencia = idAgencia;
 	}
 
-	public byte getIdDiretor() {
+	public int getIdDiretor() {
 		return idDiretor;
 	}
 
-	public void setIdDiretor(byte idDiretor) {
+	public void setIdDiretor(int idDiretor) {
 		this.idDiretor = idDiretor;
 	}
 
@@ -30,21 +31,20 @@ public class Agencia {
 		this.endereco = endereco;
 	}
 
-	public byte getNumeroAgencia() {
+	public int getNumeroAgencia() {
 		return numeroAgencia;
 	}
 
-	public void setNumeroAgencia(byte numeroAgencia) {
+	public void setNumeroAgencia(int numeroAgencia) {
 		this.numeroAgencia = numeroAgencia;
 	}
-
-	protected byte numeroAgencia;
 	
 	public Agencia() {
 		
 	}
 	
-	public Agencia(byte idAgencia, byte idDiretor, String endereco, byte numeroAgencia) {
+	public Agencia(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
+		super();
 		this.idAgencia = idAgencia;
 		this.idDiretor = idDiretor;
 		this.endereco = endereco;

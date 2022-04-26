@@ -5,11 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import br.com.residencia.poo.contas.Conta;
 
-public class Pessoa extends Conta{
-	
-	private static final AtomicInteger count = new AtomicInteger(0); 
+public class Pessoa extends Conta {
+
+	private static final AtomicInteger count = new AtomicInteger(0);
 	protected Integer id;
-	protected byte idade;
+	protected int idade;
 	protected String genero;
 	protected String estadoCivil;
 	protected String nome;
@@ -19,7 +19,6 @@ public class Pessoa extends Conta{
 	protected String email;
 	protected Date dataNascimento;
 	protected String tipoPessoa;
-	
 
 	public String getGenero() {
 		return genero;
@@ -92,31 +91,12 @@ public class Pessoa extends Conta{
 	public void setTipoPessoa(String tipoPessoa) {
 		this.tipoPessoa = tipoPessoa;
 	}
-		
+
 	public int getId() {
 		return this.id = count.incrementAndGet();
 	}
 
-//	    Pessoa(int id, String name, byte idade ) throws MenorIdadeException {
-//	        if (idade < 18){
-//	            throw new MenorIdadeException();
-//	        }
-//
-//	        this.id = id;
-//	        this.nome = name;
-//	        this.idade = idade;
-//	    }
-//
-//	    public Pessoa(byte idade) throws MenorIdadeException {
-//	        if (idade < 18){
-//	            throw new MenorIdadeException();
-//	        }
-//
-//	        this.idade = idade;
-//	    }
-
-
-	    public void setIdate(byte idade){
-	        this.idade= idade;
-	    }
+	public void setIdate(int idade) {
+		this.idade = idade;
+	}
 }

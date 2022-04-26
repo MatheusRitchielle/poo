@@ -1,6 +1,6 @@
 package br.com.residencia.poo.pessoas;
 
-import java.sql.Date;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Cliente extends Pessoa {
@@ -8,7 +8,7 @@ public class Cliente extends Pessoa {
 	Integer id;
 	Integer idGerente;
 	
-	public Integer getId() {
+	public int getId() {
 		return this.id = count.incrementAndGet();
 	}
 	public void setId(Integer id) {

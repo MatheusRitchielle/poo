@@ -7,7 +7,7 @@ public class ContaPoupanca extends Conta {
 	private static final AtomicInteger count = new AtomicInteger(0); 
 	protected int idContaPoupanca;
 	protected double valor;
-	protected double rentabilidade = 0.50;
+	protected double rentabilidade = 0.06;
 	
 	public ContaPoupanca() {
 		super();

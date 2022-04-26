@@ -36,7 +36,7 @@ public abstract class  Funcionario extends Pessoa {
 	}
 
 
-	public Integer getId() {
+	public int getId() {
 		return this.id = count.incrementAndGet();
 	}
 
