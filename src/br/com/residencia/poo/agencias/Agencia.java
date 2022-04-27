@@ -6,6 +6,8 @@ public class Agencia {
 	protected int idDiretor;
 	protected String endereco;
 	protected int numeroAgencia;
+
+	//	private List<Conta> contas = new ArrayList<>();
 	
 	public int getIdAgencia() {
 		return idAgencia;
@@ -50,8 +52,4 @@ public class Agencia {
 		this.endereco = endereco;
 		this.numeroAgencia = numeroAgencia;
 	}
-	
-	
-	
-	
 }
