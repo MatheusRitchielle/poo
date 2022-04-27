@@ -1,67 +1,107 @@
 package br.com.residencia.poo.contas;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
+//import java.sql.Date;
+//import java.util.ArrayList;
+//import java.util.Iterator;
+//import java.util.Scanner;
+//import java.util.concurrent.atomic.AtomicInteger;
 
 import br.com.residencia.poo.agencias.Agencia;
 
 public abstract class Conta extends Agencia {
-	
-	private static final AtomicInteger count = new AtomicInteger(0); 
-	  
+
+	// private static final AtomicInteger count = new AtomicInteger(0);
+
 	protected int id;
 	protected String login;
 	protected int idAgencia;
 	public String tipoConta;
 	protected int numeroConta;
-	protected Date dataAberta;
+	protected  String dataAberta; //Era Date
 	protected boolean status;
 	protected double saldo;
 	protected String senha;
-	
+
 	public Conta() {
 		super();
 	}
-	
-	public int getId() {
-  		return id = count.incrementAndGet();
-  	} 
-	
-	public String getLogin() {
-		return login;
+
+	public Conta(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
+		super(idAgencia, idDiretor, endereco, numeroAgencia);
 	}
-	
-	public void setLogin(String cpf) {
-		this.login = cpf;
-	}
-	public String getTipoConta() {
-		return tipoConta;
-	}
-	public void setTipoConta(String correntePoupan) {
-		this.tipoConta = correntePoupan;
-	}
-	public int getNumeroConta() {
-		return numeroConta;
-	}
-	public void setNumeroConta(int numeroConta) {
+
+	public Conta(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
+			boolean status, double saldo, String senha) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.idAgencia = idAgencia;
+		this.tipoConta = tipoConta;
 		this.numeroConta = numeroConta;
+		this.dataAberta = dataAberta;
+		this.status = status;
+		this.saldo = saldo;
+		this.senha = senha;
 	}
-	public Date getDataAberta() {
-		return dataAberta;
+
+	public enum TipoConta {
+
+		CORRENTE("Corrente"), POUPANCA("Poupança");
+
+		private String descricao;
+
+		TipoConta(String descricao) {
+			this.descricao = descricao;
+		}
+
+		public String getDescricao() {
+			return descricao;
+		}
 	}
-	public boolean getStatus() {
-		return status;
-	}
-	public void setStatus(boolean trueFalse) {
-		this.status = trueFalse;
-	}
+
 	public double getSaldo() {
 		return saldo;
 	}
+
+	@Override
+	public String toString() {
+		return "Saldo: R$" + saldo;
+	}
+
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
-	} 
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public int getIdAgencia() {
+		return idAgencia;
+	}
+
+	public String getTipoConta() {
+		return tipoConta;
+	}
+
+	public int getNumeroConta() {
+		return numeroConta;
+	}
+
+	public String getDataAberta() {
+		return dataAberta;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
 }

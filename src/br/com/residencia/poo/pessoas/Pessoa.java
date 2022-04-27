@@ -1,67 +1,66 @@
 package br.com.residencia.poo.pessoas;
 
-import java.sql.Date;
-import java.util.concurrent.atomic.AtomicInteger;
+//import java.util.concurrent.atomic.AtomicInteger;
 
 import br.com.residencia.poo.contas.Conta;
 
-public class Pessoa extends Conta {
+public abstract class Pessoa extends Conta {
 
-	private static final AtomicInteger count = new AtomicInteger(0);
-	
 	protected Integer id;
 	protected String nome;
 	protected String cpf;
-	protected String senha;
-//	protected int idade;
-//	protected String genero;
-//	protected String estadoCivil;
-//	protected String telefone;
-//	protected String endereco;
-//	protected String email;
-//	protected Date dataNascimento;
-//	protected String tipoPessoa;
-
-	public Pessoa(Integer id, String nome, String cpf, String senha) {
+	protected Integer idade;
+	protected String telefone;
+	protected String endereco;
+	protected String email;
+	protected String dataNascimento;
+	protected String tipoPessoa;
+	
+	public Pessoa(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco, String email,
+			String dataNascimento, String tipoPessoa) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
-		this.senha = senha;
+		this.idade = idade;
+		this.telefone = telefone;
+		this.endereco = endereco;
+		this.email = email;
+		this.dataNascimento = dataNascimento;
+		this.tipoPessoa = tipoPessoa;
 	}
 
-
-
-	public int getId() {
-		return id;
+	public Pessoa() {
+		super();
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Pessoa(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
+		super(idAgencia, idDiretor, endereco, numeroAgencia);
 	}
 
-	public String getNome() {
-		return nome;
+	public Pessoa(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
+			boolean status, double saldo, String senha) {
+		super(id, login, idAgencia, tipoConta, numeroConta, dataAberta, status, saldo, senha);
+
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	public enum TipoPessoa {
 
-	public String getCpf() {
-		return cpf;
-	}
+	    CLIENTE("Cliente"),
+		GERENTE("Gerente"),
+	    DIRETOR("Diretor"),
+	    PRESIDENTE("Presidente");
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	    private String descricao;
 
-	public String getSenha() {
-		return senha;
-	}
+	    TipoPessoa(String descricao) {
+	        this.descricao = descricao;
+	    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	    public String getDescricao() {
+	        return descricao;
+	    }
 	}
+	
 	
 }

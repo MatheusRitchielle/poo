@@ -1,62 +1,46 @@
 package br.com.residencia.poo.contas;
 
-import java.sql.Date;
+public class ContaCorrente extends Conta {
 
-
-public class ContaCorrente extends Conta implements Movimentacao {
-		
-	Integer idConteCorrente;
+	Integer idContaCorrente;
 	Double chequeEspecial;
-	Double taxa;
-	
-	@Override
-	public double depositar(double valorDepositado) {
+	Double taxaDS;
+	Double taxaT;
 
-		this.saldo += valorDepositado;
-		return this.saldo - 0.10;
+	public ContaCorrente() {
+		super();
+
 	}
 
-	@Override
-	public double sacar(double valorSacado) {
+	public ContaCorrente(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
+		super(idAgencia, idDiretor, endereco, numeroAgencia);
 
-		if (this.saldo >= valorSacado + 0.10) {
-			return this.saldo -= valorSacado - 0.10;
-		} else {
-			System.out.println("Não é possível sacar este valor.");
-		}
 	}
 
-	@Override
-	public double transferir(double valorTransferido, double ) {
-		if (this.saldo >= valorTransferido + 0.20) {
-			return this.saldo -= valorSacado - 0.20;
-		} else {
-			System.out.println("Não é possível depositar este valor.");
-		}
-	
+	public ContaCorrente(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
+			boolean status, double saldo, String senha) {
+		super(id, login, idAgencia, tipoConta, numeroConta, dataAberta, status, saldo, senha);
 
-		
-		
-	}
-
-	public Integer getIdConteCorrente() {
-		return idConteCorrente;
 	}
 	
-	public Double getChequeEspecial() {
-		return chequeEspecial;
-	}
-	
-	public void setChequeEspecial(Double chequeEspecial) {
+	public ContaCorrente(Integer idContaCorrente, Double chequeEspecial, Double taxaDS, Double taxaT) {
+		super();
+		this.idContaCorrente = idContaCorrente;
 		this.chequeEspecial = chequeEspecial;
+		this.taxaDS = taxaDS;
+		this.taxaT = taxaT;
 	}
-	
-	public Double getTaxa() {
-		return taxa;
+
+	public Integer getIdContaCorrente() {
+		return idContaCorrente;
 	}
-	
-	public void setTaxa(Double taxa) {
-		this.taxa = taxa;
+
+	public Double getTaxaDS() {
+		return taxaDS = 0.10;
+	}
+
+	public Double getTaxaT() {
+		return taxaT = 0.20;
 	}
 
 }
