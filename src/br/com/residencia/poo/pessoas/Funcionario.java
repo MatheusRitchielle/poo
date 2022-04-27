@@ -2,26 +2,21 @@ package br.com.residencia.poo.pessoas;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class  Funcionario extends Pessoa {
+public abstract class Funcionario extends Pessoa {
 	private static final AtomicInteger count = new AtomicInteger(0);
 	protected int idusuario;
 	protected String login;
 	protected String senha;
 	protected double salario;
-	protected double bonificacao;
 	protected String cargo;
-	public Funcionario() {
-		
-	}
 
-	public Funcionario(int id, String login, String senha, double salario,
-			double bonificacao, String cargo)  {
+	public Funcionario(Integer id, String nome, String cpf, String senha) {
+		super(id, nome, cpf, senha);
+		
 		this.idusuario = id;
-		this.login = login;
+		this.nome = nome;
+		this.login = cpf;
 		this.senha = senha;
-		this.salario = salario;
-		this.bonificacao = bonificacao;
-		this.cargo = cargo;
 	}
 
 	@Override
@@ -31,8 +26,7 @@ public abstract class  Funcionario extends Pessoa {
 					.append("\nLogin: ".concat(this.login))
 					.append("\nSenha: ".concat(this.senha))
 					.append("\nSalário: ".concat(String.valueOf(this.salario)))
-					.append("\nCargo: ".concat(this.cargo))
-					.append("\nBonificação: ".concat(String.valueOf(this.bonificacao))).toString();
+					.append("\nCargo: ".concat(this.cargo));
 	}
 
 
@@ -58,11 +52,6 @@ public abstract class  Funcionario extends Pessoa {
 
 	public Double getSalario() {
 		return salario;
-	}
-
-	public Double getBonificacao() {
-		return bonificacao = bonificacao * 0.15;
-
 	}
 
 	public String getCargo() {

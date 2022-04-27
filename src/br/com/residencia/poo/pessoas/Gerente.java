@@ -4,17 +4,22 @@ import java.util.ArrayList;
 
 public class Gerente extends Funcionario {
 	
+
+
+	public Gerente(Integer id, String nome, String cpf, String senha) {
+		super(id, nome, cpf, senha);
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.senha = senha;
+	
+	}
+
 	protected byte idAgencia;
 	ArrayList<String> gerentes = new ArrayList<String>();
 	
+
 	
-	public Gerente(int id, String login, String senha, double salario, double bonificacao, String cargo) {
-		super(id, login, senha, salario, bonificacao, cargo);
-	
-	}
-	public Gerente() {
-		
-	}
 	public int getIdAgencia() {
 		return idAgencia;
 	}

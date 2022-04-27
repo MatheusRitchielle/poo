@@ -9,9 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import br.com.residencia.poo.agencias.Agencia;
 
 public abstract class Conta extends Agencia {
+	
 	private static final AtomicInteger count = new AtomicInteger(0); 
 	  
-	
 	protected int id;
 	protected String login;
 	protected int idAgencia;
