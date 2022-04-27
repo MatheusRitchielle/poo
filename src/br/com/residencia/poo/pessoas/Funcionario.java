@@ -1,64 +1,69 @@
 package br.com.residencia.poo.pessoas;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public abstract class Funcionario extends Pessoa {
-	private static final AtomicInteger count = new AtomicInteger(0);
+
 	protected int idusuario;
 	protected String login;
 	protected String senha;
 	protected double salario;
-	protected String cargo;
 
-	public Funcionario(Integer id, String nome, String cpf, String senha) {
-		super(id, nome, cpf, senha);
-		
-		this.idusuario = id;
-		this.nome = nome;
-		this.login = cpf;
+	public Funcionario(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco,
+			String email, String dataNascimento, String tipoPessoa, int idusuario, String login, String senha,
+			double salario) {
+		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
+		this.idusuario = idusuario;
+		this.login = login;
 		this.senha = senha;
+		this.salario = salario;
+	}
+
+	public Funcionario() {
+		super();
+	}
+
+	public Funcionario(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
+		super(idAgencia, idDiretor, endereco, numeroAgencia);
+	}
+
+	public Funcionario(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco,
+			String email, String dataNascimento, String tipoPessoa) {
+		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
 	}
 
 	@Override
 	public String toString() {
-			StringBuilder sb = new StringBuilder();
-			return sb.append("ID: ".concat(String.valueOf(this.idusuario)))
-					.append("\nLogin: ".concat(this.login))
-					.append("\nSenha: ".concat(this.senha))
-					.append("\nSalário: ".concat(String.valueOf(this.salario)))
-					.append("\nCargo: ".concat(this.cargo));
+		return "Salário funcionário: R$" + salario ;
 	}
 
+	public double getSalario() {
+		return salario;
+	}
 
-	public int getId() {
-		return this.id = count.incrementAndGet();
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+	public int getIdusuario() {
+		return idusuario;
 	}
 
 	public String getLogin() {
 		return login;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
 	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Double getSalario() {
-		return salario;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
 }
+
+//private static final AtomicInteger count = new AtomicInteger(0);
+//@Override
+//public String toString() {
+//		StringBuilder sb = new StringBuilder();
+//		return sb.append("ID: ".concat(String.valueOf(this.idusuario)))
+//				.append("\nLogin: ".concat(this.login))
+//				.append("\nSenha: ".concat(this.senha))
+//				.append("\nSalário: ".concat(String.valueOf(this.salario)))
+//				.append("\nCargo: ".concat(this.cargo));
+//}
