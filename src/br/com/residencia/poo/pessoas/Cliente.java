@@ -1,42 +1,47 @@
 package br.com.residencia.poo.pessoas;
 
-public class Cliente extends Pessoa {
+import br.com.residencia.poo.contas.Conta;
+
+public class Cliente extends Pessoa{
 
 	Integer id;
 	Integer idGerente;
-
-	//Foi incluido o Id2 porque já existe um id que está vindo de pessoa
-	public Cliente(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco, String email,
-			String dataNascimento, String tipoPessoa, Integer id2, Integer idGerente) {
-		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
-		id = id2;
-		this.idGerente = idGerente;
-	}
-
+	String cpf;
+	String senha;
+	
+	
 	public Cliente() {
-		super();
+		super();	
 	}
 
-	public Cliente(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
-		super(idAgencia, idDiretor, endereco, numeroAgencia);
+	//Construtor Pessoa
+	public Cliente(String cpf, String senha) {
+		super(cpf, senha);
+		this.cpf = cpf;
+		this.senha = senha;
 	}
 
-	public Cliente(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
-			boolean status, double saldo, String senha) {
-		super(id, login, idAgencia, tipoConta, numeroConta, dataAberta, status, saldo, senha);
+	@Override
+	public String toString() {
+		return "Cliente [cpf=" + this.cpf + ", senha=" + this.senha + "]";
 	}
-
-	public Cliente(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco, String email,
-			String dataNascimento, String tipoPessoa) {
-		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
+	
+	public String getCpf() {
+		return cpf;
 	}
-
-	public int getId() {
-		return id;
+	
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-
-	public Integer getIdGerente() {
-		return idGerente;
+	
+	
+	public String getSenha() {
+		return senha;
 	}
-
+	
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 }

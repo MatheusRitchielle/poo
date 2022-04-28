@@ -7,52 +7,26 @@ public abstract class Funcionario extends Pessoa {
 	protected String senha;
 	protected double salario;
 
-	public Funcionario(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco,
-			String email, String dataNascimento, String tipoPessoa, int idusuario, String login, String senha,
-			double salario) {
-		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
-		this.idusuario = idusuario;
-		this.login = login;
+	public Funcionario(String cpf, String senha) {
+		super(cpf, senha);
+		this.cpf = cpf;
 		this.senha = senha;
-		this.salario = salario;
 	}
 
 	public Funcionario() {
 		super();
 	}
 
-	public Funcionario(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
-		super(idAgencia, idDiretor, endereco, numeroAgencia);
-	}
-
-	public Funcionario(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco,
-			String email, String dataNascimento, String tipoPessoa) {
-		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
-	}
-
-	@Override
-	public String toString() {
-		return "Salário funcionário: R$" + salario ;
-	}
-
-	public double getSalario() {
-		return salario;
-	}
-
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}
-
-	public int getIdusuario() {
-		return idusuario;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
 	public String getSenha() {
 		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getCpf() {
+		return getCpf();
 	}
 
 }

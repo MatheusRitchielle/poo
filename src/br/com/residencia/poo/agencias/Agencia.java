@@ -1,7 +1,8 @@
 package br.com.residencia.poo.agencias;
 
-public class Agencia {
+import br.com.residencia.poo.contas.Conta;
 
+public class Agencia extends Conta {
 	protected int idAgencia;
 	protected int idDiretor;
 	protected String endereco;
