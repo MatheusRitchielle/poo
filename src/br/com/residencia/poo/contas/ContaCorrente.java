@@ -1,32 +1,45 @@
 package br.com.residencia.poo.contas;
 
 import java.sql.Date;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContaCorrente extends Conta {
 
-		
-	Integer idConteCorrente;
+	Integer idContaCorrente;
 	Double chequeEspecial;
-	Double taxa;
+	Double taxaDS;
+	Double taxaT;
+
+	private List<Conta> CC = new ArrayList<>();
+
+	public ContaCorrente() {
+		super();
+	}
+
+	public ContaCorrente(int idAgencia, int numeroAgencia, int idDiretor, String endereco) {
+		super(idAgencia, numeroAgencia, idDiretor, endereco);
+		
+	}
+
+	public ContaCorrente(int id, String login, int numeroAgencia, String tipoConta, int numeroConta, Date dataAberta,
+			boolean status, String senha) {
+		super(id, login, numeroAgencia, tipoConta, numeroConta, dataAberta, status, senha);
+	}
+
+
+	public Integer getIdContaCorrente() {
+		return idContaCorrente;
+	}
+
+	public Double getTaxaDS() {
+		return taxaDS = 0.10;
+	}
+
+	public Double getTaxaT() {
+		return taxaT = 0.20;
+	}
 	
-	public Integer getIdConteCorrente() {
-		return idConteCorrente;
-	}
-	public void setIdConteCorrente(Integer idConteCorrente) {
-		this.idConteCorrente = idConteCorrente;
-	}
-	public Double getChequeEspecial() {
-		return chequeEspecial;
-	}
-	public void setChequeEspecial(Double chequeEspecial) {
-		this.chequeEspecial = chequeEspecial;
-	}
-	public Double getTaxa() {
-		return taxa;
-	}
-	public void setTaxa(Double taxa) {
-		this.taxa = taxa;
-	}
+	
 
 }

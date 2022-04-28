@@ -1,54 +1,43 @@
 package br.com.residencia.poo.agencias;
 
-public class Agencia {
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.residencia.poo.contas.Conta;
+
+public class Agencia  {
 	
-	protected byte idAgencia;
-	protected byte idDiretor;
+	protected int idAgencia;
+	protected int numeroAgencia;
+	protected int idDiretor;
 	protected String endereco;
 	
-	public byte getIdAgencia() {
+	private List<Conta> ag = new ArrayList<>();
+	
+	public Agencia() {super();}
+
+	public Agencia(int idAgencia, int numeroAgencia, int idDiretor, String endereco) {
+		super();
+		this.idAgencia = idAgencia;
+		this.numeroAgencia = numeroAgencia;
+		this.idDiretor = idDiretor;
+		this.endereco = endereco;
+	}
+
+	public int getIdAgencia() {
 		return idAgencia;
 	}
 
-	public void setIdAgencia(byte idAgencia) {
-		this.idAgencia = idAgencia;
+	public int getNumeroAgencia() {
+		return numeroAgencia;
 	}
 
-	public byte getIdDiretor() {
+	public int getIdDiretor() {
 		return idDiretor;
-	}
-
-	public void setIdDiretor(byte idDiretor) {
-		this.idDiretor = idDiretor;
 	}
 
 	public String getEndereco() {
 		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public byte getNumeroAgencia() {
-		return numeroAgencia;
-	}
-
-	public void setNumeroAgencia(byte numeroAgencia) {
-		this.numeroAgencia = numeroAgencia;
-	}
-
-	protected byte numeroAgencia;
-	
-	public Agencia() {
-		
-	}
-	
-	public Agencia(byte idAgencia, byte idDiretor, String endereco, byte numeroAgencia) {
-		this.idAgencia = idAgencia;
-		this.idDiretor = idDiretor;
-		this.endereco = endereco;
-		this.numeroAgencia = numeroAgencia;
 	}
 	
 	

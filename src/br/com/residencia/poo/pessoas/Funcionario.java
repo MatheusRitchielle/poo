@@ -4,40 +4,39 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class  Funcionario extends Pessoa {
 	private static final AtomicInteger count = new AtomicInteger(0);
-	protected int idusuario;
 	protected String login;
 	protected String senha;
+	protected String cargo;
+	protected int idusuario;
 	protected double salario;
 	protected double bonificacao;
-	protected String cargo;
-	public Funcionario() {
-		
-	}
 
-	public Funcionario(int id, String login, String senha, double salario,
-			double bonificacao, String cargo)  {
-		this.idusuario = id;
+	public Funcionario(String login, String senha)  {
 		this.login = login;
 		this.senha = senha;
-		this.salario = salario;
-		this.bonificacao = bonificacao;
-		this.cargo = cargo;
 	}
-
+	
+	public boolean autenticar(String senha, String login) {
+		if (this.senha == senha && this.login == login) {
+			System.out.println("Acesso permitido!");
+			return true;
+		} else {
+			System.out.println("Acesso negado!");
+			return false;
+		}
+	}
+	
 	@Override
 	public String toString() {
 			StringBuilder sb = new StringBuilder();
-			return sb.append("ID: ".concat(String.valueOf(this.idusuario)))
-					.append("\nLogin: ".concat(this.login))
+			return sb.append("\nLogin: ".concat(this.login))
 					.append("\nSenha: ".concat(this.senha))
 					.append("\nSalário: ".concat(String.valueOf(this.salario)))
-					.append("\nCargo: ".concat(this.cargo))
-					.append("\nBonificação: ".concat(String.valueOf(this.bonificacao))).toString();
+					.append("\nCargo: ".concat(this.cargo)).toString();
 	}
 
-
-	public Integer getId() {
-		return this.id = count.incrementAndGet();
+	public int getidUsuario() {
+		return this.idusuario = count.incrementAndGet();
 	}
 
 	public String getLogin() {
@@ -46,10 +45,6 @@ public abstract class  Funcionario extends Pessoa {
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
 	}
 
 	public void setSenha(String senha) {
@@ -61,10 +56,9 @@ public abstract class  Funcionario extends Pessoa {
 	}
 
 	public Double getBonificacao() {
-		return bonificacao = bonificacao * 0.15;
+		return bonificacao = salario * 0.15;
 
 	}
-
 	public String getCargo() {
 		return cargo;
 	}

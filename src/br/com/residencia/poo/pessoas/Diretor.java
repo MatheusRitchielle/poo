@@ -8,6 +8,11 @@ import br.com.residencia.poo.agencias.Agencia;
 public class Diretor extends Funcionario{
 
 
+	public Diretor(String login, String senha) {
+		super(login, senha);
+	
+	}
+
 	protected int idDiretor;
 	protected int qtdAgencia;
 	protected byte idAgencia;
@@ -15,9 +20,6 @@ public class Diretor extends Funcionario{
 	List<Agencia> agencias = new ArrayList<>();
 	
 
-	public Integer getIdDiretor() {
-		return idDiretor;
-	}
 
 	public void setIdDiretor(Integer idDiretor) {
 		this.idDiretor = idDiretor;
@@ -31,9 +33,6 @@ public class Diretor extends Funcionario{
 		this.qtdAgencia = qtdAgencia;
 	}
 
-	public int getIdAgencia() {
-		return idAgencia;
-	}
 
 	public void setIdAgencia(int idAgencia) {
 		this.idAgencia = (byte) idAgencia;

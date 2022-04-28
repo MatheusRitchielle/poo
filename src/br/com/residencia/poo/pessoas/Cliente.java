@@ -8,9 +8,10 @@ public class Cliente extends Pessoa {
 	Integer id;
 	Integer idGerente;
 	
-	public Integer getId() {
+	public int getId() {
 		return this.id = count.incrementAndGet();
 	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
