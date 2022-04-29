@@ -1,6 +1,6 @@
 package br.com.residencia.poo.pessoas;
 
-public abstract class Funcionario extends Pessoa {
+public class Funcionario extends Pessoa {
 
 	protected int idusuario;
 	protected String login;

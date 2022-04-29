@@ -9,7 +9,6 @@ public abstract class Pessoa extends Conta{
 	protected String nome;
 	protected String cpf;
 	protected String senha;
-	protected String dataNascimento;
 
 	public Pessoa() {
 		super();
@@ -19,7 +18,16 @@ public abstract class Pessoa extends Conta{
 	public Pessoa(String cpf, String senha) {
 		super(cpf, senha);
 		}
-		
+	//Construtor cliente	
+	public Pessoa(String cpf, String senha, String tipoPessoa, Integer id, String nome, String cpf2, String senha2) {
+		super(cpf, senha);
+		this.tipoPessoa = tipoPessoa;
+		this.id = id;
+		this.nome = nome;
+		cpf = cpf;
+		senha = senha;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}

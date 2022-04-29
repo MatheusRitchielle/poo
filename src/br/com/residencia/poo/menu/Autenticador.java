@@ -10,16 +10,18 @@ import br.com.residencia.poo.pessoas.Pessoa;
 public class Autenticador extends Cadastro {
 
 	
-	public static void main(String[] args) {
-		Pessoa p1[] = Cadastro.cadastroCliente();
-		
-		for (Pessoa pessoa: p1) {
-			System.out.println(pessoa);
-		}
-	}
+//	public static void main(String[] args) {
+//		Pessoa p1[] = Cadastro.cadastroCliente();
+//		
+//		for (Pessoa pessoa: p1) {
+//			System.out.println(pessoa);
+//		}
+	//}
 	
 	public boolean autenticarLogin(String login, String senha) {
 		Pessoa p[] = new Cliente[2];
+		Menu m = new Menu();
+		
 		p[0] = new Cliente("123", "123");
 		p[1] = new Cliente("1234", "1234");
 		Pessoa cliente = new Cliente();
@@ -27,11 +29,12 @@ public class Autenticador extends Cadastro {
 			if (pessoa.getCpf().equals(login)) {
 				cliente.setCpf(pessoa.getCpf());
 				cliente.setSenha(pessoa.getSenha());
+				m.mostrarMenuCC();
 			}
 		}
 		if (login.equals(cliente.getCpf()) && senha.equals(cliente.getSenha())) {
 			System.out.println("Acesso permitido!");
-
+				m.mostrarMenuCC();
 			return true;
 		} else {
 			System.out.println("Acesso negado!" + cliente.getCpf());
@@ -52,11 +55,14 @@ public class Autenticador extends Cadastro {
 			}
 		}
 		if (login.equals(gerente.getCpf()) && senha.equals(gerente.getSenha())) {
-			System.out.println("Acesso permitido!");
 
+			System.out.println("Acesso permitido!");
+			
 			return true;
 		} else {
+			
 			System.out.println("Acesso negado!" + gerente.getCpf());
+			
 			return false;
 		}
 	}

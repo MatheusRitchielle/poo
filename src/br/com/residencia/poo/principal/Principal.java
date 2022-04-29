@@ -1,5 +1,7 @@
 package br.com.residencia.poo.principal;
 
+import java.util.Scanner;
+
 import br.com.residencia.poo.agencias.Agencia;
 import br.com.residencia.poo.menu.Menu;
 //import br.com.residencia.poo.enuns.TipoPessoa;
@@ -12,7 +14,7 @@ import br.com.residencia.poo.pessoas.Pessoa;
 import br.com.residencia.poo.pessoas.Presidente;
 
 public class Principal {
-	
+	Scanner sc = new Scanner(System.in);
 //	Conta conta = new ContaCorrente();
 //	agencia.getContas().add(conta);
 	
