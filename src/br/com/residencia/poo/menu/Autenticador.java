@@ -1,28 +1,23 @@
 package br.com.residencia.poo.menu;
 
 import br.com.residencia.poo.bancodados.Cadastro;
-import br.com.residencia.poo.contas.Conta;
+import br.com.residencia.poo.contas.ContaException;
 import br.com.residencia.poo.pessoas.Cliente;
 import br.com.residencia.poo.pessoas.Funcionario;
 import br.com.residencia.poo.pessoas.Gerente;
 import br.com.residencia.poo.pessoas.Pessoa;
 
-public class Autenticador extends Cadastro {
-
+public class Autenticador extends Cadastro implements InterfaceMenu {
 	
-	public static void main(String[] args) {
-		Pessoa p1[] = Cadastro.cadastroCliente();
+	public boolean autenticarLogin(String login, String senha) throws ContaException {
 		
-		for (Pessoa pessoa: p1) {
-			System.out.println(pessoa);
-		}
-	}
-	
-	public boolean autenticarLogin(String login, String senha) {
+		MenuContas menuconta = new MenuContas();
+		
 		Pessoa p[] = new Cliente[2];
 		p[0] = new Cliente("123", "123");
 		p[1] = new Cliente("1234", "1234");
 		Pessoa cliente = new Cliente();
+		
 		for (Pessoa pessoa : p) {
 			if (pessoa.getCpf().equals(login)) {
 				cliente.setCpf(pessoa.getCpf());
@@ -31,7 +26,7 @@ public class Autenticador extends Cadastro {
 		}
 		if (login.equals(cliente.getCpf()) && senha.equals(cliente.getSenha())) {
 			System.out.println("Acesso permitido!");
-
+			menuconta.mostrarMenuCC();
 			return true;
 		} else {
 			System.out.println("Acesso negado!" + cliente.getCpf());
@@ -59,6 +54,27 @@ public class Autenticador extends Cadastro {
 			System.out.println("Acesso negado!" + gerente.getCpf());
 			return false;
 		}
+	}
+
+	
+	@Override
+	public void mostrarMenuCliente() {
+	}
+
+	
+	@Override
+	public void mostrarMenuFuncionario() {	
+	}
+
+	
+	@Override
+	public void mostrarMenuCC() throws ContaException {		
+	}
+
+	
+	@Override
+	public void mostrarMenuCP() throws ContaException {
+		
 	}
 
 }

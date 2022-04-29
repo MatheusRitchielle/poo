@@ -9,12 +9,23 @@ public abstract class Pessoa extends Conta{
 	protected String nome;
 	protected String cpf;
 	protected String senha;
-	protected String dataNascimento;
+
 
 	public Pessoa() {
 		super();
 		}
 	
+	
+	public Pessoa(String cpf, String senha, String tipoPessoa, Integer id, String nome, String cpf2, String senha2) {
+		super(cpf, senha);
+		this.tipoPessoa = tipoPessoa;
+		this.id = id;
+		this.nome = nome;
+		cpf = cpf2;
+		senha = senha2;
+	}
+
+
 	//Contrutor Conta	
 	public Pessoa(String cpf, String senha) {
 		super(cpf, senha);

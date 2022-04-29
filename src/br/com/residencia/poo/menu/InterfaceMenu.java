@@ -1,9 +1,15 @@
 package br.com.residencia.poo.menu;
 
+import br.com.residencia.poo.contas.ContaException;
+
 public interface InterfaceMenu {
 	
-	public void mostrarMenuCliente();
+	public void mostrarMenuCliente() throws ContaException;
 	
-	public void mostrarMenuFuncionário();
+	public void mostrarMenuFuncionario();
+	
+	void mostrarMenuCC() throws ContaException;
+	
+	void mostrarMenuCP() throws ContaException;
 	
 }

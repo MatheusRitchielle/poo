@@ -1,15 +1,5 @@
 package br.com.residencia.poo.contas;
 
-//import java.sql.Date;
-//import java.util.ArrayList;
-//import java.util.Iterator;
-//import java.util.Scanner;
-//import java.util.concurrent.atomic.AtomicInteger;
-
-import br.com.residencia.poo.agencias.Agencia;
-import br.com.residencia.poo.bancodados.Cadastro;
-import br.com.residencia.poo.pessoas.Pessoa;
-
 public abstract class Conta {
 
 	// private static final AtomicInteger count = new AtomicInteger(0);
@@ -21,7 +11,7 @@ public abstract class Conta {
 	protected int numeroConta;
 	protected String dataAberta; // Era Date
 	protected boolean status;
-	protected double saldo;
+	protected double saldo = 1000.00;
 	protected String senha;
 
 	public Conta(String cpf, String senha) {
@@ -60,6 +50,10 @@ public abstract class Conta {
 		public String getDescricao() {
 			return descricao;
 		}
+	}
+
+	public double getSaldo() {
+		return saldo;
 	}
 
 }

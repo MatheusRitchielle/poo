@@ -30,14 +30,3 @@ public abstract class Funcionario extends Pessoa {
 	}
 
 }
-
-//private static final AtomicInteger count = new AtomicInteger(0);
-//@Override
-//public String toString() {
-//		StringBuilder sb = new StringBuilder();
-//		return sb.append("ID: ".concat(String.valueOf(this.idusuario)))
-//				.append("\nLogin: ".concat(this.login))
-//				.append("\nSenha: ".concat(this.senha))
-//				.append("\nSalário: ".concat(String.valueOf(this.salario)))
-//				.append("\nCargo: ".concat(this.cargo));
-//}

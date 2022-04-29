@@ -4,49 +4,51 @@ import java.util.Scanner;
 import br.com.residencia.poo.contas.ContaCorrente;
 import br.com.residencia.poo.contas.ContaException;
 import br.com.residencia.poo.contas.ContaPoupanca;
+import br.com.residencia.poo.pessoas.Cliente;
 
-public abstract class MenuContas implements InterfaceMenuContas {
+public class MenuContas implements InterfaceMenu {
 
-	@Override
 	public void mostrarMenuCC() throws ContaException {
 
-		ContaCorrente c1 = new ContaCorrente();
+		ContaCorrente cc = new ContaCorrente();
+		Cliente cliente = new Cliente();
 		Scanner sc = new Scanner(System.in);
 
-		// * = Colocar o nome do cliente logado!
-		System.out.println("Área do Cliente:\n\n *Fulano,* seja bem-vindo ao Mucha Lucha Bank!");
-
+		System.out.println("\nÁrea do Cliente:\n\n " + cliente.getCpf() + " seja bem-vindo ao Mucha Lucha Bank!");
 		System.out.println("\tDigite a operação desejada:");
-		System.out.println("[1] - Sacar\n2 - Depositar\n[3] - Transferir\n[0] - Sair");
+		System.out.println("\n[1] - Sacar\n[2] - Depositar\n[3] - Transferir\n[0] - Sair");
 
 		int opcao = sc.nextInt();
 		switch (opcao) {
 		case 1:
-			c1.sacar(0.0);
+			System.out.print("Informe um valor para saque R$: ");
+			Double valorSacado = sc.nextDouble();
+			cc.sacar(valorSacado);
 			break;
 		case 2:
-			c1.depositar(0.0);
+			System.out.print("Informe um valor para depositar R$: ");
+			Double valorDepositado = sc.nextDouble();
+			cc.depositar(valorDepositado);
 			break;
 		case 3:
-			c1.transferir(0.0);
+			System.out.print("Informe um valor para transferir R$: ");
+			Double valorTransferido = sc.nextDouble();
+			cc.transferir(valorTransferido);
 			break;
 		default:
 			System.exit(0);
-		break;
+			break;
 		}
 
-		// Ela ta com uma classe "SistemaInterno"
 		sc.close();
-		// agora parecer que foi?
+
 	}
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Eram as chavees que estavam erradas....
 	@Override
 	public void mostrarMenuCP() throws ContaException {
 
-		ContaPoupanca c1 = new ContaPoupanca();
+		ContaPoupanca cp = new ContaPoupanca();
 		Scanner sc = new Scanner(System.in);
 
 		// * = Colocar o nome do cliente logado!
@@ -59,26 +61,36 @@ public abstract class MenuContas implements InterfaceMenuContas {
 
 		switch (opcao) {
 		case 1:
-
-			c1.sacar(0.0);
-
+			System.out.print("Informe um valor para saque R$: ");
+			Double valorSacado = sc.nextDouble();
+			cp.sacar(valorSacado);
+			break;
 		case 2:
-
-			c1.depositar(0.0);
-
+			System.out.print("Informe um valor para depositar R$: ");
+			Double valorDepositado = sc.nextDouble();
+			cp.depositar(valorDepositado);
+			break;
 		case 3:
-
-			c1.transferir(0.0);
-
-		case 4:
-
-			c1.render(0, 0);
-
+			System.out.print("Informe um valor para saque R$: ");
+			Double valorTransferido = sc.nextDouble();
+			cp.transferir(valorTransferido);
+			break;
 		default:
-
 			System.exit(0);
-
+			break;
 		}
 		sc.close();
+	}
+
+	@Override
+	public void mostrarMenuCliente() throws ContaException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mostrarMenuFuncionario() {
+		// TODO Auto-generated method stub
+
 	}
 }
