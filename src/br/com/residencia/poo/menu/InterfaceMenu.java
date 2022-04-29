@@ -1,8 +1,18 @@
 package br.com.residencia.poo.menu;
 
-public interface InterfaceMenu {
+import br.com.residencia.poo.contas.ContaException;
 
-	void mostrarMenuCliente();
-	void mostrarMenuFuncionário();
+public interface InterfaceMenu {
+	
+	String mostrarMenuCC = null; /// tem que ver essa merda
+
+	void mostrarMenuPrincipal() throws ContaException;
+
+	public void mostrarMenuFuncionario()throws ContaException;
+	
+	void mostrarMenuCC() throws ContaException;
+	
+	void mostrarMenuCP() throws ContaException;
+
 	
 }

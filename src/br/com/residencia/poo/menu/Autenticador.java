@@ -29,12 +29,13 @@ public class Autenticador extends Cadastro implements InterfaceMenu {
 			System.out.println("Acesso permitido!");
 			menuconta.mostrarMenuCC();
 			return true;
-		} if (login.equals(cliente.getCpf()) && senha.equals(cliente.getSenha()) && login.contains("PP")) {
+		}
+		if (login.equals(cliente.getCpf()) && senha.equals(cliente.getSenha()) && login.contains("PP")) {
 			System.out.println("Acesso permitido!");
 			menuconta.mostrarMenuCP();
 			return true;
-			
-		}else {
+		}
+		else {
 			System.out.println("Acesso negado!" + cliente.getCpf());
 			return false;
 		}

@@ -1,124 +1,73 @@
 package br.com.residencia.poo.menu;
 
 import java.util.Scanner;
-<<<<<<< Updated upstream
 
-public class Menu implements InterfaceMenu {
-
-	public void mostrarMenuCliente() {
-
-		Integer opcao;
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Seja bem vindo ao Mucha Lucha Bank");
-		System.out.println("[1] Acesse sua conta\n [2] Criar conta\n[3] Sair");
-		opcao = sc.nextInt();
-		switch (opcao) {
-		case 1:
-			
-=======
+import br.com.residencia.poo.contas.Conta;
 import br.com.residencia.poo.contas.ContaException;
+import br.com.residencia.poo.pessoas.Usuario;
 
 public class Menu implements InterfaceMenu {
 
-	// Menu Principal
-	public void mostrarMenu() throws ContaException {
+	double inputValor;
+	static String inputCpf;
+	public String inputSenha;
 
-		Scanner sc = new Scanner(System.in);
-
-		System.out.print("\tSeja bem vindo ao Mucha Lucha Bank. \n"
-				+ "Deseja acessar como:\n1 - Cliente\n2 - Funcionario\n0 - Sair \t");
-
-		switch (sc.nextByte()) {
-		case 1:
-			mostrarMenuCliente();
-		case 2:
-			mostrarMenuFuncionário();
-		default:
-			System.exit(0);
-		}
-		sc.close();
-	}
+	Scanner sc = new Scanner(System.in);
+	MenuContas menuContas = new MenuContas();
 
 	@Override
-	public void mostrarMenuCliente() throws ContaException {
+	public void mostrarMenuPrincipal() throws ContaException {
 
-		Scanner sc = new Scanner(System.in);
+		System.out.println("\n\tMucha Lucha Bank");
+		System.out.printf("\n[1] Login\n" + 
+		"[2] Sair\n--->: ");
+		int opcao = sc.nextInt();
 
-		Autenticador validator = new Autenticador();
-
-		String login;
-		String senha;
-
-		System.out.println("\tMucha Lucha Bank");
-		System.out.print("[1] Login\n" + "[2] Criar conta\n[3] Sair  ");
-
-		switch (sc.nextByte()) {
+		switch (opcao) {
 		case 1:
 			System.out.print("Digite seu login: ");
-			login = (sc.next());
+			inputCpf = (sc.next());
 			System.out.print("Digite sua senha: ");
-			senha = (sc.next());
-			if (login != null && senha != null) {
-				validator.autenticarLogin(login, senha);
-			} else {
-				System.out.println("Opção inválida!");
-			}
-			break;
-		case 2:
-			break;
-		case 3:
-			mostrarMenu();
-		default:
-			System.exit(0);
-		}
-		sc.close();
-	}
+			inputSenha = (sc.next());
 
-	public void mostrarMenuFuncionário() throws ContaException {
-		Scanner sc = new Scanner(System.in);
-		Autenticador validator = new Autenticador();
-		String login;
-		String senha;
-		
-		System.out.println("\tMucha Lucha Bank");
-		System.out.println("[1] Login\n" + "[2] Criar conta\n[3] Sair  ");
-		
-		switch (sc.nextByte()) {
-		case 1:
-			System.out.println("Digite seu login: ");
-			login = (sc.next());
-			System.out.println("Digite sua senha: ");
-			senha = (sc.next());
-			
-			if (login != null && senha != null) {
-				validator.autenticarFun(login, senha);
-				mostrarMenuCC();
+			Usuario usuario = Usuario.mapaUsuarios.get(inputCpf);
+
+			Conta conta = Conta.mapaContas.get(inputCpf);
+
+			while (usuario == null || !(usuario.getSenha().equalsIgnoreCase(inputSenha))) {
+				System.out.println("CPF e/ou Senha incorreto(s)\n\n");
+				System.out.print("Digite seu login: ");
+				inputCpf = (sc.next());
+				System.out.print("Digite sua senha: ");
+				inputSenha = (sc.next());
+
+				usuario = Usuario.mapaUsuarios.get(inputCpf);
+
+				conta = Conta.mapaContas.get(inputCpf);
+
 				
-			} else {
-				System.out.println("Opção inválida!");
 			}
->>>>>>> Stashed changes
-			break;
-		case 2:
-			
-			break;
-		case 3:
+			menuContas.mostrarMenuCC(inputCpf, inputSenha);
+			case 2: 
 			
 			break;
 		}
 		sc.close();
-<<<<<<< Updated upstream
-=======
 	}
 
 	@Override
 	public void mostrarMenuCC() {
->>>>>>> Stashed changes
 	}
 
-	public void mostrarMenuFuncionário() {
-		//relatórios
+	@Override
+	public void mostrarMenuCP() {
+
 	}
-	
+
+	@Override
+	public void mostrarMenuFuncionario() throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

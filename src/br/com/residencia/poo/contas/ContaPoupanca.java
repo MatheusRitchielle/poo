@@ -1,57 +1,34 @@
 package br.com.residencia.poo.contas;
 
+import br.com.residencia.poo.menu.MenuContas;
+
 //import java.sql.Date;
-//import java.util.concurrent.atomic.AtomicInteger;
 
-public class ContaPoupanca extends Conta {
-
-//	private static final AtomicInteger count = new AtomicInteger(0); 
-
-	protected int idContaPoupanca;
+public class ContaPoupanca extends Conta implements Movimentacao {
+	
+	MenuContas menucontas = new MenuContas();
 	protected double rentabilidade = 0.06;
-
+	protected int qtdDias = 0;
+	protected double valorDepositado;
 
 	public ContaPoupanca() {
 		super();
 	}
 
-	public ContaPoupanca(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
-		super(idAgencia, idDiretor, endereco, numeroAgencia);
+	public int getQtdDias() {
+		return qtdDias;
 	}
 
-	public ContaPoupanca(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
-			boolean status, double saldo, String senha) {
-		super(id, login, idAgencia, tipoConta, numeroConta, dataAberta, status, saldo, senha);
+	public void render(double rendimentoConta, int qtdDias) throws ContaException {
+		Double aporte = rendimentoConta;
+		rendimentoConta = (rendimentoConta * Tarifa.RENDIMENTO) * qtdDias;
+		Double saldoFinal =  aporte  + rendimentoConta;
+		System.out.println("Seu dinheiro vai render: R$" + rendimentoConta + "\nEm um período de: " + qtdDias + " dias.");
+		System.out.printf("\nSaldo no fim do período: R$%.2f", saldoFinal);
+		menucontas.mostrarMenuCP();
+
 	}
 	
-	@Override
-	public void render(double rendimentoConta, int qtdDias) throws ContaException {
-
-<<<<<<< Updated upstream
-	public ContaPoupanca(int idContaPoupanca, double rentabilidade) {
-		super();
-		this.idContaPoupanca = idContaPoupanca;
-		this.rentabilidade = rentabilidade;
-	}
-
-	public double getRentabilidade() {
-		return rentabilidade;
-	}
-
-	public int getIdContaPoupanca() {
-		return idContaPoupanca;
-	}
-
-}
-=======
-			Double aporte = rendimentoConta;
-			rendimentoConta = (rendimentoConta * Tarifa.RENDIMENTO) * qtdDias;
-			Double saldoFinal =  aporte  + rendimentoConta;
-			System.out.println("Seu dinheiro vai render: R$" + rendimentoConta + "\nEm um período de: " + qtdDias + " dias.");
-			System.out.printf("\nSaldo no fim do período: R$%.2f", saldoFinal);
-			menucontas.mostrarMenuCP();
-
-		}
 
 	@Override
 	public void depositar(double valorDepositado) throws ContaException {
@@ -67,7 +44,6 @@ public class ContaPoupanca extends Conta {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				++totalDepositos;
 				menucontas.mostrarMenuCP();
 
 			} else {
@@ -90,7 +66,6 @@ public class ContaPoupanca extends Conta {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor sacado: R$%.2f", valorSacado);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				++totalSaques;
 				menucontas.mostrarMenuCP();
 
 			} else {
@@ -113,7 +88,6 @@ public class ContaPoupanca extends Conta {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				++totalTransferencias;
 				menucontas.mostrarMenuCP();
 
 			} else {
@@ -122,5 +96,10 @@ public class ContaPoupanca extends Conta {
 			}
 		}
 	}
+	@Override
+	public String toString() {
+		return "Conta Poupança\tNúmero da Agência = " + this.numeroAgencia + "\tNúmero da Conta = "
+				+ this.numeroConta + "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
+	}
+
 }
->>>>>>> Stashed changes

@@ -1,43 +1,27 @@
 package br.com.residencia.poo.contas;
 
-public class ContaCorrente extends Conta {
+import br.com.residencia.poo.menu.MenuContas;
 
-	Integer idContaCorrente;
-<<<<<<< Updated upstream
-	Double chequeEspecial;
-	Double taxaDS;
-	Double taxaT;
-=======
-	Double totalTarifado = 0.1d;
-	int totalSaques, totalDepositos, totalTransferencias;
->>>>>>> Stashed changes
+public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 
-	public ContaCorrente() {
-		super();
-	}
-
-<<<<<<< Updated upstream
-	public ContaCorrente(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
-		super(idAgencia, idDiretor, endereco, numeroAgencia);
-
-	}
-
-	public ContaCorrente(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
-			boolean status, double saldo, String senha) {
-		super(id, login, idAgencia, tipoConta, numeroConta, dataAberta, status, saldo, senha);
-
-	}
+	MenuContas menucontas = new MenuContas();
 	
-	public ContaCorrente(Integer idContaCorrente, Double chequeEspecial, Double taxaDS, Double taxaT) {
-		super();
-		this.idContaCorrente = idContaCorrente;
-		this.chequeEspecial = chequeEspecial;
-		this.taxaDS = taxaDS;
-		this.taxaT = taxaT;
-=======
-	public ContaCorrente(Integer idContaCorrente, Double taxaDS, Double taxaT) {
-		super();
-		this.idContaCorrente = idContaCorrente;
+	private Integer totalSaques = 0;
+	private Integer totalDepositos = 0;
+	private Integer totalTransferencias = 0;
+	private Double totalTarifado = 0.0;
+
+
+	public ContaCorrente(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
+		this.tipoConta = tipoConta;
+		this.numeroAgencia = numeroAgencia;
+		this.numeroConta = numeroConta;
+		this.saldo = saldo;
+		this.cpf = cpf;
+	}
+
+	
+	public ContaCorrente() {
 	}
 
 	@Override
@@ -45,25 +29,18 @@ public class ContaCorrente extends Conta {
 
 		if (valorDepositado < 0) {
 			throw new ContaException("Valor inválido. Tente novamente!");
-		
-		} else {
-			double valorTarifado = Tarifa.DEPOSITO;
-			Double saldo = getSaldo();
-			
-			if (saldo - Tarifa.DEPOSITO >= 0) {
-				valorTarifado = Tarifa.DEPOSITO;
-				saldo = saldo + (valorDepositado - valorTarifado);
-				System.out.println("\nOperação realizada com sucesso!");
-				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
-				System.out.printf("\nTarifa para depósito: R$%.2f", Tarifa.DEPOSITO);
-				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				++totalSaques;
-				menucontas.mostrarMenuCC();
 
-			} else {
-				System.out.println("Valor depositado não permitido. Verifique nossas tarifas!");
-				menucontas.mostrarMenuCC();
-			}
+		} else {
+
+			Double saldo = getSaldo();
+			saldo = (saldo - Tarifa.DEPOSITO) + valorDepositado;
+
+			System.out.println("\nOperação realizada com sucesso!");
+			System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
+			System.out.printf("\nTarifa para depósito: R$%.2f", Tarifa.DEPOSITO);
+			System.out.printf("\nSaldo atual: R$%.2f", saldo);
+			++totalSaques;
+			menucontas.mostrarMenuCC();
 		}
 	}
 
@@ -72,11 +49,11 @@ public class ContaCorrente extends Conta {
 
 		if (valorSacado <= 0) {
 			throw new ContaException("Valor inválido. Tente novamente!");
-		
+
 		} else {
 			double valorTarifado = Tarifa.SAQUE;
 			Double saldo = getSaldo();
-		
+
 			if (saldo - valorSacado - valorTarifado >= 0) {
 				valorTarifado = Tarifa.SAQUE;
 				saldo = saldo - Tarifa.SAQUE - valorSacado;
@@ -86,7 +63,7 @@ public class ContaCorrente extends Conta {
 				System.out.printf("\nSaldo atual: R$%.2f ", saldo);
 				++totalDepositos;
 				menucontas.mostrarMenuCC();
-				
+
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
 				sacar(valorSacado);
@@ -113,7 +90,7 @@ public class ContaCorrente extends Conta {
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
 				++totalTransferencias;
 				menucontas.mostrarMenuCC();
-				
+
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
 				menucontas.mostrarMenuCC();
@@ -124,31 +101,28 @@ public class ContaCorrente extends Conta {
 	@Override
 	public double tarifarSaque(double valorSacado) {
 		return 0;
->>>>>>> Stashed changes
 	}
 
-	public Integer getIdContaCorrente() {
-		return idContaCorrente;
+	@Override
+	public double tarifarDeposito(double valorDepositado) {
+		return 0;
 	}
 
-	public Double getTaxaDS() {
-		return taxaDS = 0.10;
-	}
-
-<<<<<<< Updated upstream
-	public Double getTaxaT() {
-		return taxaT = 0.20;
-	}
-
-=======
-	public Integer getIdContaCorrente() {
-		return idContaCorrente;
+	@Override
+	public double tarifarTransferencia(double valorTransferido) {
+		return 0;
 	}
 
 	@Override
 	public double jurosRendimento(double rendimentoConta) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
->>>>>>> Stashed changes
+	
+	
+	@Override
+	public String toString() {
+		return "Conta Corrente\tNúmero da Agência = " + this.numeroAgencia + "\tNúmero da Conta = "
+				+ this.numeroConta + "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
+	}
+
 }

@@ -2,12 +2,10 @@ package br.com.residencia.poo.contas;
 
 public interface Movimentacao {
 
-	double transferir(double valorTransferido); //0.20
+	void depositar(double valorDepositado) throws ContaException;
 
-	void sacar(double valorSacado); //0.10
+	void sacar(double valorSacado) throws ContaException;
 
-	double depositar(double valorDepositado); //0.10
-	
-	
+	void transferir(double valorTransferido) throws ContaException;	
 	
 }

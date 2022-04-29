@@ -1,42 +1,66 @@
 package br.com.residencia.poo.pessoas;
 
-public class Cliente extends Pessoa {
+import br.com.residencia.poo.contas.ContaException;
+
+public class Cliente extends Pessoa{
 
 	Integer id;
 	Integer idGerente;
-
-	//Foi incluido o Id2 porque já existe um id que está vindo de pessoa
-	public Cliente(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco, String email,
-			String dataNascimento, String tipoPessoa, Integer id2, Integer idGerente) {
-		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
-		id = id2;
-		this.idGerente = idGerente;
-	}
-
+	String cpf;
+	String senha;
+	
 	public Cliente() {
+		super();	
+	}
+ 
+	public Cliente(Integer id, Integer idGerente, String cpf, String senha) {
 		super();
+		this.id = id;
+		this.idGerente = idGerente;
+		this.cpf = cpf;
+		this.senha = senha;
+	}
+	
+	public Cliente(String tipoPesosa, String nome, String cpf, String senha, int agencia, int numeroConta) {
+
 	}
 
-	public Cliente(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
-		super(idAgencia, idDiretor, endereco, numeroAgencia);
+	@Override
+	public String toString() {
+		
+		return "Cliente: ".concat(this.cpf).concat("\tSenha: ").concat(this.senha);
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	
+	public String getSenha() {
+		return senha;
+	}
+	
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public Cliente(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
-			boolean status, double saldo, String senha) {
-		super(id, login, idAgencia, tipoConta, numeroConta, dataAberta, status, saldo, senha);
+	@Override
+	public void depositar(double valorDepositado) throws ContaException {
+		
 	}
 
-	public Cliente(Integer id, String nome, String cpf, Integer idade, String telefone, String endereco, String email,
-			String dataNascimento, String tipoPessoa) {
-		super(id, nome, cpf, idade, telefone, endereco, email, dataNascimento, tipoPessoa);
+	@Override
+	public void sacar(double valorSacado) throws ContaException {
 	}
 
-	public int getId() {
-		return id;
+	@Override
+	public void transferir(double valorTransferido) throws ContaException {
+		
 	}
-
-	public Integer getIdGerente() {
-		return idGerente;
-	}
-
 }

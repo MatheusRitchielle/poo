@@ -1,7 +1,9 @@
 package br.com.residencia.poo.agencias;
 
-public class Agencia {
+import br.com.residencia.poo.contas.Conta;
+import br.com.residencia.poo.contas.ContaException;
 
+public class Agencia extends Conta {
 	protected int idAgencia;
 	protected int idDiretor;
 	protected String endereco;
@@ -33,8 +35,23 @@ public class Agencia {
 		return endereco;
 	}
 
-	public int getNumeroAgencia() {
-		return numeroAgencia;
+
+	@Override
+	public void depositar(double valorDepositado) throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sacar(double valorSacado) throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void transferir(double valorTransferido) throws ContaException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -11,4 +11,5 @@ public interface Tarifa {
 	double tarifarTransferencia(double valorTransferido);
 	
 	double jurosRendimento(double rendimentoConta);
+	
 }
