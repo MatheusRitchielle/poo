@@ -56,4 +56,7 @@ public abstract class Conta {
 		return saldo;
 	}
 
+	public double setSaldo() {
+		return saldo;
+	}
 }

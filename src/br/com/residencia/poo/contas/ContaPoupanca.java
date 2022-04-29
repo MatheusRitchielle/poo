@@ -5,6 +5,7 @@ import br.com.residencia.poo.menu.MenuContas;
 //import java.sql.Date;
 
 public class ContaPoupanca extends Conta implements Movimentacao {
+	
 	MenuContas menucontas = new MenuContas();
 	protected int idContaPoupanca;
 	protected double rentabilidade = 0.06;
@@ -24,38 +25,31 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 		return qtdDias;
 	}
 
-	public void render(double rendimentoConta, int qtdDias) {
+	public void render(double rendimentoConta, int qtdDias) throws ContaException {
+		Double aporte = rendimentoConta;
+		rendimentoConta = (rendimentoConta * Tarifa.RENDIMENTO) * qtdDias;
+		Double saldoFinal =  aporte  + rendimentoConta;
+		System.out.println("Seu dinheiro vai render: R$" + rendimentoConta + "\nEm um período de: " + qtdDias + " dias.");
+		System.out.printf("\nSaldo no fim do período: R$%.2f", saldoFinal);
+		menucontas.mostrarMenuCP();
 
-		if (this.saldo > 0) {
-
-			rendimentoConta += rentabilidade * this.getQtdDias();
-
-			System.out.println("Sua conta rendeu: R$" + rendimentoConta + "em um período de: " + qtdDias + "dias.");
-
-		} else {
-
-			System.out.println("Você não possui saldo para rendimentos.");
-
-		}
 	}
+	
 
 	@Override
 	public void depositar(double valorDepositado) throws ContaException {
 
 		if (valorDepositado < 0) {
-
 			throw new ContaException("O valor digitado para saque é inválido!");
 
 		} else {
+			Double saldo = getSaldo();
 
 			if (valorDepositado >= 0) {
-
-				this.saldo += valorDepositado;
-
+				saldo = saldo + valorDepositado;
 				System.out.println("\nOperação realizada com sucesso!");
-				System.out.printf("Valor depositado: R$%.2f", valorDepositado);
-				System.out.printf("Saldo atual: R$%.2f", this.saldo);
-
+				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
+				System.out.printf("\nSaldo atual: R$%.2f", saldo);
 				++totalDepositos;
 				menucontas.mostrarMenuCP();
 
@@ -70,19 +64,15 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 	public void sacar(double valorSacado) throws ContaException {
 
 		if (valorSacado < 0) {
-
 			throw new ContaException("O valor digitado para saque é inválido!");
 
 		} else {
-
-			if (this.saldo >= valorSacado) {
-
-				this.saldo -= valorSacado;
-
+			Double saldo = getSaldo();
+			if (saldo >= valorSacado) {
+				saldo = saldo - valorSacado;
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor sacado: R$%.2f", valorSacado);
-				System.out.printf("\nSaldo atual: R$%.2f", this.saldo);
-
+				System.out.printf("\nSaldo atual: R$%.2f", saldo);
 				++totalSaques;
 				menucontas.mostrarMenuCP();
 
@@ -97,17 +87,15 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 	public void transferir(double valorTransferido) throws ContaException {
 
 		if (valorTransferido <= 0) {
-
 			throw new ContaException("Valor inválido. Tente novamente!");
 
 		} else {
-
-			if (this.saldo - valorTransferido >= 0) {
-
+			Double saldo = getSaldo();
+			if (saldo - valorTransferido >= 0) {
+				saldo = saldo - valorTransferido;
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
-				System.out.printf("\nSaldo atual: R$%.2f", this.saldo);
-
+				System.out.printf("\nSaldo atual: R$%.2f", saldo);
 				++totalTransferencias;
 				menucontas.mostrarMenuCP();
 

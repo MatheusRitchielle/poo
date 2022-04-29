@@ -13,9 +13,10 @@ public class Autenticador extends Cadastro implements InterfaceMenu {
 		
 		MenuContas menuconta = new MenuContas();
 		
-		Pessoa p[] = new Cliente[2];
+		Pessoa p[] = new Cliente[3];
 		p[0] = new Cliente("123", "123");
-		p[1] = new Cliente("1234", "1234");
+		p[1] = new Cliente("CC", "CC");
+		p[2] = new Cliente("PP", "PP");
 		Pessoa cliente = new Cliente();
 		
 		for (Pessoa pessoa : p) {
@@ -24,11 +25,17 @@ public class Autenticador extends Cadastro implements InterfaceMenu {
 				cliente.setSenha(pessoa.getSenha());
 			}
 		}
-		if (login.equals(cliente.getCpf()) && senha.equals(cliente.getSenha())) {
+		if (login.equals(cliente.getCpf()) && senha.equals(cliente.getSenha()) && login.contains("CC")) {
 			System.out.println("Acesso permitido!");
 			menuconta.mostrarMenuCC();
 			return true;
-		} else {
+		}
+		if (login.equals(cliente.getCpf()) && senha.equals(cliente.getSenha()) && login.contains("PP")) {
+			System.out.println("Acesso permitido!");
+			menuconta.mostrarMenuCP();
+			return true;
+		}
+		else {
 			System.out.println("Acesso negado!" + cliente.getCpf());
 			return false;
 		}

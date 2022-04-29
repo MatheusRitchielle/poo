@@ -6,7 +6,7 @@ public interface InterfaceMenu {
 	
 	public void mostrarMenuCliente() throws ContaException;
 	
-	public void mostrarMenuFuncionario();
+	public void mostrarMenuFuncionario()throws ContaException;
 	
 	void mostrarMenuCC() throws ContaException;
 	
