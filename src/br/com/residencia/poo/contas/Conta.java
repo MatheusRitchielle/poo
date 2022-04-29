@@ -17,7 +17,11 @@ public abstract class Conta extends Agencia {
 	protected int idAgencia;
 	public String tipoConta;
 	protected int numeroConta;
+<<<<<<< Updated upstream
 	protected  String dataAberta; //Era Date
+=======
+	protected String dataAberta;
+>>>>>>> Stashed changes
 	protected boolean status;
 	protected double saldo;
 	protected String senha;
@@ -63,6 +67,7 @@ public abstract class Conta extends Agencia {
 		return saldo;
 	}
 
+<<<<<<< Updated upstream
 	@Override
 	public String toString() {
 		return "Saldo: R$" + saldo;
@@ -102,6 +107,10 @@ public abstract class Conta extends Agencia {
 
 	public String getSenha() {
 		return senha;
+=======
+	public void render(double rendimentoConta, int qtdDias) throws ContaException {
+		
+>>>>>>> Stashed changes
 	}
 
 }
