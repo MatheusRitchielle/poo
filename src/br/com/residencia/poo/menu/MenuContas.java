@@ -19,8 +19,6 @@ public abstract class MenuContas implements InterfaceMenuContas {
 		System.out.println("\tDigite a operação desejada:");
 		System.out.println("[1] - Sacar\n2 - Depositar\n[3] - Transferir\n[0] - Sair");
 
-		// ELE TÁ PEDINDO TRY/CATCH
-
 		int opcao = sc.nextInt();
 		switch (opcao) {
 		case 1:

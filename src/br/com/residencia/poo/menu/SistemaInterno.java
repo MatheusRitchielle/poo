@@ -1,6 +1,6 @@
 package br.com.residencia.poo.menu;
 
-import br.com.residencia.poo.principal.Principal;
+//import br.com.residencia.poo.principal.Principal;
 
 public class SistemaInterno {
 
