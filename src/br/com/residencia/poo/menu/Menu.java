@@ -1,13 +1,12 @@
 package br.com.residencia.poo.menu;
 
 import java.util.Scanner;
-
-import br.com.residencia.poo.bancodados.Cadastro;
 import br.com.residencia.poo.contas.ContaException;
 
 public class Menu implements InterfaceMenu {
-
-	// Menu Principal
+	
+	MenuContas menuContas = new MenuContas();
+	
 	public void mostrarMenu() throws ContaException {
 
 		Scanner sc = new Scanner(System.in);
@@ -19,18 +18,18 @@ public class Menu implements InterfaceMenu {
 		case 1:
 			mostrarMenuCliente();
 		case 2:
-			mostrarMenuFuncionário();
+			mostrarMenuFuncionario();
 		default:
 			System.exit(0);
 		}
 		sc.close();
 	}
 
+
 	@Override
 	public void mostrarMenuCliente() throws ContaException {
 
 		Scanner sc = new Scanner(System.in);
-		Cadastro c = new Cadastro();
 
 		Autenticador validator = new Autenticador();
 
@@ -54,12 +53,16 @@ public class Menu implements InterfaceMenu {
 			break;
 		case 2:
 			break;
+		case 3:
+			mostrarMenu();
+		default:
+			System.exit(0);
 		}
+		sc.close();
 	}
 
-	public void mostrarMenuFuncionário() throws ContaException {
+	public void mostrarMenuFuncionario() throws ContaException {
 		Scanner sc = new Scanner(System.in);
-		Cadastro c = new Cadastro();
 		Autenticador validator = new Autenticador();
 		String login;
 		String senha;
@@ -73,9 +76,8 @@ public class Menu implements InterfaceMenu {
 			System.out.print("Digite sua senha: ");
 			senha = (sc.next());
 			if (login != null && senha != null) {
-				// Método de autenticar
 				validator.autenticarFun(login, senha);
-				mostrarMenuCC();
+				menuContas.mostrarMenuCC();
 			} else {
 				System.out.println("Opção inválida!");
 			}
@@ -102,9 +104,5 @@ public class Menu implements InterfaceMenu {
 
 	}
 
-	@Override
-	public void mostrarMenuFuncionario() {
-
-	}
 
 }
