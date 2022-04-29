@@ -56,4 +56,8 @@ public abstract class Conta {
 		return saldo;
 	}
 
+	public double setSaldo(double novosaldo) {
+		return this.saldo = novosaldo;
+	}
+
 }

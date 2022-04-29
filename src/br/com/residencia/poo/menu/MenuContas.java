@@ -14,26 +14,22 @@ public class MenuContas implements InterfaceMenu {
 		Cliente cliente = new Cliente();
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("\nÁrea do Cliente:\n\n " + cliente.getCpf() + " seja bem-vindo ao Mucha Lucha Bank!");
-		System.out.println("\tDigite a operação desejada:");
-		System.out.println("\n[1] - Sacar\n[2] - Depositar\n[3] - Transferir\n[0] - Sair");
+		System.out.println("\nBem vindo, " + cliente.getCpf() + ".");
+		System.out.println("\nDigite a operação desejada:");
+		System.out.print("[1] Sacar\n[2] Depositar\n[3] Transferir\n[0] Sair\n--->: ");
 
-		int opcao = sc.nextInt();
-		switch (opcao) {
+		switch (sc.nextByte()) {
 		case 1:
 			System.out.print("Informe um valor para saque R$: ");
-			Double valorSacado = sc.nextDouble();
-			cc.sacar(valorSacado);
+			cc.sacar(sc.nextDouble());
 			break;
 		case 2:
-			System.out.print("Informe um valor para depositar R$: ");
-			Double valorDepositado = sc.nextDouble();
-			cc.depositar(valorDepositado);
+			System.out.print("Informe um valor deposito R$: ");
+			cc.depositar(sc.nextDouble());
 			break;
 		case 3:
 			System.out.print("Informe um valor para transferir R$: ");
-			Double valorTransferido = sc.nextDouble();
-			cc.transferir(valorTransferido);
+			cc.transferir(sc.nextDouble());
 			break;
 		default:
 			System.exit(0);
@@ -53,27 +49,22 @@ public class MenuContas implements InterfaceMenu {
 
 		// * = Colocar o nome do cliente logado!
 
-		System.out.println("Área do Cliente\n\n * seja bem vindo ao Mucha Lucha Bank!");
+		System.out.println("Área do Cliente\n\n *** Mucha Lucha Bank ***");
 		System.out.println("\tDigite a operação desejada:");
-		System.out.println("[1] - Sacar\n2 - Depositar\n[3] - Transferir\n[4] - Consultar rendimentos \n[0] - Sair");
+		System.out.print("[1] Sacar\n[2] Depositar\n[3] Transferir\n[4] Consultar rendimentos \n[0] Sair\n--->: ");
 
-		int opcao = sc.nextInt();
-
-		switch (opcao) {
+		switch (sc.nextByte()) {
 		case 1:
 			System.out.print("Informe um valor para saque R$: ");
-			Double valorSacado = sc.nextDouble();
-			cp.sacar(valorSacado);
+			cp.sacar(sc.nextDouble());
 			break;
 		case 2:
 			System.out.print("Informe um valor para depositar R$: ");
-			Double valorDepositado = sc.nextDouble();
-			cp.depositar(valorDepositado);
+			cp.depositar(sc.nextDouble());
 			break;
 		case 3:
 			System.out.print("Informe um valor para saque R$: ");
-			Double valorTransferido = sc.nextDouble();
-			cp.transferir(valorTransferido);
+			cp.transferir(sc.nextDouble());
 			break;
 		default:
 			System.exit(0);

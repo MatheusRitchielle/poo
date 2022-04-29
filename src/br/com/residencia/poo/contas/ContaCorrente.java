@@ -3,14 +3,13 @@ package br.com.residencia.poo.contas;
 import br.com.residencia.poo.menu.MenuContas;
 
 public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
-	MenuContas menucontas = new MenuContas();
+	MenuContas menucontas;
 	Integer idContaCorrente;
 	Double totalTarifado = 0.1d;
 	int totalSaques, totalDepositos, totalTransferencias;
-	
+
 	public ContaCorrente() {
 		super();
-
 	}
 
 	public ContaCorrente(Integer idContaCorrente, Double taxaDS, Double taxaT) {
@@ -22,28 +21,28 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 	@Override
 	public void depositar(double valorDepositado) throws ContaException {
 
-		if (valorDepositado < 0) {
+		if (valorDepositado <= 0) {
 			throw new ContaException("Valor inválido. Tente novamente!");
 		} else {
 			
 			double valorTarifado = tarifarDeposito(valorDepositado);
 			
-			if (this.saldo - valorTarifado >= 0) {
+			if (saldo - valorTarifado >= 0) {
 				
 				totalTarifado += Tarifa.DEPOSITO;
-				saldo += valorDepositado - valorTarifado;
+				double novosaldo = + saldo - valorDepositado - valorTarifado;
 				
 				//O PRINTF ESTÁ LIMITANDO AS CASAS DECIMAIS
 				
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
 				System.out.printf("\nTarifa para depósito: R$%.2f", valorTarifado);
-				System.out.printf("\nSaldo atual: R$%.2f", saldo);
+				System.out.printf("\nSaldo atual: R$%.2f", novosaldo);
 				
 				//ADICIONA O SAQUE PARA FUTURAMENTE GERAR RELATÓRIO
 				
 				++totalSaques;	
-				menucontas.mostrarMenuCC();
+				//menucontas.mostrarMenuCC();
 			} else {
 				System.out.println("Valor depositado não permitido. Verifique nossas tarifas!");
 				menucontas.mostrarMenuCC();

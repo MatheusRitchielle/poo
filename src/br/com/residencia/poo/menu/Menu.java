@@ -12,8 +12,8 @@ public class Menu implements InterfaceMenu {
 
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("\tSeja bem vindo ao Mucha Lucha Bank. \n"
-				+ "Deseja acessar como:\n1 - Cliente\n2 - Funcionario\n0 - Sair \t");
+		System.out.print("\t *** Bem vindo ao Mucha Lucha Bank *** \n"
+				+ "Deseja acessar como:\n[1] Cliente\n[2] Funcionario\n[0] Sair\n--->: ");
 
 		switch (sc.nextByte()) {
 		case 1:
@@ -37,8 +37,8 @@ public class Menu implements InterfaceMenu {
 		String login;
 		String senha;
 
-		System.out.println("\tMucha Lucha Bank");
-		System.out.print("[1] Login\n" + "[2] Criar conta\n[3] Sair  ");
+		System.out.println("\t *** Mucha Lucha Bank ***");
+		System.out.print("[1] Login\n" + "[2] Criar conta\n[3] Sair\n--->: ");
 
 		switch (sc.nextByte()) {
 		case 1:
@@ -65,12 +65,12 @@ public class Menu implements InterfaceMenu {
 		String senha;
 
 		System.out.println("\tMucha Lucha Bank");
-		System.out.println("[1] Login\n" + "[2] Criar conta\n[3] Sair  ");
+		System.out.println("[1] Login\n" + "[2] Criar conta\n[3] Sair\n--->: ");
 		switch (sc.nextByte()) {
 		case 1:
-			System.out.println("Digite seu login: ");
+			System.out.print("Digite seu login: ");
 			login = (sc.next());
-			System.out.println("Digite sua senha: ");
+			System.out.print("Digite sua senha: ");
 			senha = (sc.next());
 			if (login != null && senha != null) {
 				// Método de autenticar
