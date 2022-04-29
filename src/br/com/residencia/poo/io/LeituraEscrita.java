@@ -19,6 +19,7 @@ public class LeituraEscrita {
 		String nome = sc.next();
 
 		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(PATH_BASICO + nome + path));
+		
 		String linha = "";
 
 		System.out.println("Escreva algo: ");
@@ -31,6 +32,7 @@ public class LeituraEscrita {
 
 	public static void leitor(String path) throws IOException {
 		BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO + path));
+		
 		String linha = "";
 
 		try {

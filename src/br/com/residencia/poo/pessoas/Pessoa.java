@@ -1,23 +1,15 @@
 package br.com.residencia.poo.pessoas;
 
-import br.com.residencia.poo.bancodados.Cadastro;
-
-//import java.util.concurrent.atomic.AtomicInteger;
-
 import br.com.residencia.poo.contas.Conta;
 
 public abstract class Pessoa extends Conta{
 	
+	protected String tipoPessoa;
 	protected Integer id;
 	protected String nome;
 	protected String cpf;
 	protected String senha;
-	protected Integer idade;
-	protected String telefone;
-	protected String endereco;
-	protected String email;
 	protected String dataNascimento;
-	protected String tipoPessoa;
 
 	public Pessoa() {
 		super();
@@ -26,9 +18,8 @@ public abstract class Pessoa extends Conta{
 	//Contrutor Conta	
 	public Pessoa(String cpf, String senha) {
 		super(cpf, senha);
+		}
 		
-		
-	}
 	public String getCpf() {
 		return cpf;
 	}
@@ -37,7 +28,6 @@ public abstract class Pessoa extends Conta{
 		return senha;
 	}
 	
-
 	public enum TipoPessoa {
 
 	    CLIENTE("Cliente"),

@@ -5,8 +5,9 @@ import java.util.Scanner;
 import br.com.residencia.poo.bancodados.Cadastro;
 import br.com.residencia.poo.pessoas.Cliente;
 import br.com.residencia.poo.pessoas.Pessoa;
+import br.com.residencia.poo.menu.MenuContas;
 
-public class Menu implements InterfaceMenu {
+public class Menu implements InterfaceMenu, InterfaceMenuContas {
 
 	// Menu Principal
 	public void mostrarMenu() {
@@ -23,20 +24,24 @@ public class Menu implements InterfaceMenu {
 			mostrarMenuFuncionário();
 		default:
 			System.exit(0);
-
 		}
 		sc.close();
 	}
 
+	@Override
 	public void mostrarMenuCliente() {
+		
 		Scanner sc = new Scanner(System.in);
 		Cadastro c = new Cadastro();
+		
 		Autenticador validator = new Autenticador();
+		
 		String login;
 		String senha;
 
 		System.out.println("\tMucha Lucha Bank");
 		System.out.println("[1] Login\n" + "[2] Criar conta\n[3] Sair  ");
+		
 		switch (sc.nextByte()) {
 		case 1:
 			System.out.println("Digite seu login: ");
@@ -49,21 +54,15 @@ public class Menu implements InterfaceMenu {
 			} else {
 				System.out.println("Opção inválida!");
 			}
-
-			break;
-		case 2:
-
-			break;
-		case 3:
-
-			break;
-		case 0:
-			mostrarMenu();
+			mostrarMenuCC();
+		break;
+		case 2:		
+			
+		mostrarMenuCP();
+		break;
 		}
-		sc.close();
-
 	}
-
+		
 	public void mostrarMenuFuncionário() {
 		Scanner sc = new Scanner(System.in);
 		Cadastro c = new Cadastro();
@@ -85,7 +84,7 @@ public class Menu implements InterfaceMenu {
 			} else {
 				System.out.println("Opção inválida!");
 			}
-
+			mostrarMenuCC();
 			break;
 		case 2:
 
@@ -98,6 +97,18 @@ public class Menu implements InterfaceMenu {
 		}
 		sc.close();
 
+	}
+
+	@Override
+	public void mostrarMenuCC() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mostrarMenuCP() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

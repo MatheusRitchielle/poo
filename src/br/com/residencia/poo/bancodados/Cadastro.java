@@ -1,7 +1,6 @@
 package br.com.residencia.poo.bancodados;
 
 import br.com.residencia.poo.agencias.Agencia;
-import br.com.residencia.poo.contas.Conta;
 import br.com.residencia.poo.pessoas.Cliente;
 import br.com.residencia.poo.pessoas.Diretor;
 import br.com.residencia.poo.pessoas.Funcionario;
@@ -22,11 +21,6 @@ public class Cadastro{
 	
 	public static Funcionario[] cadastroDiretor() {
 		Funcionario d[] = new Diretor[2];
-
-		d[0] = new Diretor(49, "Diretor 1", "12346578910", 45, "21910203040", "Rua V", "diretor1@gmail.com",
-				"10/11/2000", "Diretor", 001, "Diretor1", "123", 5000.00, 001, 2, 0001);
-		d[1] = new Diretor(50, "Diretor 2", "12346578910", 50, "21910203040", "Rua W", "diretor2@gmail.com",
-				"10/11/2000", "Diretor", 002, "Diretor2", "123", 5000.00, 002, 2, 0002);
 		return d;
 	}
 
@@ -46,29 +40,21 @@ public class Cadastro{
 
 	public static Pessoa[] cadastroCliente() {
 		Pessoa addCliente[] = new Cliente[13];
-//
-//		addCliente[0] = new Cliente(7, "Cliente 1", "12346578910", 20, "21910203040", "Rua G", "cliente1@gmail.com",
-//				"10/11/2001", "Cliente", 001, 001);
-//		addCliente[1] = new Cliente(8, "Cliente 2", "12346578910", 25, "21910203040", "Rua H", "cliente2@gmail.com",
-//				"10/11/2001", "Cliente", 002, 002);
-//		addCliente[2] = new Cliente(9, "Cliente 3", "12346578910", 30, "21910203040", "Rua I", "cliente3@gmail.com",
-//				"10/11/2001", "Cliente", 003, 003);
-//		addCliente[3] = new Cliente(10, "Cliente 4", "12346578910", 35, "21910203040", "Rua J", "cliente4@gmail.com",
-//				"10/11/2001", "Cliente", 004, 004);
-//		addCliente[4] = new Cliente(11, "Cliente 5", "12346578910", 40, "21910203040", "Rua K", "cliente5@gmail.com",
-//				"10/11/2001", "Cliente", 005, 001);
-//		addCliente[5] = new Cliente(12, "Cliente 6", "12346578910", 45, "21910203040", "Rua L", "cliente6@gmail.com",
-//				"10/11/2001", "Cliente", 006, 002);
-//		addCliente[6] = new Cliente(13, "Cliente 7", "12346578910", 50, "21910203040", "Rua M", "cliente7@gmail.com",
-//				"10/11/2001", "Cliente", 007, 003);
-//		addCliente[7] = new Cliente(14, "Cliente 8", "12346578910", 55, "21910203040", "Rua N", "cliente8@gmail.com",
-//				"10/11/2001", "Cliente", 010, 004);
-//		addCliente[9] = new Cliente(15, "Cliente 9", "12346578910", 60, "21910203040", "Rua O", "cliente9@gmail.com",
-//				"10/11/2001", "Cliente", 011, 001);
-//		addCliente[10] = new Cliente(16, "Cliente 10", "12346578910", 65, "21910203040", "Rua P", "cliente10@gmail.com",
-//				"10/11/2001", "Cliente", 012, 002);
-//		addCliente[11] = new Cliente(17, "Cliente 11", "12346578910", 70, "21910203040", "Rua Q", "cliente11@gmail.com",
-//				"10/11/2001", "Cliente", 013, 003);
+
+		//id, idgerente, cpf, senha
+		
+		addCliente[0] = new Cliente(7, 4, "12346578910", "20");
+		addCliente[1] = new Cliente(8, 5, "12346578910", "25");
+		addCliente[2] = new Cliente(9, 6, "Cliente 3", "30");
+		addCliente[3] = new Cliente(12, 6, "Cliente 3", "31");
+		addCliente[4] = new Cliente(15, 6, "Cliente 3", "30");
+		addCliente[5] = new Cliente(13, 6, "Cliente 3", "30");
+		addCliente[6] = new Cliente(19, 6, "Cliente 3", "304");
+		addCliente[7] = new Cliente(92, 6, "Cliente 3", "387");
+		addCliente[8] = new Cliente(32, 6, "Cliente 3", "364");
+		addCliente[9] = new Cliente(35, 6, "Cliente 3", "334");
+		addCliente[10] = new Cliente(18, 6, "Cliente 3", "304");
+		addCliente[11] = new Cliente(806, 6, "Cliente 3", "192");
 		
 		addCliente[12] = new Cliente("123", "123");
 		return addCliente;

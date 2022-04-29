@@ -1,14 +1,11 @@
 package br.com.residencia.poo.pessoas;
 
-import br.com.residencia.poo.contas.Conta;
-
 public class Cliente extends Pessoa{
 
 	Integer id;
 	Integer idGerente;
 	String cpf;
 	String senha;
-	
 	
 	public Cliente() {
 		super();	
@@ -21,9 +18,18 @@ public class Cliente extends Pessoa{
 		this.senha = senha;
 	}
 
+	public Cliente(Integer id, Integer idGerente, String cpf, String senha) {
+		super();
+		this.id = id;
+		this.idGerente = idGerente;
+		this.cpf = cpf;
+		this.senha = senha;
+	}
+	
 	@Override
 	public String toString() {
-		return "Cliente [cpf=" + this.cpf + ", senha=" + this.senha + "]";
+		
+		return "Cliente: ".concat(this.cpf).concat("\tSenha: ").concat(this.senha);
 	}
 	
 	public String getCpf() {

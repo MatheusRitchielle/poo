@@ -1,46 +1,122 @@
 package br.com.residencia.poo.contas;
 
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 
 	Integer idContaCorrente;
-	Double chequeEspecial;
-	Double taxaDS;
-	Double taxaT;
-
+	Double totalTarifado;
+	int totalSaques, totalDepositos, totalTransferencias;
+	
 	public ContaCorrente() {
 		super();
 
 	}
 
-	public ContaCorrente(int idAgencia, int idDiretor, String endereco, int numeroAgencia) {
-		super(idAgencia, idDiretor, endereco, numeroAgencia);
-
-	}
-
-	public ContaCorrente(int id, String login, int idAgencia, String tipoConta, int numeroConta, String dataAberta,
-			boolean status, double saldo, String senha) {
-		super(id, login, idAgencia, tipoConta, numeroConta, dataAberta, status, saldo, senha);
-
-	}
-	
-	public ContaCorrente(Integer idContaCorrente, Double chequeEspecial, Double taxaDS, Double taxaT) {
+	public ContaCorrente(Integer idContaCorrente, Double taxaDS, Double taxaT) {
 		super();
 		this.idContaCorrente = idContaCorrente;
-		this.chequeEspecial = chequeEspecial;
-		this.taxaDS = taxaDS;
-		this.taxaT = taxaT;
 	}
 
 	public Integer getIdContaCorrente() {
 		return idContaCorrente;
 	}
 
-	public Double getTaxaDS() {
-		return taxaDS = 0.10;
+	@Override
+	public void depositar(double valorDepositado) throws ContaException {
+
+		if (valorDepositado < 0) {
+			throw new ContaException("Valor inválido. Tente novamente!");
+		} else {
+			
+			double valorTarifado = tarifarDeposito(valorDepositado);
+			
+			if (this.saldo - valorTarifado >= 0) {
+				
+				this.saldo -= valorTarifado;
+				this.totalTarifado += Tarifa.SAQUE;
+				
+				//O PRINTF ESTÁ LIMITANDO AS CASAS DECIMAIS
+				
+				System.out.println("\nOperação realizada com sucesso!");
+				System.out.printf("\nValor depositado: R$.2f%n", valorDepositado);
+				System.out.printf("\nTarifa para depósito: R$.2f%n", valorTarifado);
+				System.out.printf("\nSaldo atual: R$.2f%n", this.saldo);
+				
+				//ADICIONA O SAQUE PARA FUTURAMENTE GERAR RELATÓRIO
+				
+				++totalSaques;	
+			} else {
+				System.out.println("Valor depositado não permitido. Verifique nossas tarifas!");
+			}
+		}
+	}
+	
+	@Override
+	public void sacar(double valorSacado) throws ContaException {
+		
+		if (valorSacado <= 0) {
+			throw new ContaException("Valor inválido. Tente novamente!");
+		} else {
+			
+			double valorTarifado = tarifarSaque(valorSacado);
+
+			if (this.saldo - valorSacado - valorTarifado >= 0) {
+
+				this.saldo -= valorTarifado;
+				this.totalTarifado -= Tarifa.DEPOSITO;
+
+				System.out.println("\nOperação realizada com sucesso!");
+				System.out.printf("\nValor sacado: R$.2f%n", valorSacado);
+				System.out.printf("\nTarifa para saque: R$.2f%n", valorTarifado);
+				System.out.printf("\nSaldo atual: R$.2f%n", this.saldo);
+
+				++totalDepositos;
+			} else {
+				System.out.println("Valor inválido. Tente novamente!");
+			}
+		}
 	}
 
-	public Double getTaxaT() {
-		return taxaT = 0.20;
+	//FALTA VALIDAR CONTA 2 E ADICIONAR O VALOR TRANSFERIDO À ELA
+	
+	@Override
+	public void transferir(double valorTransferido) throws ContaException {
+
+		if (valorTransferido <= 0) {
+			throw new ContaException("Valor inválido. Tente novamente!");
+		} else {
+			
+			double valorTarifado = tarifarTransferencia(valorTransferido);
+			
+		if (this.saldo - valorTransferido - valorTarifado >= 0) {
+			
+			this.saldo -= valorTarifado;
+			this.totalTarifado -= Tarifa.TRANSFERENCIA;
+			
+			System.out.println("\nOperação realizada com sucesso!");
+			System.out.printf("\nValor transferido: R$.2f%n", valorTransferido);
+			System.out.printf("\nTarifa para transferência: R$.2f%n", valorTarifado);
+			System.out.printf("\nSaldo atual: R$.2f%n", this.saldo);
+			
+			++totalTransferencias;			
+		} else {
+			System.out.println("Valor inválido. Tente novamente!");
+		}
+	}
+}
+	
+	@Override
+	public double tarifarSaque(double valorSacado) {
+		return 0;
+	}
+
+	@Override
+	public double tarifarDeposito(double valorDepositado) {
+		return 0;
+	}
+
+	@Override
+	public double tarifarTransferencia(double valorTransferido) {
+		return 0;
 	}
 
 }

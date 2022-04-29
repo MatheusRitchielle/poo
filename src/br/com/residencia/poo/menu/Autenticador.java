@@ -9,6 +9,15 @@ import br.com.residencia.poo.pessoas.Pessoa;
 
 public class Autenticador extends Cadastro {
 
+	
+	public static void main(String[] args) {
+		Pessoa p1[] = Cadastro.cadastroCliente();
+		
+		for (Pessoa pessoa: p1) {
+			System.out.println(pessoa);
+		}
+	}
+	
 	public boolean autenticarLogin(String login, String senha) {
 		Pessoa p[] = new Cliente[2];
 		p[0] = new Cliente("123", "123");
