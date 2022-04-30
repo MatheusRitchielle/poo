@@ -41,15 +41,13 @@ public class LeituraEscrita {
 		Conta conta = null;
 
 		if (isContaCorrente) {
-			ContaCorrente contaCorrente = new ContaCorrente(dados[0], Integer.parseInt(dados[1]),
-					Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
+			ContaCorrente contaCorrente = new ContaCorrente(dados[0], Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
 			contaCorrenteList.add(contaCorrente);
 			conta = contaCorrente;
 		}
 
 		if (isContaPoupanca) {
-			ContaPoupanca contaPoupanca = new ContaPoupanca(dados[0], Integer.parseInt(dados[1]),
-					Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
+			ContaPoupanca contaPoupanca = new ContaPoupanca(dados[0], Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
 			contaPoupancaList.add(contaPoupanca);
 			conta = contaPoupanca;
 		}
@@ -328,4 +326,9 @@ public class LeituraEscrita {
 //
 //	}
 
-}
+	public List<ContaCorrente> leitorContas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	}
