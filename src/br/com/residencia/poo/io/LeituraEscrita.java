@@ -1,8 +1,6 @@
 package br.com.residencia.poo.io;
 
 import java.io.BufferedReader;
-
-
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+
 import br.com.residencia.poo.contas.Conta;
 import br.com.residencia.poo.contas.ContaCorrente;
 import br.com.residencia.poo.contas.ContaPoupanca;
@@ -82,39 +80,41 @@ public class LeituraEscrita {
 		}
 	}
 
-public List<Pessoa> leitorPessoa (String path) throws IOException {
-		
+	public List<Pessoa> leitorPessoa (String path) throws IOException {
+
 		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
 		
 		String linha = "";
 		
-		List<ContaCorrente> contaCorrenteList = new ArrayList<>();
-		List<ContaPoupanca> contaPoupancaList = new ArrayList<>();
-		List<Presidente> presidenteList = new ArrayList<>();
-		List<Diretor> diretorList = new ArrayList<>();
-		List<Gerente> gerenteList = new ArrayList<>();
-		List<Cliente> clienteList = new ArrayList<>();
-
+//		List<ContaCorrente> contaCorrenteList = new ArrayList<>();
+//		List<ContaPoupanca> contaPoupancaList = new ArrayList<>();
+//		List<Presidente> presidenteList = new ArrayList<>();
+//		List<Diretor> diretorList = new ArrayList<>();
+//		List<Gerente> gerenteList = new ArrayList<>();
+//		List<Cliente> clienteList = new ArrayList<>();
+		List<Pessoa> lista = new ArrayList<>();
+		Pessoa p = null;
+		String[] dados = null;
 		while (true) {
 			linha = buffRead.readLine();
 			
 			if (linha != null) {
-				String[] dados = linha.split(";");
-				return lerPessoa(dados);
-	
+			dados = linha.split(";");
+			 p = lerPessoa(dados);
+			 lista.add(p);
 			}
 			else {
 				break;
 			}
 			//buffRead.close();
 		}
-		return null;
+		return lista;
 	}
 
 	
-	public List<Pessoa> lerPessoa(String[] dados) {
+	public Pessoa lerPessoa(String[] dados) {
 
-		List<Pessoa> pessoaList = new ArrayList<>();
+		Pessoa pessoa = null;
 		
 		boolean isPessoaPresidente = (dados[0].equalsIgnoreCase(TipoPessoa.PRESIDENTE.getTipoUsuario()));
 		boolean isPessoaGerente = (dados[0].equalsIgnoreCase(TipoPessoa.GERENTE.getTipoUsuario()));
@@ -124,24 +124,26 @@ public List<Pessoa> leitorPessoa (String path) throws IOException {
 		if (isPessoaPresidente) {				
 			Presidente presidente = new Presidente(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]), Integer.parseInt(dados[5]), Double.parseDouble(dados[6]));
 			presidenteList.add(presidente);
+			pessoa = presidente;
 		}
 
 		if (isPessoaGerente) {					 
 			Gerente gerente = new Gerente(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]), Integer.parseInt(dados[5]), Double.parseDouble(dados[6]));
 			gerenteList.add(gerente);
+			pessoa = gerente;
 		}
 
 		if (isPessoaDiretor) {
 			Diretor diretor = new Diretor(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]), Integer.parseInt(dados[5]), Double.parseDouble(dados[6]));
 			diretorList.add(diretor);
-
+			pessoa = diretor;
 		}
 		if (isPessoaCliente) {
-			Pessoa cliente = new Cliente(dados[0], Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
-			clienteList.add((Cliente) cliente);
-
+			Cliente cliente = new Cliente(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]),Integer.parseInt(dados[5]));
+			clienteList.add(cliente);
+			pessoa = cliente;
 		}
-		return pessoaList;
+		return pessoa;
 
 	}
 
@@ -176,37 +178,37 @@ public List<Pessoa> leitorPessoa (String path) throws IOException {
 //
 //	}
 //
-//	public static void comprovanteSaque(Conta conta, double valorSaque) throws IOException {
-//		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
-//				+ "_transacoes";
-//		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO));
-//
-//		String linha = "*************** SAQUE ***************";
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "CPF: " + conta.getCpf();
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "Agência: " + conta.getNumeroAgencia();
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "Conta: " + conta.getNumeroConta();
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "Valor: R$" + valorSaque;
-//		buffWrite.append(linha + "\n");
-//
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//		Date date = new Date();
-//		linha = "Operação realizada em: " + simpleDateFormat.format(date);
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "*************** FIM DO SAQUE ***************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		buffWrite.close();
-//
-//	}
+	public static void comprovanteSaque(Conta conta, double valorSaque) throws IOException {
+		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
+				+ "_transacoes";
+		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO));
+
+		String linha = "*************** SAQUE ***************";
+		buffWrite.append(linha + "\n");
+
+		linha = "CPF: " + conta.getCpf();
+		buffWrite.append(linha + "\n");
+
+		linha = "Agência: " + conta.getNumeroAgencia();
+		buffWrite.append(linha + "\n");
+
+		linha = "Conta: " + conta.getNumeroConta();
+		buffWrite.append(linha + "\n");
+
+		linha = "Valor: R$" + valorSaque;
+		buffWrite.append(linha + "\n");
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		linha = "Operação realizada em: " + simpleDateFormat.format(date);
+		buffWrite.append(linha + "\n");
+
+		linha = "*************** FIM DO SAQUE ***************";
+		buffWrite.append(linha + "\n\n");
+
+		buffWrite.close();
+
+	}
 //
 //	public static void relatorioContasPorAgencia(Conta conta) throws IOException {
 //

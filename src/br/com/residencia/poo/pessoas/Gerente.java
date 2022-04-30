@@ -18,9 +18,42 @@ public class Gerente extends Funcionario {
 
 	
 	public Gerente(String tipoPessoa, String nome, String cpf, String senha, int numeroAgencia,int numeroConta, double saldo) {
-		super(tipoPessoa, nome, cpf, senha, numeroAgencia,numeroConta,saldo );
+		this.tipoPessoa = tipoPessoa;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.senha = senha;
+		this.numeroAgencia = numeroAgencia;
+		this.numeroConta = numeroConta;
+		this.saldo = saldo;
 	
 	}
+	
+	
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+	public void setIdAgencia(int idAgencia) {
+		this.idAgencia = idAgencia;
+	}
+
 
 	public int getIdAgencia() {
 		return idAgencia;

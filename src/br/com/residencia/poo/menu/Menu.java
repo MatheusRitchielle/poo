@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import br.com.residencia.poo.contas.ContaException;
 import br.com.residencia.poo.io.LeituraEscrita;
+import br.com.residencia.poo.pessoas.Funcionario;
 import br.com.residencia.poo.pessoas.Pessoa;
 import br.com.residencia.poo.pessoas.Usuario;
 
@@ -28,28 +29,24 @@ public class Menu implements InterfaceMenu {
 
 		switch (opcao) {
 		case 1:
+			
 			List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
-			for (Pessoa p : pessoaImportada) {
-				System.out.println(p.toString());			
-			}
-			System.out.print("Digite seu login: ");
+
+			System.out.print("Digite seu CPF: ");
 			inputCpf = (sc.next());
 			System.out.print("Digite sua senha: ");
 			inputSenha = (sc.next());
-			
+			for (Pessoa p : pessoaImportada) {
+				if (p != null) {
+					if (p.getSenha().equals(inputSenha) && p.getCpf().equals(inputCpf)) {
+						menuContas.mostrarMenuCC(p.getCpf(),p.getSenha());
+					}
+				}
+			}
 
 			
 			Usuario usuario = Usuario.mapaUsuarios.get(inputCpf);
-			//Conta conta = Conta.mapaContas.get(inputCpf);
-			for(Pessoa pessoa :	le.leitorPessoa("entrada.txt") ) { 
-				
-				System.out.println(pessoa.toString());
-				if(inputSenha != null ){
-					pessoa.getSenha().equals(inputSenha);
-					menuContas.mostrarMenuCC();
-				}
-				
-			}
+
 			while (usuario == null) {
 				
 				
