@@ -7,6 +7,8 @@ import br.com.residencia.poo.menu.Menu;
 
 public class Principal {
 
+
+	
 	public static void main(String[] args) throws ContaException, IOException {
 
 		Menu menu = new Menu();

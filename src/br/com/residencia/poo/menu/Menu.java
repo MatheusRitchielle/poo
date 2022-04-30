@@ -3,9 +3,10 @@ package br.com.residencia.poo.menu;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+
+import br.com.residencia.poo.contas.Conta;
 import br.com.residencia.poo.contas.ContaException;
 import br.com.residencia.poo.io.LeituraEscrita;
-import br.com.residencia.poo.pessoas.Funcionario;
 import br.com.residencia.poo.pessoas.Pessoa;
 import br.com.residencia.poo.pessoas.Usuario;
 
@@ -20,6 +21,7 @@ public class Menu implements InterfaceMenu {
 	LeituraEscrita le = new LeituraEscrita();
 	
 	
+	
 	@Override
 	public void mostrarMenuPrincipal() throws ContaException, IOException {
 		MenuContas menuContas = new MenuContas();
@@ -31,7 +33,7 @@ public class Menu implements InterfaceMenu {
 		case 1:
 			
 			List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
-
+			Pessoa pessoa = null;
 			System.out.print("Digite seu CPF: ");
 			inputCpf = (sc.next());
 			System.out.print("Digite sua senha: ");
@@ -39,15 +41,15 @@ public class Menu implements InterfaceMenu {
 			for (Pessoa p : pessoaImportada) {
 				if (p != null) {
 					if (p.getSenha().equals(inputSenha) && p.getCpf().equals(inputCpf)) {
-						menuContas.mostrarMenuCC(p.getCpf(),p.getSenha());
+						List<Conta> listContas = le.leitorContas("entrada.txt");
+						menuContas.mostrarMenuCC(p.getCpf(),p.getNumeroConta(),listContas);
+						pessoa = p;
 					}
 				}
 			}
 
-			
-			Usuario usuario = Usuario.mapaUsuarios.get(inputCpf);
 
-			while (usuario == null) {
+			while (pessoa == null) {
 				
 				
 				System.out.println("CPF e/ou Senha incorreto(s)\n\n");
@@ -56,13 +58,10 @@ public class Menu implements InterfaceMenu {
 				System.out.print("Digite sua senha: ");
 				inputSenha = (sc.next());
 
-				usuario = Usuario.mapaUsuarios.get(inputCpf);
-
-				//conta = Conta.mapaContas.get(inputCpf);
 
 				
 			}
-			menuContas.mostrarMenuCC(inputCpf, inputSenha);
+//			menuContas.mostrarMenuCC(inputCpf, inputSenha);
 			case 2: 
 			
 			break;

@@ -50,4 +50,29 @@ public abstract class Conta implements Movimentacao {
 				+ this.numeroConta + ", saldo=" + this.saldo + ", cpf=" + this.cpf + "]";
 	}
 
+	public void sacar(double valorSacado, Conta conta) throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+
+	public void setNumeroAgencia(int numeroAgencia) {
+		this.numeroAgencia = numeroAgencia;
+	}
+
+	public void setNumeroConta(int numeroConta) {
+		this.numeroConta = numeroConta;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
 }

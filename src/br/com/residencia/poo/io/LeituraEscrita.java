@@ -33,65 +33,86 @@ public class LeituraEscrita {
 	static List<Gerente> gerenteList = new ArrayList<>();
 	static List<Cliente> clienteList = new ArrayList<>();
 
-	public static void lerContas(String[] dados) {
+	public Conta lerContas(String[] dados) {
 		
 		boolean isContaCorrente = (dados[0].equalsIgnoreCase(TipoConta.CORRENTE.getTipoConta()));
 		boolean isContaPoupanca = (dados[0].equalsIgnoreCase(TipoConta.POUPANCA.getTipoConta()));
+		
+		Conta conta = null;
 
 		if (isContaCorrente) {
 			ContaCorrente contaCorrente = new ContaCorrente(dados[0], Integer.parseInt(dados[1]),
 					Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
 			contaCorrenteList.add(contaCorrente);
+			conta = contaCorrente;
 		}
 
 		if (isContaPoupanca) {
 			ContaPoupanca contaPoupanca = new ContaPoupanca(dados[0], Integer.parseInt(dados[1]),
 					Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
 			contaPoupancaList.add(contaPoupanca);
+			conta = contaPoupanca;
 		}
-	
+	return conta;
 	}
 
-	public static void leitor(String path) throws IOException {
-		
-		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
-		
-		String linha = "";
-		
-		List<ContaCorrente> contaCorrenteList = new ArrayList<>();
-		List<ContaPoupanca> contaPoupancaList = new ArrayList<>();
-		List<Presidente> presidenteList = new ArrayList<>();
-		List<Diretor> diretorList = new ArrayList<>();
-		List<Gerente> gerenteList = new ArrayList<>();
-		List<Cliente> clienteList = new ArrayList<>();
-
-		while (true) {
-			linha = buffRead.readLine();
-			
-			if (linha != null) {
-				String[] dados = linha.split(";");
-				lerContas(dados);
-	
-			}
-			else {
-				break;
-			}
-			//buffRead.close();
-		}
-	}
-
-	public List<Pessoa> leitorPessoa (String path) throws IOException {
-
-		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
-		
-		String linha = "";
-		
+//	public static void leitor(String path) throws IOException {
+//		
+//		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
+//		
+//		String linha = "";
+//		
 //		List<ContaCorrente> contaCorrenteList = new ArrayList<>();
 //		List<ContaPoupanca> contaPoupancaList = new ArrayList<>();
 //		List<Presidente> presidenteList = new ArrayList<>();
 //		List<Diretor> diretorList = new ArrayList<>();
 //		List<Gerente> gerenteList = new ArrayList<>();
 //		List<Cliente> clienteList = new ArrayList<>();
+//
+//		while (true) {
+//			linha = buffRead.readLine();
+//			
+//			if (linha != null) {
+//				String[] dados = linha.split(";");
+//				lerContas(dados);
+//	
+//			}
+//			else {
+//				break;
+//			}
+//			//buffRead.close();
+//		}
+//	}
+	
+	public List<Conta> leitorContas(String path) throws IOException{
+		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
+		
+		String linha = "";
+		List<Conta> conta = new ArrayList<>();
+		Conta c = null;
+		String[] dados = null;
+		while (true) {
+			linha = buffRead.readLine();
+			
+			if (linha != null) {
+			dados = linha.split(";");
+			 c = lerContas(dados);
+			 conta.add(c);
+			}
+			else {
+				break;
+			}
+			//buffRead.close();
+		}
+		return conta;
+	}
+	
+	public List<Pessoa> leitorPessoa (String path) throws IOException {
+
+		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
+		
+		String linha = "";
+		
 		List<Pessoa> lista = new ArrayList<>();
 		Pessoa p = null;
 		String[] dados = null;
