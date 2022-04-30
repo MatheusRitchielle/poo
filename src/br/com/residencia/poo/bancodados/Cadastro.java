@@ -10,7 +10,6 @@ import br.com.residencia.poo.pessoas.Presidente;
 
 public class Cadastro{
 	
-	
 //	public static Funcionario[] cadastroPresidente() {
 //
 //		Funcionario p[] = new Presidente[1];

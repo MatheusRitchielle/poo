@@ -16,7 +16,13 @@ public class Presidente extends Funcionario {
 
 	
 	public Presidente(String tipoPessoa, String nome, String cpf, String senha, int numeroAgencia,int numeroConta, double saldo) {
-		super(tipoPessoa, nome, cpf, senha, numeroAgencia,numeroConta,saldo );
+		this.tipoPessoa = tipoPessoa;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.senha = senha;
+		this.numeroAgencia = numeroAgencia;
+		this.numeroConta = numeroConta;
+		this.saldo = saldo;
 	
 	}
 

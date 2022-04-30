@@ -1,10 +1,12 @@
 package br.com.residencia.poo.menu;
 
 import java.util.Scanner;
+
 import br.com.residencia.poo.contas.ContaCorrente;
 import br.com.residencia.poo.contas.ContaException;
 import br.com.residencia.poo.io.LeituraEscrita;
 import br.com.residencia.poo.pessoas.Cliente;
+
 
 public class MenuContas implements InterfaceMenu {
 	
@@ -31,19 +33,19 @@ public class MenuContas implements InterfaceMenu {
 			System.out.print("\nInforme um valor para sacar R$: ");
 			inputValor = Double.parseDouble(sc.next());
 			cc.sacar(inputValor);
-			LeituraEscrita.comprovanteSaque(conta, inputValor);
+//			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
 		case 2:
 			System.out.print("\nInforme um valor para depositar R$: ");
 			inputValor = Double.parseDouble(sc.next());
 			cc.depositar(inputValor);
-			LeituraEscrita.comprovanteSaque(conta, inputValor);
+//			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
 		case 3:
 			System.out.print("\nInforme um valor para transferir R$: ");
 			inputValor = Double.parseDouble(sc.next());
 			cc.transferir(inputValor);
-			LeituraEscrita.comprovanteSaque(conta, inputValor);
+//			LeituraEscrita.comprovanteSaque(conta, inputValor);
 
 			break;
 		case 0:
