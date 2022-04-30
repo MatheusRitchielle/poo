@@ -16,6 +16,11 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 
 	public ContaPoupanca(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
 		super(tipoConta, numeroAgencia, numeroConta, saldo, cpf);
+		this.tipoConta = tipoConta;
+		this.numeroAgencia= numeroAgencia;
+		this.numeroConta= numeroConta;
+		this.saldo = saldo;
+		this.cpf = cpf;
 	}
 
 	public int getQtdDias() {

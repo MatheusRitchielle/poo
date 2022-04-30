@@ -18,6 +18,11 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 	
 	public ContaCorrente(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
 		super(tipoConta, numeroAgencia, numeroConta, saldo, cpf);
+		this.tipoConta=tipoConta;
+		this.numeroAgencia=numeroAgencia;
+		this.numeroConta=numeroConta;
+		this.saldo=saldo;
+		this.cpf=cpf;
 	}
 
 	@Override
@@ -41,22 +46,24 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 	}
 
 	@Override
-	public void sacar(double valorSacado) throws ContaException {
+	public void sacar(double valorSacado, Conta conta) throws ContaException {
 
-		if (valorSacado <= 0) {
-			throw new ContaException("Valor inválido. Tente novamente!");
+//		if (conta.getSaldo() > valorSacado) {
+//			throw new ContaException("Valor inválido. Tente novamente!");
+//
+//		} else {
+//			double valorTarifado = Tarifa.SAQUE;
+//			Double saldo = getSaldo();
 
-		} else {
-			double valorTarifado = Tarifa.SAQUE;
-			Double saldo = getSaldo();
-
-			if (saldo - valorSacado - valorTarifado >= 0) {
-				valorTarifado = Tarifa.SAQUE;
-				saldo = saldo - Tarifa.SAQUE - valorSacado;
+			if (conta.getSaldo() > valorSacado) {
+				
+				conta.setSaldo(conta.getSaldo() - valorSacado);
+				
+//				saldo = saldo - Tarifa.SAQUE - valorSacado;
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor sacado: R$%.2f", valorSacado);
-				System.out.printf("\nTarifa para saque: R$%.2f", Tarifa.SAQUE);
-				System.out.printf("\nSaldo atual: R$%.2f ", saldo);
+//				System.out.printf("\nTarifa para saque: R$%.2f", Tarifa.SAQUE);
+				System.out.printf("\nSaldo atual: R$%.2f ", conta.getSaldo());
 				++totalDepositos;
 				menucontas.mostrarMenuCC();
 
@@ -65,7 +72,7 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 				sacar(valorSacado);
 			}
 		}
-	}
+	
 
 	@Override
 	public void transferir(double valorTransferido) throws ContaException {
@@ -118,6 +125,12 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 	public String toString() {
 		return "Conta Corrente\tNúmero da Agência = " + this.numeroAgencia + "\tNúmero da Conta = " + this.numeroConta
 				+ "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
+	}
+
+	@Override
+	public void sacar(double valorSacado) throws ContaException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
