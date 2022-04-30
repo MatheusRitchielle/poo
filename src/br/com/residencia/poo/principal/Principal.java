@@ -10,9 +10,12 @@ public class Principal {
 	public static void main(String[] args) throws ContaException, IOException {
 
 		Menu menu = new Menu();
-		LeituraEscrita.leitor("entrada.txt");
+	//	LeituraEscrita.leitor("entrada.txt");
+		
+		
 		menu.mostrarMenuPrincipal();
 
 	}
 
+	
 }

@@ -4,6 +4,7 @@ public enum TipoPessoa {
 
     CLIENTE("cliente", 1), GERENTE("gerente", 2), DIRETOR("diretor", 3), PRESIDENTE("presidente", 4);
 
+	
 	private String tipoUsuario;
     private Integer idTipoUsuario;
 

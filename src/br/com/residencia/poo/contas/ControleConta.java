@@ -4,6 +4,7 @@ package br.com.residencia.poo.contas;
 
 public abstract class ControleConta implements Movimentacao {
 
+	
 //	public void abrirConta(String tipo) {
 //		setTipoConta(tipo);
 //		setConta(true);

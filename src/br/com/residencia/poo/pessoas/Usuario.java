@@ -16,6 +16,7 @@ public class Usuario extends Pessoa implements Comparable<Usuario> {
 	protected Integer agencia;
 	protected Integer numeroConta;
 
+	
 	public static Map<String, Usuario> mapaUsuarios = new HashMap<>();
 	public static TreeMap<String, Usuario> OrdenaUsuarios = new TreeMap<>();
 	
@@ -61,10 +62,6 @@ public class Usuario extends Pessoa implements Comparable<Usuario> {
 
 	public void setAgencia(Integer agencia) {
 		this.agencia = agencia;
-	}
-
-	public Integer getNumeroConta() {
-		return this.numeroConta;
 	}
 
 	public void setNumeroConta(Integer numeroConta) {

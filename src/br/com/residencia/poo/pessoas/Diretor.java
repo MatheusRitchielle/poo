@@ -8,10 +8,16 @@ public class Diretor extends Funcionario {
 	protected int qtdAgencias;
 	protected int idAgencia;
 
+
 	public Diretor() {
 		super();
 	}
 
+	public Diretor(String tipoPessoa, String nome, String cpf, String senha, int numeroAgencia,int numeroConta, double saldo) {
+		super(tipoPessoa, nome, cpf, senha, numeroAgencia,numeroConta,saldo );
+	
+	}
+	
 	public int getIdDiretor() {
 		return idDiretor;
 	}

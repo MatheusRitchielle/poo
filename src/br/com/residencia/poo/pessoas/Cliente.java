@@ -4,23 +4,23 @@ import br.com.residencia.poo.contas.ContaException;
 
 public class Cliente extends Pessoa{
 
+	
 	Integer id;
 	Integer idGerente;
 	String cpf;
 	String senha;
 	
 	public Cliente() {
-		super();	
 	}
  
-	public Cliente(Integer id, Integer idGerente, String cpf, String senha) {
-		super();
-		this.id = id;
-		this.idGerente = idGerente;
-		this.cpf = cpf;
-		this.senha = senha;
-	}
+
 	
+	public Cliente(String tipoConta, Integer numeroAgencia, Integer numeroConta, Double saldo, String cpf) {
+		super(tipoConta, numeroAgencia, numeroConta, saldo, cpf);
+	}
+
+
+
 	public Cliente(String tipoPesosa, String nome, String cpf, String senha, int agencia, int numeroConta) {
 
 	}

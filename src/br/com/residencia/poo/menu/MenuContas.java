@@ -23,6 +23,7 @@ public class MenuContas implements InterfaceMenu {
 				+ "Depositar\n[3] "
 				+ "Transferir\n[0] Sair\n--->: ");
 
+		
 		int opcao = sc.nextInt();
 		Double inputValor;
 		switch (opcao) {

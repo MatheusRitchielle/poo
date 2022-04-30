@@ -5,14 +5,17 @@ import br.com.residencia.poo.menu.MenuContas;
 //import java.sql.Date;
 
 public class ContaPoupanca extends Conta implements Movimentacao {
-	
+
 	MenuContas menucontas = new MenuContas();
 	protected double rentabilidade = 0.06;
 	protected int qtdDias = 0;
 	protected double valorDepositado;
+	
+	public ContaPoupanca() {		
+	}
 
-	public ContaPoupanca() {
-		super();
+	public ContaPoupanca(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
+		super(tipoConta, numeroAgencia, numeroConta, saldo, cpf);
 	}
 
 	public int getQtdDias() {
@@ -68,6 +71,7 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
 				menucontas.mostrarMenuCP();
 
+				
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
 				menucontas.mostrarMenuCP();

@@ -3,30 +3,19 @@ package br.com.residencia.poo.contas;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Conta implements Movimentacao{
+public abstract class Conta implements Movimentacao {
 
-		public static Map<String, Conta> getMapaContas() {
-		return mapaContas;
-	}
-
-	public static void setMapaContas(Map<String, Conta> mapaContas) {
-		Conta.mapaContas = mapaContas;
-	}
-
-		protected String tipoConta;
-		protected Integer numeroAgencia;
-		protected Integer numeroConta;
-		protected Double saldo;
-		protected String cpf;
-
-		
-		public static Map<String, Conta> mapaContas = new HashMap<>();
-		
+	
+	protected String tipoConta;
+	protected int numeroAgencia;
+	protected int numeroConta;
+	protected double saldo;
+	protected String cpf;
+	
 	public Conta() {
-		super();
 	}
 
-	public Conta(String tipoConta, Integer numeroAgencia, Integer numeroConta, Double saldo, String cpf) {
+	public Conta(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
 		super();
 		this.tipoConta = tipoConta;
 		this.numeroAgencia = numeroAgencia;
@@ -39,48 +28,26 @@ public abstract class Conta implements Movimentacao{
 		return tipoConta;
 	}
 
-	public void setTipoConta(String tipoConta) {
-		this.tipoConta = tipoConta;
-	}
-
-	public Integer getNumeroAgencia() {
+	public int getNumeroAgencia() {
 		return numeroAgencia;
 	}
 
-	public void setNumeroAgencia(Integer numeroAgencia) {
-		this.numeroAgencia = numeroAgencia;
-	}
-
-	public Integer getNumeroConta() {
+	public int getNumeroConta() {
 		return numeroConta;
 	}
 
-	public void setNumeroConta(Integer numeroConta) {
-		this.numeroConta = numeroConta;
-	}
-
-	public Double getSaldo() {
+	public double getSaldo() {
 		return saldo;
-	}
-
-	public void setSaldo(Double saldo) {
-		this.saldo = saldo;
 	}
 
 	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
 	@Override
 	public String toString() {
-		return "Conta [tipoConta=" + this.tipoConta + ", numeroAgencia=" + this.numeroAgencia + ", numeroConta=" + this.numeroConta
-				+ ", saldo=" + this.saldo + ", cpf=" + this.cpf + "]";
+		return "Conta [tipoConta=" + this.tipoConta + ", numeroAgencia=" + this.numeroAgencia + ", numeroConta="
+				+ this.numeroConta + ", saldo=" + this.saldo + ", cpf=" + this.cpf + "]";
 	}
 
-	
-	
 }

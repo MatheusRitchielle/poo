@@ -4,6 +4,7 @@ package br.com.residencia.poo.menu;
 
 public class SistemaInterno {
 
+	
 	/*
 	Principal principal = new Principal();
 

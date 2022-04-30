@@ -4,6 +4,7 @@ public enum TipoConta {
 	
 	CORRENTE("corrente"), POUPANCA("poupanca");
 
+	
     private String tipoConta;
 
     TipoConta(String string) {

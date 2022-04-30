@@ -5,23 +5,19 @@ import br.com.residencia.poo.menu.MenuContas;
 public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 
 	MenuContas menucontas = new MenuContas();
-	
-	private Integer totalSaques = 0;
-	private Integer totalDepositos = 0;
-	private Integer totalTransferencias = 0;
-	private Double totalTarifado = 0.0;
-
-
-	public ContaCorrente(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
-		this.tipoConta = tipoConta;
-		this.numeroAgencia = numeroAgencia;
-		this.numeroConta = numeroConta;
-		this.saldo = saldo;
-		this.cpf = cpf;
-	}
 
 	
+	private int totalSaques;
+	private int totalDepositos;
+	private int totalTransferencias;
+	private double totalTarifado;
+
+
 	public ContaCorrente() {
+	}
+	
+	public ContaCorrente(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
+		super(tipoConta, numeroAgencia, numeroConta, saldo, cpf);
 	}
 
 	@Override
@@ -117,12 +113,11 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 	public double jurosRendimento(double rendimentoConta) {
 		return 0;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "Conta Corrente\tNúmero da Agência = " + this.numeroAgencia + "\tNúmero da Conta = "
-				+ this.numeroConta + "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
+		return "Conta Corrente\tNúmero da Agência = " + this.numeroAgencia + "\tNúmero da Conta = " + this.numeroConta
+				+ "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
 	}
 
 }

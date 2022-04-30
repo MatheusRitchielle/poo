@@ -6,6 +6,7 @@ public interface Tarifa {
 	
 	double tarifarSaque(double valorSacado);
 	
+	
 	double tarifarDeposito(double valorDepositado);
 	
 	double tarifarTransferencia(double valorTransferido);
