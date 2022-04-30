@@ -1,69 +1,86 @@
 package br.com.residencia.poo.contas;
 
-public abstract class Conta {
+import java.util.HashMap;
+import java.util.Map;
 
-	// private static final AtomicInteger count = new AtomicInteger(0);
+public abstract class Conta implements Movimentacao{
 
-	protected int id;
-	protected String cpf;
-	protected int idAgencia;
-	public String tipoConta;
-	protected int numeroConta;
-	protected String dataAberta; // Era Date
-	protected boolean status;
-	protected double saldo = 1000.00;
-	protected String senha;
-
-	public Conta(String cpf, String senha) {
-		super();
-		this.cpf = cpf;
-		this.senha = senha;
+		public static Map<String, Conta> getMapaContas() {
+		return mapaContas;
 	}
 
+	public static void setMapaContas(Map<String, Conta> mapaContas) {
+		Conta.mapaContas = mapaContas;
+	}
+
+		protected String tipoConta;
+		protected Integer numeroAgencia;
+		protected Integer numeroConta;
+		protected Double saldo;
+		protected String cpf;
+
+		
+		public static Map<String, Conta> mapaContas = new HashMap<>();
+		
 	public Conta() {
 		super();
 	}
 
-	public Conta(String cpf, int idAgencia, String tipoConta, int numeroConta, String dataAberta, boolean status,
-			double saldo, String senha) {
+	public Conta(String tipoConta, Integer numeroAgencia, Integer numeroConta, Double saldo, String cpf) {
 		super();
-		this.cpf = cpf;
-		this.idAgencia = idAgencia;
 		this.tipoConta = tipoConta;
+		this.numeroAgencia = numeroAgencia;
 		this.numeroConta = numeroConta;
-		this.dataAberta = dataAberta;
-		this.status = status;
 		this.saldo = saldo;
-		this.senha = senha;
+		this.cpf = cpf;
 	}
 
-	public enum TipoConta {
-
-		CORRENTE("Corrente"), POUPANCA("Poupança");
-
-		private String descricao;
-
-		TipoConta(String descricao) {
-			this.descricao = descricao;
-		}
-
-		public String getDescricao() {
-			return descricao;
-		}
+	public String getTipoConta() {
+		return tipoConta;
 	}
 
-	public double getSaldo() {
+	public void setTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+
+	public Integer getNumeroAgencia() {
+		return numeroAgencia;
+	}
+
+	public void setNumeroAgencia(Integer numeroAgencia) {
+		this.numeroAgencia = numeroAgencia;
+	}
+
+	public Integer getNumeroConta() {
+		return numeroConta;
+	}
+
+	public void setNumeroConta(Integer numeroConta) {
+		this.numeroConta = numeroConta;
+	}
+
+	public Double getSaldo() {
 		return saldo;
 	}
 
-<<<<<<< HEAD
-	public double setSaldo(double novosaldo) {
-		return this.saldo = novosaldo;
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
-=======
-	public double setSaldo() {
-		return saldo;
+	public String getCpf() {
+		return cpf;
 	}
->>>>>>> 09a63da95f6988c64086e51b923f0cf9a19382f0
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	@Override
+	public String toString() {
+		return "Conta [tipoConta=" + this.tipoConta + ", numeroAgencia=" + this.numeroAgencia + ", numeroConta=" + this.numeroConta
+				+ ", saldo=" + this.saldo + ", cpf=" + this.cpf + "]";
+	}
+
+	
+	
 }

@@ -6,47 +6,200 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 import java.util.Scanner;
+
+import br.com.residencia.poo.contas.Conta;
+import br.com.residencia.poo.contas.ContaCorrente;
+import br.com.residencia.poo.enuns.TipoConta;
+import br.com.residencia.poo.enuns.TipoPessoa;
+import br.com.residencia.poo.pessoas.Usuario;
 
 public class LeituraEscrita {
 
-	final static String PATH_BASICO = "./temp/";
-	final static String EXTENSAO = ".txt";
-
-	public static void escritor(String path) throws IOException {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Escreva o nome do arquivo: ");
-		String nome = sc.next();
-
-		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(PATH_BASICO + nome + path));
+	public static void main(String[] args) {
 		
-		String linha = "";
-
-		System.out.println("Escreva algo: ");
-		linha = sc.nextLine();
-
-		buffWrite.append(linha + "\n");
-		buffWrite.close();
-		sc.close();
 	}
+	static final String DIRETORIO = "./temp/";
+	static final String EXTENSAO = ".txt";
 
 	public static void leitor(String path) throws IOException {
-		BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO + path));
-		
+		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
+
 		String linha = "";
 
-		try {
-			while (true) {
-				linha = buffRead.readLine();
-				if (linha != null) {
-					System.out.println(linha);
-				} else {
-					break;
+		while (true) {
+			linha = buffRead.readLine();
+
+			if (linha != null) {
+				String[] dados = linha.split(";");
+
+				if (dados[0].equalsIgnoreCase(TipoConta.CORRENTE.getTipoConta())) {
+
+					ContaCorrente cc = new ContaCorrente(dados[0], Integer.parseInt(dados[1]),
+							Integer.parseInt(dados[2]), Double.parseDouble(dados[3]), dados[4]);
+
+					Conta.mapaContas.put(dados[4], cc);
+					System.out.println(dados);
+				
+				} else if (dados[0].equalsIgnoreCase(TipoPessoa.CLIENTE.getTipoUsuario())) {
+					//TIPO, NOME, CPF, SENHA, AGÊNCIA, NÚMERO DA CONTA
+
+					Usuario cliente = new Usuario(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]),
+							Integer.parseInt(dados[5]));
+
+					Usuario.mapaUsuarios.put(dados[2], cliente);
+					Usuario.OrdenaUsuarios.put(dados[1], cliente);
+
+				} else if (dados[0].equalsIgnoreCase(TipoPessoa.GERENTE.toString())) {
+
+					//TIPO, NOME, CPF, SENHA, 
+
+					Usuario gerente = new Usuario(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]),
+							Integer.parseInt(dados[5]));						
+//							(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]),
+//							Integer.parseInt(dados[5]), Double.parseDouble(dados[6]), Integer.parseInt(dados[7]));
+
+					Usuario.mapaUsuarios.put(dados[2], gerente);
+					Usuario.OrdenaUsuarios.put(dados[1], gerente);
+
 				}
+			} else {
+				break;
 			}
-			buffRead.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo não encontrado no caminho " + PATH_BASICO + EXTENSAO);
 		}
+		buffRead.close();
 	}
+
+	public static void comprovanteSaque(Conta conta, double valorSaque) throws IOException {
+		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
+				+ "_transacoes";
+		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO));
+
+		String linha = "*************** SAQUE ***************";
+		buffWrite.append(linha + "\n");
+
+		linha = "CPF: " + conta.getCpf();
+		buffWrite.append(linha + "\n");
+
+		linha = "Agência: " + conta.getNumeroAgencia();
+		buffWrite.append(linha + "\n");
+
+		linha = "Conta: " + conta.getNumeroConta();
+		buffWrite.append(linha + "\n");
+
+		linha = "Valor: R$" + valorSaque;
+		buffWrite.append(linha + "\n");
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		linha = "Operação realizada em: " + simpleDateFormat.format(date);
+		buffWrite.append(linha + "\n");
+
+		linha = "*************** FIM DO SAQUE ***************";
+		buffWrite.append(linha + "\n\n");
+
+		buffWrite.close();
+
+	}
+
+	public static void relatorioContasPorAgencia(Conta conta) throws IOException {
+
+		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
+				+ "_contas_por_agencia";
+
+		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO));
+
+		int totalContas = 0;
+
+		String linha = "********************** INFORMAÇÕES DO RESPONSÁVEL **********************";
+		buffWrite.append(linha + "\n\n");
+
+		linha = "CPF: " + conta.getCpf();
+		buffWrite.append(linha + "\n");
+
+		linha = "Agência : " + conta.getNumeroAgencia();
+		buffWrite.append(linha + "\n");
+
+		linha = "*******************************************************";
+		buffWrite.append(linha + "\n\n");
+
+		linha = "*************** TOTAL DE CONTAS NA MESMA AGÊNCIA ***************";
+		buffWrite.append(linha + "\n\n");
+
+		for (String cpf : Conta.mapaContas.keySet()) {
+			if (Conta.mapaContas.get(cpf).getNumeroAgencia().equals(conta.getNumeroAgencia())) {
+
+				linha = "CPF: " + Conta.mapaContas.get(cpf).getCpf();
+				buffWrite.append(linha + "\n");
+
+				linha = "Agência : " + Conta.mapaContas.get(cpf).getNumeroAgencia();
+				buffWrite.append(linha + "\n");
+
+				linha = "Conta: " + Conta.mapaContas.get(cpf).getNumeroConta();
+				buffWrite.append(linha + "\n");
+
+				totalContas++;
+
+				linha = "**********************************";
+				buffWrite.append(linha + "\n");
+			}
+
+		}
+
+		linha = "Total de contas: " + totalContas;
+		buffWrite.append(linha + "\n");
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		linha = "Operação realizada em: " + simpleDateFormat.format(date);
+		buffWrite.append(linha + "\n");
+
+		linha = "************************************************************************";
+		buffWrite.append(linha + "\n\n");
+
+		buffWrite.close();
+
+	}
+
+	public static void relatorioTotalCapital(Conta conta, Map<String, Conta> mapaContas) throws IOException {
+
+		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
+				+ "_total_capital";
+
+		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO, true));
+
+		double saldoTotal = 0.0;
+
+		String linha = "************************* TOTAL DE CAPITAL ARMAZENADO *************************";
+		buffWrite.append(linha + "\n\n");
+
+		for (String cpf : Conta.mapaContas.keySet()) {
+
+			saldoTotal += Conta.mapaContas.get(cpf).getSaldo();
+
+		}
+
+		linha = "O total de capital armazenado no banco é de: R$" + saldoTotal;
+		buffWrite.append(linha + "\n");
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		linha = "Operação realizada em: " + simpleDateFormat.format(date);
+		buffWrite.append(linha + "\n");
+
+		linha = "*******************************************************************************";
+		buffWrite.append(linha + "\n\n");
+
+		buffWrite.close();
+
+	}
+
+	public static void comprovanteSaque(String conta, Double inputValor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -7,18 +7,12 @@ import br.com.residencia.poo.menu.MenuContas;
 public class ContaPoupanca extends Conta implements Movimentacao {
 	
 	MenuContas menucontas = new MenuContas();
-	protected int idContaPoupanca;
 	protected double rentabilidade = 0.06;
 	protected int qtdDias = 0;
 	protected double valorDepositado;
-	protected int totalDepositos, totalSaques, totalTransferencias;
 
 	public ContaPoupanca() {
 		super();
-	}
-
-	public int getIdContaPoupanca() {
-		return idContaPoupanca;
 	}
 
 	public int getQtdDias() {
@@ -50,7 +44,6 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				++totalDepositos;
 				menucontas.mostrarMenuCP();
 
 			} else {
@@ -73,7 +66,6 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor sacado: R$%.2f", valorSacado);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				++totalSaques;
 				menucontas.mostrarMenuCP();
 
 			} else {
@@ -96,7 +88,6 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				++totalTransferencias;
 				menucontas.mostrarMenuCP();
 
 			} else {
@@ -105,4 +96,10 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 			}
 		}
 	}
+	@Override
+	public String toString() {
+		return "Conta Poupança\tNúmero da Agência = " + this.numeroAgencia + "\tNúmero da Conta = "
+				+ this.numeroConta + "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
+	}
+
 }

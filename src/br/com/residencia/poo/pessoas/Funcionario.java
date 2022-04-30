@@ -8,7 +8,7 @@ public abstract class Funcionario extends Pessoa {
 	protected double salario;
 
 	public Funcionario(String cpf, String senha) {
-		super(cpf, senha);
+		super();
 		this.cpf = cpf;
 		this.senha = senha;
 	}

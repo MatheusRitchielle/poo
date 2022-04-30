@@ -1,5 +1,7 @@
 package br.com.residencia.poo.pessoas;
 
+import br.com.residencia.poo.contas.ContaException;
+
 public class Cliente extends Pessoa{
 
 	Integer id;
@@ -11,13 +13,6 @@ public class Cliente extends Pessoa{
 		super();	
 	}
  
-	//Construtor Pessoa
-	public Cliente(String cpf, String senha) {
-		super(cpf, senha);
-		this.cpf = cpf;
-		this.senha = senha;
-	}
-
 	public Cliente(Integer id, Integer idGerente, String cpf, String senha) {
 		super();
 		this.id = id;
@@ -26,6 +21,10 @@ public class Cliente extends Pessoa{
 		this.senha = senha;
 	}
 	
+	public Cliente(String tipoPesosa, String nome, String cpf, String senha, int agencia, int numeroConta) {
+
+	}
+
 	@Override
 	public String toString() {
 		
@@ -49,5 +48,19 @@ public class Cliente extends Pessoa{
 	
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	@Override
+	public void depositar(double valorDepositado) throws ContaException {
+		
+	}
+
+	@Override
+	public void sacar(double valorSacado) throws ContaException {
+	}
+
+	@Override
+	public void transferir(double valorTransferido) throws ContaException {
+		
 	}
 }

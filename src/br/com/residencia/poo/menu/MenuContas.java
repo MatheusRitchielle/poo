@@ -3,39 +3,50 @@ package br.com.residencia.poo.menu;
 import java.util.Scanner;
 import br.com.residencia.poo.contas.ContaCorrente;
 import br.com.residencia.poo.contas.ContaException;
-import br.com.residencia.poo.contas.ContaPoupanca;
+import br.com.residencia.poo.io.LeituraEscrita;
 import br.com.residencia.poo.pessoas.Cliente;
 
 public class MenuContas implements InterfaceMenu {
 	
 	Cliente cliente = new Cliente();
 
-	public void mostrarMenuCC() throws ContaException {
-		Menu menu = new Menu();
+	public void mostrarMenuCC(String usuario, String conta) throws ContaException {
+		
 		ContaCorrente cc = new ContaCorrente();
 		Cliente cliente = new Cliente();
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("\nBem vindo, " + cliente.getCpf() + ".");
-		System.out.println("\nDigite a operação desejada:");
-		System.out.print("[1] Sacar\n[2] Depositar\n[3] Transferir\n[0] Sair\n--->: ");
+		//INTERAÇÃO CLIENTE
+		System.out.printf("\nBem vindo, " + cliente.getCpf() + "."
+				+ "\nDigite a operação desejada:\n"
+				+ "[1] Sacar\n[2] "
+				+ "Depositar\n[3] "
+				+ "Transferir\n[0] Sair\n--->: ");
 
-		switch (sc.nextByte()) {
-		case 1:
-			System.out.print("Informe um valor para saque R$: ");
-			cc.sacar(sc.nextDouble());
+		int opcao = sc.nextInt();
+		Double inputValor;
+		switch (opcao) {
+		case 1:	
+			System.out.print("\nInforme um valor para sacar R$: ");
+			inputValor = Double.parseDouble(sc.next());
+			cc.sacar(inputValor);
+			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
 		case 2:
-			System.out.print("Informe um valor deposito R$: ");
-			cc.depositar(sc.nextDouble());
+			System.out.print("\nInforme um valor para depositar R$: ");
+			inputValor = Double.parseDouble(sc.next());
+			cc.depositar(inputValor);
+			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
 		case 3:
-			System.out.print("Informe um valor para transferir R$: ");
-			cc.transferir(sc.nextDouble());
+			System.out.print("\nInforme um valor para transferir R$: ");
+			inputValor = Double.parseDouble(sc.next());
+			cc.transferir(inputValor);
+			LeituraEscrita.comprovanteSaque(conta, inputValor);
+
 			break;
 		case 0:
-			menu.mostrarMenu();
-		default:
+			default:
 			System.exit(0);
 			break;
 		}
@@ -44,64 +55,28 @@ public class MenuContas implements InterfaceMenu {
 
 	}
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@Override
-	public void mostrarMenuCP() throws ContaException {
-		
-		Menu menu = new Menu();
-		ContaPoupanca cp = new ContaPoupanca();
-		Scanner sc = new Scanner(System.in);
-
-
-<<<<<<< HEAD
-		System.out.println("Área do Cliente\n\n *** Mucha Lucha Bank ***");
-		System.out.println("\tDigite a operação desejada:");
-		System.out.print("[1] Sacar\n[2] Depositar\n[3] Transferir\n[4] Consultar rendimentos \n[0] Sair\n--->: ");
-=======
-
-		System.out.println("\n\nÁrea do Cliente\n\n " + cliente.getCpf() + " seja bem vindo ao Mucha Lucha Bank!");
-		System.out.println("\tDigite a operação desejada:");
-		System.out.println(
-				"\n[1] - Sacar\n[2] - Depositar\n[3] - Transferir\n[4] - Simulação de rendimentos \n[0] - Sair");
->>>>>>> 09a63da95f6988c64086e51b923f0cf9a19382f0
-
-		switch (sc.nextByte()) {
-		case 1:
-			System.out.print("Informe um valor para saque R$: ");
-			cp.sacar(sc.nextDouble());
-			break;
-		case 2:
-			System.out.print("Informe um valor para depositar R$: ");
-			cp.depositar(sc.nextDouble());
-			break;
-		case 3:
-			System.out.print("Informe um valor para saque R$: ");
-			cp.transferir(sc.nextDouble());
-			break;
-		case 4:
-			System.out.print("Informe um valor de aporte: R$");
-			Double aporte = sc.nextDouble();
-			System.out.print("Informe a quantidade de dias: ");
-			int qtdDias = sc.nextInt();
-			cp.render(aporte, qtdDias);
-			break;
-		case 0:
-			menu.mostrarMenu();
-		default:
-			System.exit(0);
-			break;
-		}
-		sc.close();
-	}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void mostrarMenuFuncionario() {
 	}
 
 	@Override
-	public void mostrarMenuCliente() throws ContaException {
+	public void mostrarMenuPrincipal() throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mostrarMenuCC() throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mostrarMenuCP() throws ContaException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
