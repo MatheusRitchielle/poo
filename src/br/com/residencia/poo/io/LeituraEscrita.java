@@ -26,12 +26,12 @@ public class LeituraEscrita {
 	static final String DIRETORIO = "./temp/";
 	static final String EXTENSAO = "entrada.txt";
 
-	static List<ContaCorrente> contaCorrenteList;
-	static List<ContaPoupanca> contaPoupancaList ;
-	static List<Presidente> presidenteList;
-	static List<Diretor> diretorList;
-	static List<Gerente> gerenteList ;
-	static List<Cliente> clienteList;
+	static List<ContaCorrente> contaCorrenteList = new ArrayList<>();
+	static List<ContaPoupanca> contaPoupancaList = new ArrayList<>();
+	static List<Presidente> presidenteList = new ArrayList<>();
+	static List<Diretor> diretorList = new ArrayList<>();
+	static List<Gerente> gerenteList = new ArrayList<>();
+	static List<Cliente> clienteList = new ArrayList<>();
 
 	public Conta lerContas(String[] dados) {
 		

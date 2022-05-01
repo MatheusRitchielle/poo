@@ -81,7 +81,6 @@ public class Menu implements InterfaceMenu {
 				+ "[3] Transferir\n"
 				+ "[0] Sair");
 				System.out.print("\n===========================\n--->: ");
-				sc.nextInt();
 		Double inputValor;
 		switch (sc.nextInt()) {
 		case 1:
@@ -105,7 +104,11 @@ public class Menu implements InterfaceMenu {
 		case 0:
 			System.exit(0);
 			break;
+			default: 
+				System.out.println("Error 404 not Found!");
+				menuPrincipal();
 		}
+		
 		sc.close();
 	}
 
