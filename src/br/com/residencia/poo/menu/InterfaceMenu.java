@@ -9,13 +9,13 @@ public interface InterfaceMenu {
 	
 	String mostrarMenuCC = null; /// tem que ver essa merda
 
-	void mostrarMenuPrincipal() throws ContaException, IOException;
+	void menuPrincipal() throws ContaException, IOException;
 
-	public void mostrarMenuFuncionario()throws ContaException;
+	public void menuFuncionario()throws ContaException;
 	
-	void mostrarMenuCC() throws ContaException;
+	void menuCC() throws ContaException;
 	
-	void mostrarMenuCP() throws ContaException;
+	void menuCP() throws ContaException;
 
 	
 }

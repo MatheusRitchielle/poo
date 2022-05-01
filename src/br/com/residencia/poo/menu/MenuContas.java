@@ -13,7 +13,7 @@ public class MenuContas implements InterfaceMenu {
 	
 	Cliente cliente = new Cliente();
 
-	public void mostrarMenuCC(String usuario, int conta,List<Conta> contas) throws ContaException {
+	public void menuCC(String usuario, int conta,List<Conta> contas) throws ContaException {
 		
 		ContaCorrente cc = new ContaCorrente();
 		Cliente cliente = new Cliente();
@@ -70,24 +70,24 @@ public class MenuContas implements InterfaceMenu {
 
 
 	@Override
-	public void mostrarMenuFuncionario() {
+	public void menuFuncionario() {
 	}
 
 	@Override
-	public void mostrarMenuPrincipal() throws ContaException {
+	public void menuPrincipal() throws ContaException {
 		// TODO Auto-generated method stub
 		
 	}
 
 
 	@Override
-	public void mostrarMenuCC() throws ContaException {
+	public void menuCC() throws ContaException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mostrarMenuCP() throws ContaException {
+	public void menuCP() throws ContaException {
 		// TODO Auto-generated method stub
 		
 	}

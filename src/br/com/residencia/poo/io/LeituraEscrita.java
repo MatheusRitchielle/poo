@@ -24,14 +24,14 @@ import br.com.residencia.poo.pessoas.Presidente;
 public class LeituraEscrita {
 
 	static final String DIRETORIO = "./temp/";
-	static final String EXTENSAO = ".txt";
+	static final String EXTENSAO = "entrada.txt";
 
-	static List<ContaCorrente> contaCorrenteList = new ArrayList<>();
-	static List<ContaPoupanca> contaPoupancaList = new ArrayList<>();
-	static List<Presidente> presidenteList = new ArrayList<>();
-	static List<Diretor> diretorList = new ArrayList<>();
-	static List<Gerente> gerenteList = new ArrayList<>();
-	static List<Cliente> clienteList = new ArrayList<>();
+	static List<ContaCorrente> contaCorrenteList;
+	static List<ContaPoupanca> contaPoupancaList ;
+	static List<Presidente> presidenteList;
+	static List<Diretor> diretorList;
+	static List<Gerente> gerenteList ;
+	static List<Cliente> clienteList;
 
 	public Conta lerContas(String[] dados) {
 		
@@ -54,36 +54,10 @@ public class LeituraEscrita {
 	return conta;
 	}
 
-//	public static void leitor(String path) throws IOException {
-//		
-//		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
-//		
-//		String linha = "";
-//		
-//		List<ContaCorrente> contaCorrenteList = new ArrayList<>();
-//		List<ContaPoupanca> contaPoupancaList = new ArrayList<>();
-//		List<Presidente> presidenteList = new ArrayList<>();
-//		List<Diretor> diretorList = new ArrayList<>();
-//		List<Gerente> gerenteList = new ArrayList<>();
-//		List<Cliente> clienteList = new ArrayList<>();
-//
-//		while (true) {
-//			linha = buffRead.readLine();
-//			
-//			if (linha != null) {
-//				String[] dados = linha.split(";");
-//				lerContas(dados);
-//	
-//			}
-//			else {
-//				break;
-//			}
-//			//buffRead.close();
-//		}
-//	}
+
 	
-	public List<Conta> leitorContas(String path) throws IOException{
-		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
+	public List<Conta> leitorContas() throws IOException{
+		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + EXTENSAO));
 		
 		String linha = "";
 		List<Conta> conta = new ArrayList<>();
@@ -105,9 +79,9 @@ public class LeituraEscrita {
 		return conta;
 	}
 	
-	public List<Pessoa> leitorPessoa (String path) throws IOException {
+	public List<Pessoa> leitorPessoa () throws IOException {
 
-		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + path));
+		BufferedReader buffRead = new BufferedReader(new FileReader(DIRETORIO + EXTENSAO));
 		
 		String linha = "";
 		
@@ -166,37 +140,6 @@ public class LeituraEscrita {
 
 	}
 
-//		
-//				else if (dados[0].equalsIgnoreCase(TipoPessoa.CLIENTE.getTipoUsuario())) {
-//					// TIPO, NOME, CPF, SENHA, AGÊNCIA, NÚMERO DA CONTA
-//
-//					Usuario cliente = new Usuario(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]),
-//							Integer.parseInt(dados[5]));
-//
-//					Usuario.mapaUsuarios.put(dados[2], cliente);
-//					Usuario.OrdenaUsuarios.put(dados[1], cliente);
-//
-//				} else if (dados[0].equalsIgnoreCase(TipoPessoa.GERENTE.toString())) {
-//
-//					// TIPO, NOME, CPF, SENHA,
-//
-//					Usuario gerente = new Usuario(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]),
-//							Integer.parseInt(dados[5]));
-//							(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]),
-//							Integer.parseInt(dados[5]), Double.parseDouble(dados[6]), Integer.parseInt(dados[7]));
-//
-//					Usuario.mapaUsuarios.put(dados[2], gerente);
-//					Usuario.OrdenaUsuarios.put(dados[1], gerente);
-//
-//				}
-//			} else {
-//				break;
-//			}
-//		}
-//		buffRead.close();
-//
-//	}
-//
 	public static void comprovanteSaque(Conta conta, double valorSaque) throws IOException {
 		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
 				+ "_transacoes";
@@ -227,108 +170,6 @@ public class LeituraEscrita {
 
 		buffWrite.close();
 
-	}
-//
-//	public static void relatorioContasPorAgencia(Conta conta) throws IOException {
-//
-//		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
-//				+ "_contas_por_agencia";
-//
-//		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO));
-//
-//		int totalContas = 0;
-//
-//		String linha = "********************** INFORMAÇÕES DO RESPONSÁVEL **********************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		linha = "CPF: " + conta.getCpf();
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "Agência : " + conta.getNumeroAgencia();
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "*******************************************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		linha = "*************** TOTAL DE CONTAS NA MESMA AGÊNCIA ***************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		for (String cpf : Conta.mapaContas.keySet()) {
-//			if (Conta.mapaContas.get(cpf).getNumeroAgencia().equals(conta.getNumeroAgencia())) {
-//
-//				linha = "CPF: " + Conta.mapaContas.get(cpf).getCpf();
-//				buffWrite.append(linha + "\n");
-//
-//				linha = "Agência : " + Conta.mapaContas.get(cpf).getNumeroAgencia();
-//				buffWrite.append(linha + "\n");
-//
-//				linha = "Conta: " + Conta.mapaContas.get(cpf).getNumeroConta();
-//				buffWrite.append(linha + "\n");
-//
-//				totalContas++;
-//
-//				linha = "**********************************";
-//				buffWrite.append(linha + "\n");
-//			}
-//
-//		}
-//
-//		linha = "Total de contas: " + totalContas;
-//		buffWrite.append(linha + "\n");
-//
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//		Date date = new Date();
-//		linha = "Operação realizada em: " + simpleDateFormat.format(date);
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "************************************************************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		buffWrite.close();
-//
-//	}
-//
-//	public static void relatorioTotalCapital(Conta conta, Map<String, Conta> mapaContas) throws IOException {
-//
-//		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
-//				+ "_total_capital";
-//
-//		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO, true));
-//
-//		double saldoTotal = 0.0;
-//
-//		String linha = "************************* TOTAL DE CAPITAL ARMAZENADO *************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		for (String cpf : Conta.mapaContas.keySet()) {
-//
-//			saldoTotal += Conta.mapaContas.get(cpf).getSaldo();
-//
-//		}
-//
-//		linha = "O total de capital armazenado no banco é de: R$" + saldoTotal;
-//		buffWrite.append(linha + "\n");
-//
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//		Date date = new Date();
-//		linha = "Operação realizada em: " + simpleDateFormat.format(date);
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "*******************************************************************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		buffWrite.close();
-//
-//	}
-//
-//	public static void comprovanteSaque(String conta, Double inputValor) {
-//		// TODO Auto-generated method stub
-//
-//	}
-
-	public List<ContaCorrente> leitorContas() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	}

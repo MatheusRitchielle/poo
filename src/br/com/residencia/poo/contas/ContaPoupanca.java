@@ -33,7 +33,7 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 		Double saldoFinal =  aporte  + rendimentoConta;
 		System.out.println("Seu dinheiro vai render: R$" + rendimentoConta + "\nEm um período de: " + qtdDias + " dias.");
 		System.out.printf("\nSaldo no fim do período: R$%.2f", saldoFinal);
-		menucontas.mostrarMenuCP();
+		menucontas.menuCP();
 
 	}
 	
@@ -52,11 +52,11 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				menucontas.mostrarMenuCP();
+				menucontas.menuCP();
 
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
-				menucontas.mostrarMenuCP();
+				menucontas.menuCP();
 			}
 		}
 	}
@@ -74,12 +74,12 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor sacado: R$%.2f", valorSacado);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				menucontas.mostrarMenuCP();
+				menucontas.menuCP();
 
 				
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
-				menucontas.mostrarMenuCP();
+				menucontas.menuCP();
 			}
 		}
 	}
@@ -97,11 +97,11 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
-				menucontas.mostrarMenuCP();
+				menucontas.menuCP();
 
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
-				menucontas.mostrarMenuCP();
+				menucontas.menuCP();
 			}
 		}
 	}

@@ -30,12 +30,41 @@ public abstract class Pessoa extends Conta {
 		this.senha = senha;
 	}
 
+
+	public String getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+
+	public void setTipoPessoa(String tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	
 
 }

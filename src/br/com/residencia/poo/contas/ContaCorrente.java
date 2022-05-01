@@ -41,7 +41,7 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 			System.out.printf("\nTarifa para depósito: R$%.2f", Tarifa.DEPOSITO);
 			System.out.printf("\nSaldo atual: R$%.2f", saldo);
 			++totalSaques;
-			menucontas.mostrarMenuCC();
+			menucontas.menuCC();
 		}
 	}
 
@@ -65,7 +65,7 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 //				System.out.printf("\nTarifa para saque: R$%.2f", Tarifa.SAQUE);
 				System.out.printf("\nSaldo atual: R$%.2f ", conta.getSaldo());
 				++totalDepositos;
-				menucontas.mostrarMenuCC();
+				menucontas.menuCC();
 
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
@@ -92,11 +92,11 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 				System.out.printf("\nTarifa para transferência: R$%.2f", valorTarifado);
 				System.out.printf("\nSaldo atual: R$%.2f", saldo);
 				++totalTransferencias;
-				menucontas.mostrarMenuCC();
+				menucontas.menuCC();
 
 			} else {
 				System.out.println("Valor inválido. Tente novamente!");
-				menucontas.mostrarMenuCC();
+				menucontas.menuCC();
 			}
 		}
 	}

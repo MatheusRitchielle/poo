@@ -11,7 +11,7 @@ public class Principal {
 
 		Menu menu = new Menu();
 		LeituraEscrita leituraEscrita = new LeituraEscrita();
-		leituraEscrita.leitorContas("entrada.txt");
-		menu.mostrarMenuPrincipal();
+		leituraEscrita.leitorContas();
+		menu.menuPrincipal();
 	}
 }
