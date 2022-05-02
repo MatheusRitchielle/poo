@@ -11,11 +11,15 @@ public interface InterfaceMenu {
 
 	void mostrarMenuPrincipal() throws ContaException, IOException;
 
-	public void mostrarMenuFuncionario()throws ContaException;
-	
 	void mostrarMenuCC() throws ContaException;
 	
 	void mostrarMenuCP() throws ContaException;
+
+	void gerente() throws IOException, ContaException;
+
+	void presidente() throws IOException, ContaException;
+
+	void mostrarMenuFuncionario();
 
 	
 }

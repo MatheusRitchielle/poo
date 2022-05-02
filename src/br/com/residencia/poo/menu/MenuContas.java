@@ -1,5 +1,6 @@
 package br.com.residencia.poo.menu;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -88,6 +89,20 @@ public class MenuContas implements InterfaceMenu {
 
 	@Override
 	public void mostrarMenuCP() throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void gerente() throws IOException, ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void presidente() throws IOException, ContaException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -276,6 +276,7 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 		le.extratoCliente(conta, totalSaques, totalDepositos, totalTransferencias, totalTarifado);
 
 	}
+	
 
 	@Override
 	public double tarifarSaque(double valorSacado) {

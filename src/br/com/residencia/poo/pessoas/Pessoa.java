@@ -15,7 +15,10 @@ public abstract class Pessoa extends Conta {
 	
 	@Override
 	public String toString() {
-		return "Pessoa [tipoPessoa=" + tipoPessoa + ", nome=" + nome + ", cpf=" + cpf + ", senha=" + senha + "]";
+		return "Tipo Pessoa: " + tipoPessoa 
+		+ "Nome:" + this.nome 
+		+ "CPF: " + this.cpf 
+		+ "Senha: " + this.senha;
 	}
 
 

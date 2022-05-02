@@ -1,8 +1,6 @@
 package br.com.residencia.poo.contas;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class Conta implements Movimentacao {
 
@@ -47,8 +45,8 @@ public abstract class Conta implements Movimentacao {
 
 	@Override
 	public String toString() {
-		return "Conta [tipoConta=" + this.tipoConta + ", numeroAgencia=" + this.numeroAgencia + ", numeroConta="
-				+ this.numeroConta + ", saldo=" + this.saldo + ", cpf=" + this.cpf + "]";
+		return "Conta = " + this.tipoConta + "| Agência = " + this.numeroAgencia + "| Número da conta = "
+				+ this.numeroConta + "|Saldo = " + this.saldo + "| CPF = " + this.cpf + "|";
 	}
 
 	public void sacar(double valorSacado, Conta conta) throws ContaException, IOException {

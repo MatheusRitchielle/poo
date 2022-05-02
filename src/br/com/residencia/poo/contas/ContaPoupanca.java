@@ -91,14 +91,13 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 
 			if (conta.getSaldo() > valorSacado) {
 
-				novoSaldo = conta.setSaldo(conta.getSaldo() - (valorSacado + Tarifa.SAQUE));
+				novoSaldo = conta.setSaldo(conta.getSaldo() - valorSacado );
 
 				System.out.print("\n\nDigite sua senha: ");
 				inputSenha = sc.next();
 				Acessorio.velha();
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\n\nValor sacado: R$%.2f", valorSacado);
-				System.out.printf("\nTarifa para saque : R$%.2f", Tarifa.SAQUE);
 				System.out.printf("\nSaldo atual: R$%.2f \n", novoSaldo);
 				
 
@@ -144,8 +143,8 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 		}
 	}
 	
-	public void depositar(double valorDepositado, Conta conta) throws ContaException, IOException {
-		
+	public void depositar(double valorDepositado, Conta conta) throws ContaException {
+
 		String cpf = conta.cpf;
 		String inputSenha;
 
@@ -153,19 +152,19 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			Cliente cliente = new Cliente();
 			Conta pessoa = cliente;
 
-			if ( valorDepositado > 0) {
+			if (valorDepositado > 0) {
+				conta.setSaldo(conta.getSaldo() + valorDepositado);
+
 				System.out.print("\n\nDigite sua senha: ");
-				inputSenha = sc.next();
+				inputSenha = (sc.next());
 				Acessorio.velha();
-				conta.setSaldo(conta.getSaldo() + (valorDepositado - Tarifa.DEPOSITO));
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
-				System.out.printf("\nTarifa para depósito: R$%.2f", Tarifa.DEPOSITO);
 				System.out.printf("\nSaldo atual: R$%.2f \n", conta.getSaldo());
-				
-				le.comprovanteSaque(conta, valorDepositado);
+
+				le.comprovanteDeposito(conta, valorDepositado);
 				List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
-				
+
 				for (Pessoa p : pessoaImportada) {
 					if (p != null) {
 						if (p.getSenha().equals(inputSenha) && p.getCpf().equalsIgnoreCase(cpf)) {
@@ -185,14 +184,28 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			}
 
 		} catch (NullPointerException e) {
-			List<Conta> listContas = le.leitorContas("entrada.txt");
-			menuContaPoupanca(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
+			List<Conta> listContas = null;
+			try {
+				listContas = le.leitorContas("entrada.txt");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				menuContaPoupanca(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
+			} catch (ContaException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			System.out.println("\nValor inválido. Tente novamente!\n");
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
-	
+
 	public void transferir(double valorTransferido, Conta conta) throws ContaException, IOException {
-		
+
 		String cpf = conta.cpf;
 		String inputSenha;
 
@@ -203,23 +216,24 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			if (conta.getSaldo() >= 0 || conta.getSaldo() > valorTransferido) {
 				System.out.print("\n\nDigite sua senha: ");
 				inputSenha = (sc.next());
-				conta.setSaldo(conta.getSaldo() - valorTransferido - Tarifa.TRANSFERENCIA);
+				conta.setSaldo(conta.getSaldo() - valorTransferido);
 				System.out.println("\nOperação realizada com sucesso!");
 				System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
-				System.out.printf("\nTarifa para transferência: R$%.2f", Tarifa.TRANSFERENCIA);
 				System.out.printf("\nSaldo atual: R$%.2f \n", conta.getSaldo());
-				
-				le.comprovanteSaque(conta, valorTransferido);
+
+				le.comprovanteTransferencia(conta, valorTransferido);
 				List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
+
 				for (Pessoa p : pessoaImportada) {
 					if (p != null) {
-						if (p.getSenha().equalsIgnoreCase(inputSenha) && p.getCpf().equalsIgnoreCase(cpf)) {
+						if (p.getSenha().equals(inputSenha) && p.getCpf().equalsIgnoreCase(cpf)) {
 							List<Conta> listContas = le.leitorContas("entrada.txt");
 							conta.setSaldo(conta.getSaldo() - valorTransferido);
 							menuContaPoupanca(p.getCpf(), p.getNumeroConta(), listContas);
 
 						}
 					}
+
 				}
 
 			} else {
@@ -233,10 +247,9 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			List<Conta> listContas = le.leitorContas("entrada.txt");
 			menuContaPoupanca(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
 			System.out.println("Valor inválido. Tente novamente!");
-
 		}
 	}
-
+	
 	public void redimento(double valorAporte, int qtdDias) throws ContaException, IOException {
 		
 		Cliente cliente = new Cliente();

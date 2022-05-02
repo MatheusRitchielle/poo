@@ -4,10 +4,9 @@ import br.com.residencia.poo.contas.ContaException;
 
 public class Diretor extends Funcionario {
 
-	protected int idDiretor;
-	protected int qtdAgencias;
 	protected int idAgencia;
-
+	String cpf;
+	String senha;
 
 	public Diretor() {
 		super();
@@ -22,13 +21,22 @@ public class Diretor extends Funcionario {
 	this.numeroConta = numeroConta;
 	this.saldo = saldo;
 	}
-	
-	public int getIdDiretor() {
-		return idDiretor;
+
+
+	public String getCpf() {
+		return cpf;
 	}
 
-	public int getQtdAgencias() {
-		return qtdAgencias;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public int getIdAgencia() {
@@ -37,19 +45,19 @@ public class Diretor extends Funcionario {
 
 	@Override
 	public void depositar(double valorDepositado) throws ContaException {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void sacar(double valorSacado) throws ContaException {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void transferir(double valorTransferido) throws ContaException {
-		// TODO Auto-generated method stub
+	
 		
 	}
 

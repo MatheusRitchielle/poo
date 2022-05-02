@@ -27,18 +27,14 @@ public class Gerente extends Funcionario {
 		this.saldo = saldo;
 	
 	}
-	
-	
 
 	public String getCpf() {
 		return cpf;
 	}
 
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 
 	public String getSenha() {
 		return senha;
