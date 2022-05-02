@@ -1,0 +1,11 @@
+*************** EXTRATO ***************
+CPF: 123456
+Agência: 203
+Conta: 2003
+Total de saques: 3 _______________________ Custo por operação R$:0.10
+Total de depósitos: 1 ____________________ Custo por operação R$:0.10
+Total de transferência: 0 ________________ Custo por operação R$:0.20
+Total de Tarifado: R$0.40
+Operação realizada em: 02/05/2022 14:38:12
+*************** FIM DO EXTRATO ***************
+

@@ -2,7 +2,7 @@ package br.com.residencia.poo.contas;
 
 public interface Tarifa {
 
-	double SAQUE = 0.1d, DEPOSITO = 0.1d, TRANSFERENCIA = 0.2d, RENDIMENTO = 0.006d;
+	double SAQUE = 0.10d, DEPOSITO = 0.10d, TRANSFERENCIA = 0.20d, RENDIMENTO = 0.006d;
 	
 	double tarifarSaque(double valorSacado);
 	
@@ -12,8 +12,5 @@ public interface Tarifa {
 	double tarifarTransferencia(double valorTransferido);
 	
 	double jurosRendimento(double rendimentoConta);
-
-
-	void sacar(double valorSacado, Conta conta) throws ContaException;
 	
 }

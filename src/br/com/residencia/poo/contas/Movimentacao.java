@@ -7,8 +7,6 @@ public interface Movimentacao {
 
 	void sacar(double valorSacado) throws ContaException;
 
-	void transferir(double valorTransferido) throws ContaException;
-
-	void sacar(double valorSacado, Conta conta) throws ContaException;	
+	void transferir(double valorTransferido) throws ContaException;	
 	
 }

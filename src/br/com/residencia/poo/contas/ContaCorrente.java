@@ -1,21 +1,30 @@
 package br.com.residencia.poo.contas;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
+import br.com.residencia.poo.io.LeituraEscrita;
+import br.com.residencia.poo.menu.Acessorio;
 import br.com.residencia.poo.menu.Menu;
 import br.com.residencia.poo.menu.MenuContas;
+import br.com.residencia.poo.pessoas.Cliente;
+import br.com.residencia.poo.pessoas.Pessoa;
 
 public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 
+	double novoSaldo;
+
+	Pessoa pessoa = new Cliente();
+	LeituraEscrita le = new LeituraEscrita();
 	MenuContas menucontas = new MenuContas();
+	Menu menu = new Menu();
+	Scanner sc = new Scanner(System.in);
 
 	private int totalSaques;
 	private int totalDepositos;
 	private int totalTransferencias;
 	private double totalTarifado;
-
-	public ContaCorrente() {
-	}
 
 	public ContaCorrente(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
 		super(tipoConta, numeroAgencia, numeroConta, saldo, cpf);
@@ -26,93 +35,246 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 		this.cpf = cpf;
 	}
 
-	@Override
-	public void depositar(double valorDepositado) throws ContaException {
+	public void menuContaCorrente(String usuario, int conta, List<Conta> contas) throws ContaException, IOException {
 
-		if (valorDepositado > 0) {
-			setSaldo(getSaldo() + valorDepositado - Tarifa.DEPOSITO);
-			System.out.println("\nOperação realizada com sucesso!");
-			System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
-			System.out.printf("\nTarifa para depósito: R$%.2f", Tarifa.DEPOSITO);
-			System.out.printf("\nSaldo atual: R$%.2f", saldo);
-			++totalSaques;
+		int opcao;
+		Scanner sc = new Scanner(System.in);
+		Conta contaCliente = null;
 
-		} else {
-			System.out.print("Valor para depósito inválido.\nRedirecionando...");
+		for (Conta c : contas) {
+			if (c != null) {
+				if (c.getNumeroConta() == conta) {
+					contaCliente = c;
+				}
+			}
 		}
+
+		Acessorio.velha();
+		System.out.print(
+				"\nDigite a operação desejada:\n[1] Sacar\n[2] Depositar\n[3] Transferir\n[4] Extrato\n[0] Sair\n--->: ");
+		opcao = sc.nextInt();
+		Double inputValor;
+
+		switch (opcao) {
+		case 1:
+			System.out.print("\nInforme um valor para sacar R$: ");
+			inputValor = Double.parseDouble(sc.next());
+			sacar(inputValor, contaCliente);
+			break;
+
+		case 2:
+			System.out.print("\nInforme um valor para depositar R$: ");
+			inputValor = Double.parseDouble(sc.next());
+			depositar(inputValor, contaCliente);
+			break;
+
+		case 3:
+			System.out.print("\nInforme um valor para transferir R$: ");
+			inputValor = Double.parseDouble(sc.next());
+			transferir(inputValor, contaCliente);
+			break;
+
+		case 4:
+			relatorio(contaCliente, totalSaques, totalDepositos, totalTransferencias, totalTarifado);
+			Acessorio.velha();
+			System.out.println("Extrato gerado com sucesso, você será redirecionado para o Menu de Login");
+			Acessorio.velha();
+			menu.cpfSenha(); 
+			
+		case 0:
+			menu.mostrarMenuPrincipal();
+			
+			break;
+
+		default:
+			System.exit(0);
+		}
+		sc.close();
 	}
 
-	@Override
 	public void sacar(double valorSacado, Conta conta) throws ContaException {
 
-		if (valorSacado < conta.getSaldo()) {
+		String cpf = conta.cpf;
+		String inputSenha;
 
-			conta.setSaldo(conta.getSaldo() - valorSacado - Tarifa.SAQUE);
+		try {
+			Cliente cliente = new Cliente();
+			Conta pessoa = cliente;
 
-			System.out.println("\n\nOperação realizada com sucesso!");
-			System.out.printf("\n\nValor sacado: R$%.2f", valorSacado);
-			System.out.printf("\nTarifa para saque : R$%.2f", Tarifa.SAQUE);
+			if (conta.getSaldo() > valorSacado) {
 
-		} else {
+				novoSaldo = conta.setSaldo(conta.getSaldo() - (valorSacado + Tarifa.SAQUE));
+
+				System.out.print("\n\nDigite sua senha: ");
+				inputSenha = sc.next();
+				Acessorio.velha();
+				System.out.println("\nOperação realizada com sucesso!");
+				System.out.printf("\n\nValor sacado: R$%.2f", valorSacado);
+				System.out.printf("\nTarifa para saque : R$%.2f", Tarifa.SAQUE);
+				System.out.printf("\nSaldo atual: R$%.2f \n", novoSaldo);
+				totalSaques++;
+				totalTarifado = totalTarifado + Tarifa.SAQUE;
+
+				le.comprovanteSaque(conta, valorSacado);
+				List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
+
+				for (Pessoa p : pessoaImportada) {
+					if (p != null) {
+						if (p.getSenha().equals(inputSenha) && p.getCpf().equalsIgnoreCase(cpf)) {
+							List<Conta> listContas = le.leitorContas("entrada.txt");
+							conta.setSaldo(conta.getSaldo() - valorSacado);
+							menuContaCorrente(p.getCpf(), p.getNumeroConta(), listContas);
+
+						}
+					}
+
+				}
+
+			} else {
+				List<Conta> listContas = le.leitorContas("entrada.txt");
+				menuContaCorrente(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
+				System.out.println("\nValor inválido. Tente novamente!\n");
+			}
+
+		} catch (NullPointerException e) {
+			List<Conta> listContas = null;
+			try {
+				listContas = le.leitorContas("entrada.txt");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				menuContaCorrente(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
+			} catch (ContaException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			System.out.println("\nValor inválido. Tente novamente!\n");
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	public void depositar(double valorDepositado, Conta conta) throws ContaException {
+
+		String cpf = conta.cpf;
+		String inputSenha;
+
+		try {
+			Cliente cliente = new Cliente();
+			Conta pessoa = cliente;
+
+			if (valorDepositado > 0) {
+				conta.setSaldo(conta.getSaldo() + (valorDepositado - Tarifa.DEPOSITO));
+
+				System.out.print("\n\nDigite sua senha: ");
+				inputSenha = (sc.next());
+				Acessorio.velha();
+				System.out.println("\nOperação realizada com sucesso!");
+				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
+				System.out.printf("\nTarifa para depósito: R$%.2f", Tarifa.DEPOSITO);
+				System.out.printf("\nSaldo atual: R$%.2f \n", conta.getSaldo());
+				totalDepositos++;
+				totalTarifado = totalTarifado + Tarifa.DEPOSITO;
+
+				le.comprovanteDeposito(conta, valorDepositado);
+				List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
+
+				for (Pessoa p : pessoaImportada) {
+					if (p != null) {
+						if (p.getSenha().equals(inputSenha) && p.getCpf().equalsIgnoreCase(cpf)) {
+							List<Conta> listContas = le.leitorContas("entrada.txt");
+							conta.setSaldo(conta.getSaldo() - valorDepositado);
+							menuContaCorrente(p.getCpf(), p.getNumeroConta(), listContas);
+
+						}
+					}
+
+				}
+
+			} else {
+				List<Conta> listContas = le.leitorContas("entrada.txt");
+				menuContaCorrente(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
+				System.out.println("\nValor inválido. Tente novamente!\n");
+			}
+
+		} catch (NullPointerException e) {
+			List<Conta> listContas = null;
+			try {
+				listContas = le.leitorContas("entrada.txt");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				menuContaCorrente(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
+			} catch (ContaException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			System.out.println("\nValor inválido. Tente novamente!\n");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void transferir(double valorTransferido, Conta conta) throws ContaException, IOException {
+
+		String cpf = conta.cpf;
+		String inputSenha;
+
+		try {
+			Cliente cliente = new Cliente();
+			Conta pessoa = cliente;
+
+			if (conta.getSaldo() >= 0 || conta.getSaldo() > valorTransferido) {
+				System.out.print("\n\nDigite sua senha: ");
+				inputSenha = (sc.next());
+				conta.setSaldo(conta.getSaldo() - valorTransferido - Tarifa.TRANSFERENCIA);
+				System.out.println("\nOperação realizada com sucesso!");
+				System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
+				System.out.printf("\nTarifa para transferência: R$%.2f", Tarifa.TRANSFERENCIA);
+				System.out.printf("\nSaldo atual: R$%.2f \n", conta.getSaldo());
+				totalTransferencias++;
+				totalTarifado = totalTarifado + Tarifa.TRANSFERENCIA;
+
+				le.comprovanteTransferencia(conta, valorTransferido);
+				List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
+
+				for (Pessoa p : pessoaImportada) {
+					if (p != null) {
+						if (p.getSenha().equals(inputSenha) && p.getCpf().equalsIgnoreCase(cpf)) {
+							List<Conta> listContas = le.leitorContas("entrada.txt");
+							conta.setSaldo(conta.getSaldo() - valorTransferido);
+							menuContaCorrente(p.getCpf(), p.getNumeroConta(), listContas);
+
+						}
+					}
+
+				}
+
+			} else {
+				System.out.println("\nValor inválido. Tente novamente\n");
+				List<Conta> listContas = le.leitorContas("entrada.txt");
+				menuContaCorrente(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
+				System.out.println("\nValor inválido. Tente novamente!\n");
+			}
+
+		} catch (NullPointerException e) {
+			List<Conta> listContas = le.leitorContas("entrada.txt");
+			menuContaCorrente(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
 			System.out.println("Valor inválido. Tente novamente!");
-			sacar(valorSacado);
 		}
 	}
 
-	public void transferir(double valorTransferido) throws ContaException {
+	public void relatorio(Conta conta, int totalSaques, int totalDepositos, int totalTransferencias,
+			double totalTarifado) throws IOException, ContaException {
 
-		if (valorTransferido <=0 || valorTransferido > getSaldo()) {
-			System.out.print("\n\n\tValor inválido.\n\n\tRedirecionando...");
-		}
-		if (valorTransferido <= getSaldo()) {
-			double valorTarifado = Tarifa.TRANSFERENCIA;
-			setSaldo(getSaldo() - valorTransferido - Tarifa.TRANSFERENCIA);
-			System.out.println("\nOperação realizada com sucesso!");
-			System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
-			System.out.printf("\nTaxa para transferência: R$%.2f", valorTarifado);
-	
+		le.extratoCliente(conta, totalSaques, totalDepositos, totalTransferencias, totalTarifado);
 
-		}
-	}
-
-	public MenuContas getMenucontas() {
-		return menucontas;
-	}
-
-	public void setMenucontas(MenuContas menucontas) {
-		this.menucontas = menucontas;
-	}
-
-	public int getTotalSaques() {
-		return totalSaques;
-	}
-
-	public void setTotalSaques(int totalSaques) {
-		this.totalSaques = totalSaques;
-	}
-
-	public int getTotalDepositos() {
-		return totalDepositos;
-	}
-
-	public void setTotalDepositos(int totalDepositos) {
-		this.totalDepositos = totalDepositos;
-	}
-
-	public int getTotalTransferencias() {
-		return totalTransferencias;
-	}
-
-	public void setTotalTransferencias(int totalTransferencias) {
-		this.totalTransferencias = totalTransferencias;
-	}
-
-	public double getTotalTarifado() {
-		return totalTarifado;
-	}
-
-	public void setTotalTarifado(double totalTarifado) {
-		this.totalTarifado = totalTarifado;
 	}
 
 	@Override
@@ -136,29 +298,29 @@ public class ContaCorrente extends Conta implements Movimentacao, Tarifa {
 	}
 
 	@Override
-	public String toString() {
-		return "Conta Corrente\tNúmero da Agência = " + this.numeroAgencia + "\tNúmero da Conta = " + this.numeroConta
-				+ "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
+	public void depositar(double valorDepositado) throws ContaException {
 	}
 
 	@Override
 	public void sacar(double valorSacado) throws ContaException {
 
-		if (valorSacado < getSaldo()) {
+	}
 
-			setSaldo((getSaldo() - valorSacado));
-
-			System.out.println("\n\nOperação realizada com sucesso!");
-			System.out.printf("\n\nValor sacado: R$%.2f", valorSacado);
-			System.out.printf("\nTarifa para saque : R$%.2f", Tarifa.SAQUE);
-			System.out.printf("\nSaldo atual: R$%.2f ", getSaldo());
-			++totalDepositos;
-
-		} else {
-			System.out.println("Valor inválido. Tente novamente!");
-			sacar(valorSacado);
-		}
+	@Override
+	public void transferir(double valorTransferido) throws ContaException {
 
 	}
 
+	public ContaCorrente() {
+	}
+
+	@Override
+	public double getSaldo() {
+		return super.getSaldo();
+	}
+
+	@Override
+	public void setCpf(String cpf) {
+		super.setCpf(cpf);
+	}
 }

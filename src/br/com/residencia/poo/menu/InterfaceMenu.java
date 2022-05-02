@@ -9,16 +9,13 @@ public interface InterfaceMenu {
 	
 	String mostrarMenuCC = null; /// tem que ver essa merda
 
-	void menuPrincipal() throws ContaException, IOException;
+	void mostrarMenuPrincipal() throws ContaException, IOException;
 
-	public void menuFuncionario()throws ContaException;
+	public void mostrarMenuFuncionario()throws ContaException;
 	
-	static void menuCC() throws ContaException {
-		// TODO Auto-generated method stub
-		
-	}
+	void mostrarMenuCC() throws ContaException;
 	
-	void menuCP() throws ContaException;
+	void mostrarMenuCP() throws ContaException;
 
 	
 }

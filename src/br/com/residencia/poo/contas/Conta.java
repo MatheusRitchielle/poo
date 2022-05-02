@@ -1,5 +1,6 @@
 package br.com.residencia.poo.contas;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +51,8 @@ public abstract class Conta implements Movimentacao {
 				+ this.numeroConta + ", saldo=" + this.saldo + ", cpf=" + this.cpf + "]";
 	}
 
+	public void sacar(double valorSacado, Conta conta) throws ContaException, IOException {
+	}
 	public void setTipoConta(String tipoConta) {
 		this.tipoConta = tipoConta;
 	}
@@ -62,13 +65,12 @@ public abstract class Conta implements Movimentacao {
 		this.numeroConta = numeroConta;
 	}
 
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
+	public double setSaldo(double saldo) {
+		return this.saldo = saldo;
 	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 	
 }

@@ -1,0 +1,8 @@
+*************** DEPÓSITO ***************
+CPF: 123456
+Agência: 203
+Conta: 2003
+Valor: R$20.0
+Operação realizada em: 02/05/2022 10:17:10
+*************** FIM DO DEPÓSITO ***************
+

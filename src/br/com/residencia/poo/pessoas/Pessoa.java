@@ -10,11 +10,14 @@ public abstract class Pessoa extends Conta {
 	protected String senha;
 
 	public Pessoa() {
-
-	}	
-	public String getSenha() {
-		return senha;
 	}
+
+	
+	@Override
+	public String toString() {
+		return "Pessoa [tipoPessoa=" + tipoPessoa + ", nome=" + nome + ", cpf=" + cpf + ", senha=" + senha + "]";
+	}
+
 
 	public Pessoa(String tipoConta, int numeroAgencia, int numeroConta, double saldo, String cpf) {
 		super(tipoConta, numeroAgencia, numeroConta, saldo, cpf);
@@ -28,41 +31,31 @@ public abstract class Pessoa extends Conta {
 		this.senha = senha;
 	}
 
-
-	public String getTipoPessoa() {
-		return tipoPessoa;
+	public String getSenha() {
+		return senha;
 	}
-
-
-	public void setTipoPessoa(String tipoPessoa) {
-		this.tipoPessoa = tipoPessoa;
-	}
-
 
 	public String getNome() {
 		return nome;
 	}
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	
+	public String getTipoConta() {
+		return tipoConta;
 	}
-
-
-	public String getCpf() {
-		return cpf;
+	
+	public void getTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
 	}
-
-
+	public void setTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
+	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 	
 
 }
