@@ -74,7 +74,6 @@ public class LeituraEscrita {
 			} else {
 				break;
 			}
-			// buffRead.close();
 		}
 		return conta;
 	}
@@ -98,7 +97,6 @@ public class LeituraEscrita {
 			} else {
 				break;
 			}
-			// buffRead.close();
 		}
 		return lista;
 	}
@@ -283,102 +281,6 @@ public class LeituraEscrita {
 
 	}
 	
-	
-	
-	
-	
-//	public static void relatorioContasPorAgencia(Conta conta) throws IOException {
-//
-//		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
-//				+ "_contas_por_agencia";
-//
-//		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO));
-//
-//		int totalContas = 0;
-//
-//		String linha = "********************** INFORMAÇÕES DO RESPONSÁVEL **********************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		linha = "CPF: " + conta.getCpf();
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "Agência : " + conta.getNumeroAgencia();
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "*******************************************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		linha = "*************** TOTAL DE CONTAS NA MESMA AGÊNCIA ***************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		for (String cpf : Conta.mapaContas.keySet()) {
-//			if (Conta.mapaContas.get(cpf).getNumeroAgencia().equals(conta.getNumeroAgencia())) {
-//
-//				linha = "CPF: " + Conta.mapaContas.get(cpf).getCpf();
-//				buffWrite.append(linha + "\n");
-//
-//				linha = "Agência : " + Conta.mapaContas.get(cpf).getNumeroAgencia();
-//				buffWrite.append(linha + "\n");
-//
-//				linha = "Conta: " + Conta.mapaContas.get(cpf).getNumeroConta();
-//				buffWrite.append(linha + "\n");
-//
-//				totalContas++;
-//
-//				linha = "**********************************";
-//				buffWrite.append(linha + "\n");
-//			}
-//
-//		}
-//
-//		linha = "Total de contas: " + totalContas;
-//		buffWrite.append(linha + "\n");
-//
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//		Date date = new Date();
-//		linha = "Operação realizada em: " + simpleDateFormat.format(date);
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "************************************************************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		buffWrite.close();
-//
-//	}
-//
-//	public static void relatorioTotalCapital(Conta conta, Map<String, Conta> mapaContas) throws IOException {
-//
-//		String nomeArquivo = conta.getCpf() + "_" + conta.getNumeroAgencia() + "_" + conta.getNumeroConta()
-//				+ "_total_capital";
-//
-//		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DIRETORIO + nomeArquivo + EXTENSAO, true));
-//
-//		double saldoTotal = 0.0;
-//
-//		String linha = "************************* TOTAL DE CAPITAL ARMAZENADO *************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		for (String cpf : Conta.mapaContas.keySet()) {
-//
-//			saldoTotal += Conta.mapaContas.get(cpf).getSaldo();
-//
-//		}
-//
-//		linha = "O total de capital armazenado no banco é de: R$" + saldoTotal;
-//		buffWrite.append(linha + "\n");
-//
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//		Date date = new Date();
-//		linha = "Operação realizada em: " + simpleDateFormat.format(date);
-//		buffWrite.append(linha + "\n");
-//
-//		linha = "*******************************************************************************";
-//		buffWrite.append(linha + "\n\n");
-//
-//		buffWrite.close();
-//
-//	}
-
 
 	public List<ContaCorrente> leitorContas() {
 		return null;

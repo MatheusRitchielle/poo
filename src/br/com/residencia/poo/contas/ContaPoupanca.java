@@ -37,25 +37,31 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 		}
 		
 		Acessorio.velha();
-		System.out.print("\nDigite a operação desejada:\n[1] Sacar\n[2] Depositar\n[3] Transferir\n[4] Simulação de Rendimentos\n[0] Sair\n--->: ");
+		System.out.print("Digite a operação desejada:\n\n"
+				+ "{1} Sacar\n"
+				+ "{2} Depositar\n"
+				+ "{3} Transferir\n"
+				+ "{4} Simulação de Rendimentos\n"
+				+ "{0} Sair\n"
+				+ "===>: ");
 		opcao = sc.nextInt();
 		Double inputValor;
 
 		switch (opcao) {
 		case 1:
-			System.out.print("\nInforme um valor para sacar R$: ");
+			System.out.print("\nInforme o valor do saque R$: ");
 			inputValor = Double.parseDouble(sc.next());
 			sacar(inputValor, contaFuncionario);
 			break;
 
 		case 2:
-			System.out.print("\nInforme um valor para depositar R$: ");
+			System.out.print("\nInforme o valor do depósito R$: ");
 			inputValor = Double.parseDouble(sc.next());
 			depositar(inputValor, contaFuncionario);
 			break;
 
 		case 3:
-			System.out.print("\nInforme um valor para transferir R$: ");
+			System.out.print("\nInforme o valor da transferência R$: ");
 			inputValor = Double.parseDouble(sc.next());
 			transferir(inputValor, contaFuncionario);
 			break;
@@ -63,7 +69,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 		case 4:
 			double valorAporte;
 			int qtdDias;
-			System.out.print("\nInforme um valor aporte R$: ");
+			System.out.print("\nValor aporte R$: ");
 			valorAporte = sc.nextDouble();
 			System.out.print("Informe a quantidade de dias: ");
 			qtdDias = sc.nextInt();
@@ -93,7 +99,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 
 				novoSaldo = conta.setSaldo(conta.getSaldo() - valorSacado );
 
-				System.out.print("\n\nDigite sua senha: ");
+				System.out.print("\nDigite sua senha: ");
 				inputSenha = sc.next();
 				Acessorio.velha();
 				System.out.println("\nOperação realizada com sucesso!");
@@ -119,7 +125,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			} else {
 				List<Conta> listContas = le.leitorContas("entrada.txt");
 				menuContaPoupanca(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-				System.out.println("\nValor inválido. Tente novamente!\n");
+				System.out.println("\nValor inválido. Tente novamente!");
 			}
 
 		} catch (NullPointerException e) {
@@ -136,7 +142,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			System.out.println("\nValor inválido. Tente novamente!\n");
+			System.out.println("\nValor inválido. Tente novamente!");
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -155,7 +161,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			if (valorDepositado > 0) {
 				conta.setSaldo(conta.getSaldo() + valorDepositado);
 
-				System.out.print("\n\nDigite sua senha: ");
+				System.out.print("\nDigite sua senha: ");
 				inputSenha = (sc.next());
 				Acessorio.velha();
 				System.out.println("\nOperação realizada com sucesso!");
@@ -180,7 +186,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			} else {
 				List<Conta> listContas = le.leitorContas("entrada.txt");
 				menuContaPoupanca(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-				System.out.println("\nValor inválido. Tente novamente!\n");
+				System.out.println("\nValor inválido. Tente novamente!");
 			}
 
 		} catch (NullPointerException e) {
@@ -197,7 +203,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			System.out.println("\nValor inválido. Tente novamente!\n");
+			System.out.println("\nValor inválido.\nRedirecionando...");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -214,7 +220,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 			Conta pessoa = cliente;
 
 			if (conta.getSaldo() >= 0 || conta.getSaldo() > valorTransferido) {
-				System.out.print("\n\nDigite sua senha: ");
+				System.out.print("\nDigite sua senha: ");
 				inputSenha = (sc.next());
 				conta.setSaldo(conta.getSaldo() - valorTransferido);
 				System.out.println("\nOperação realizada com sucesso!");
@@ -237,10 +243,10 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 				}
 
 			} else {
-				System.out.println("\nValor inválido. Tente novamente\n");
+				System.out.println("\nValor inválido. Tente novamente");
 				List<Conta> listContas = le.leitorContas("entrada.txt");
 				menuContaPoupanca(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-				System.out.println("\nValor inválido. Tente novamente!\n");
+				System.out.println("\nValor inválido. Tente novamente!");
 			}
 
 		} catch (NullPointerException e) {
@@ -277,7 +283,7 @@ public class ContaPoupanca extends Conta implements Movimentacao, Tarifa {
 		
 		List<Conta> listContas = le.leitorContas("entrada.txt");
 		menuContaPoupanca(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-		System.out.println("\nValor inválido. Tente novamente!\n");
+		System.out.println("\nValor inválido. Tente novamente!");
 
 	}
 

@@ -32,29 +32,31 @@ public class MenuContas implements InterfaceMenu {
 		//INTERAÇÃO CLIENTE
 		System.out.printf("\nBem vindo, " + cliente.getCpf() + "."
 				+ "\nDigite a operação desejada:\n"
-				+ "[1] Sacar\n[2] "
-				+ "Depositar\n[3] "
-				+ "Transferir\n[0] Sair\n--->: ");
+				+ "{1} Sacar\n"
+				+ "{2} Depositar\n"
+				+ "{3} Transferir\n"
+				+ "{0} Sair\n"
+				+ "====>: ");
 
 		
 		int opcao = sc.nextInt();
 		Double inputValor;
 		switch (opcao) {
 		case 1:	
-			System.out.print("\nInforme um valor para sacar R$: ");
-			inputValor = Double.parseDouble(sc.next());
+			System.out.print("\nInforme o valor para saque R$: ");
+			inputValor = sc.nextDouble();
 			cc.sacar(inputValor, contaFuncionario);
 //			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
 		case 2:
 			System.out.print("\nInforme um valor para depositar R$: ");
-			inputValor = Double.parseDouble(sc.next());
+			inputValor = sc.nextDouble();
 			cc.depositar(inputValor);
 //			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
 		case 3:
 			System.out.print("\nInforme um valor para transferir R$: ");
-			inputValor = Double.parseDouble(sc.next());
+			inputValor = sc.nextDouble();
 			cc.transferir(inputValor);
 //			LeituraEscrita.comprovanteSaque(conta, inputValor);
 

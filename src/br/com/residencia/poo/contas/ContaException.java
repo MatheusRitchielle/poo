@@ -8,9 +8,6 @@ public class ContaException extends Exception {
 		super();
 	}
 	
-	
-	//SOBRECARGA: MESMO NOME NOS MÉTODOS, DESDE QUE AS ASSINATURAS SEJAM DIFERENTES.
-	
 	public ContaException(String message) {
 		super(message);
 	}

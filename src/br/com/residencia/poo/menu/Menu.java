@@ -32,15 +32,18 @@ public class Menu implements InterfaceMenu {
 
 	public void clienteFuncionario() throws IOException, ContaException {
 
-		System.out.println("\n\tMucha Lucha Bank");
-		System.out.print("Deseja ter acesso ao menu de:\n\n[1] Cliente \n[2] Funcionário\n--->: ");
+		System.out.println("\t* Mucha Lucha Bank *\n\t¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
+		System.out.print("Digite seu tipo de Login:\n\n"
+				+ "{1} Cliente \n"
+				+ "{2} Funcionário\n"
+				+ "===>: ");
 		opcao = sc.nextInt();
 
 		switch (opcao) {
 		case 1:
 			inputTipoPessoa = "Cliente";
 			Acessorio.velha();
-			mostrarMenuPrincipal();
+			cpfSenha();
 			break;
 		case 2:
 			gdp();
@@ -50,28 +53,14 @@ public class Menu implements InterfaceMenu {
 
 	}
 
-	@Override
-	public void mostrarMenuPrincipal() throws IOException, ContaException {
-
-		System.out.println("\n\tMucha Lucha Bank");
-		System.out.printf("\n[1] Login\n[2] Sair\n--->: ");
-		int opcao = sc.nextInt();
-		Acessorio.velha();
-
-		switch (opcao) {
-		case 1:
-			cpfSenha();
-			break;
-		default:
-			System.exit(0);
-		}
-
-	}
-
 	public void gdp() throws IOException, ContaException {
 
-		System.out.println("\n\tMucha Lucha Bank");
-		System.out.print("\n\n[1] Gerente \n[2] Diretor \n[3] Presidente\n--->: ");
+		System.out.println("\n\n\t Mucha Lucha");
+		System.out.print("\t¨¨¨¨¨¨¨¨¨¨¨¨¨\n\tColaboradores\n\n"
+				+ "{1} Gerente \n"
+				+ "{2} Diretor \n"
+				+ "{3} Presidente\n"
+				+ "===>: ");
 		opcao = sc.nextInt();
 
 		switch (opcao) {
@@ -293,10 +282,13 @@ public class Menu implements InterfaceMenu {
 		List<Pessoa> pessoaImportada = le.leitorPessoa("entrada.txt");
 		List<Conta> contaImportada = le.leitorContas("entrada.txt");
 
-		System.out.print("Selecione uma opção:\n\n[1] Conta Corrente\n[2] Conta Poupança\n--->: ");
+		System.out.print("Selecione a conta desejada:\n\n"
+				+ "{1} Conta Corrente\n"
+				+ "{2} Conta Poupança\n"
+				+ "===>: ");
 		inputConta = (sc.nextInt());
 		Acessorio.velha();
-		System.out.print("\nDigite seu CPF: ");
+		System.out.print("Digite seu CPF: ");
 		inputCpf = (sc.next());
 		System.out.print("Digite sua senha: ");
 		inputSenha = (sc.next());
@@ -316,7 +308,7 @@ public class Menu implements InterfaceMenu {
 
 				}
 			}
-			System.out.println("\n\nUsuário ou senha inválidos =( \nTente novamente\n\n");
+			System.out.println("\nUsuário ou senha inválidos!\nRedirecionando...");
 			cpfSenha();
 
 			sc.close();
@@ -332,7 +324,7 @@ public class Menu implements InterfaceMenu {
 					}
 				}
 			}
-			System.out.println("\n\nUsuário ou senha inválidos =( \nTente novamente\n\n");
+			System.out.println("\nUsuário ou senha inválidos!\\nRedirecionando...");
 			cpfSenha();
 			sc.close();
 		case 4:
@@ -359,6 +351,12 @@ public class Menu implements InterfaceMenu {
 
 	@Override
 	public void mostrarMenuFuncionario() {		
+	}
+
+	@Override
+	public void mostrarMenuPrincipal() throws ContaException, IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

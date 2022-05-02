@@ -45,8 +45,8 @@ public abstract class Conta implements Movimentacao {
 
 	@Override
 	public String toString() {
-		return "Conta = " + this.tipoConta + "| Agência = " + this.numeroAgencia + "| Número da conta = "
-				+ this.numeroConta + "|Saldo = " + this.saldo + "| CPF = " + this.cpf + "|";
+		return "Conta: " + this.tipoConta + "\nAgência: " + this.numeroAgencia + "\nNúmero da conta: "
+				+ this.numeroConta + "\nSaldo: " + this.saldo + "\nCPF: " + this.cpf ;
 	}
 
 	public void sacar(double valorSacado, Conta conta) throws ContaException, IOException {

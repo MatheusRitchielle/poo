@@ -7,7 +7,7 @@ import br.com.residencia.poo.contas.ContaException;
 public interface InterfaceMenu {
 
 	
-	String mostrarMenuCC = null; /// tem que ver essa merda
+	String mostrarMenuCC = null;
 
 	void mostrarMenuPrincipal() throws ContaException, IOException;
 
