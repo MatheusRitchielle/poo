@@ -13,7 +13,7 @@ public class MenuContas implements InterfaceMenu {
 	
 	Cliente cliente = new Cliente();
 
-	public void menuCC(String usuario, int conta,List<Conta> contas) throws ContaException {
+	public static void menuCC(String usuario, int conta,List<Conta> contas) throws ContaException {
 		
 		ContaCorrente cc = new ContaCorrente();
 		Cliente cliente = new Cliente();
@@ -41,13 +41,13 @@ public class MenuContas implements InterfaceMenu {
 		switch (opcao) {
 		case 1:	
 			System.out.print("\nInforme um valor para sacar R$: ");
-			inputValor = Double.parseDouble(sc.next());
-			cc.sacar(inputValor, contaFuncionario);
+			inputValor =(sc.nextDouble());
+			cc.sacar(inputValor);
 //			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
 		case 2:
 			System.out.print("\nInforme um valor para depositar R$: ");
-			inputValor = Double.parseDouble(sc.next());
+			inputValor = (sc.nextDouble());
 			cc.depositar(inputValor);
 //			LeituraEscrita.comprovanteSaque(conta, inputValor);
 			break;
@@ -79,12 +79,6 @@ public class MenuContas implements InterfaceMenu {
 		
 	}
 
-
-	@Override
-	public void menuCC() throws ContaException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void menuCP() throws ContaException {

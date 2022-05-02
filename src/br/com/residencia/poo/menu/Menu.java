@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import br.com.residencia.poo.contas.Conta;
+import br.com.residencia.poo.contas.ContaCorrente;
 import br.com.residencia.poo.contas.ContaException;
 import br.com.residencia.poo.contas.Tarifa;
 import br.com.residencia.poo.io.LeituraEscrita;
@@ -17,7 +18,7 @@ public class Menu implements InterfaceMenu {
 	static String inputSenha;
 
 	Scanner sc = new Scanner(System.in);
-	MenuContas menuContas = new MenuContas();
+	MenuContas menuContas;
 	LeituraEscrita le = new LeituraEscrita();
 	Cliente cliente = new Cliente();
 	Conta pessoa = cliente;
@@ -41,7 +42,8 @@ public class Menu implements InterfaceMenu {
 				if (p != null) {
 					if (p.getSenha().equals(inputSenha) && p.getCpf().equals(inputCpf)) {
 						List<Conta> listContas = le.leitorContas();
-						System.out.println("Bem vindo(a), " + p.getNome() + "!");
+						System.out.println("\nBem vindo(a), " + p.getNome() + 
+								"!");
 						menuCC(p.getCpf(), p.getNumeroConta(), listContas);
 						pessoa = p;
 					}
@@ -52,7 +54,7 @@ public class Menu implements InterfaceMenu {
 			System.exit(0);
 			break;
 			default:
-				System.out.println("\nError 404 not Found!");
+				System.out.println("\n\nError 404 not found\n\nRedirecionando...");
 				menuPrincipal();
 				break;
 		}
@@ -64,151 +66,68 @@ public class Menu implements InterfaceMenu {
 
 		Cliente cliente = new Cliente();
 		Scanner sc = new Scanner(System.in);
-		Conta contaFuncionario = null;
+		Conta tipoConta = null;
 
 		for (Conta c : contas) {
 			if (c != null) {
 				if (c.getNumeroConta() == conta) {
-					contaFuncionario = c;
+					tipoConta = c;
 				}
 			}
 		}
+		System.out.printf("\nSaldo: R$%.2f", tipoConta.getSaldo());
 		System.out.print(
-				"\n\n===========================\n"
+				"\n---------------------------\n"
 				+ "Digite a operação desejada:\n"
 				+ "[1] Sacar\n"
 				+ "[2] Depositar\n"
 				+ "[3] Transferir\n"
 				+ "[0] Sair");
 				System.out.print("\n===========================\n--->: ");
-		Double inputValor;
+
+
 		switch (sc.nextInt()) {
 		case 1:
 			System.out.print("\nInforme um valor para sacar R$: ");
-			inputValor = Double.parseDouble(sc.next());
-			sacar(inputValor, contaFuncionario);
-			break;
+			inputValor= (sc.nextDouble());
+			tipoConta.sacar(inputValor);
+			menuCC(usuario, conta, contas);
+
+		break;
 
 		case 2:
 			System.out.print("\nInforme um valor para depositar R$: ");
-			inputValor = Double.parseDouble(sc.next());
-			depositar(inputValor, contaFuncionario);
+			inputValor = (sc.nextDouble());
+			tipoConta.depositar(inputValor);
+			menuCC(usuario, conta, contas);
 			break;
 
 		case 3:
 			System.out.print("\nInforme um valor para transferir R$: ");
-			inputValor = Double.parseDouble(sc.next());
-			transferir(inputValor, contaFuncionario);
+			inputValor = (sc.nextDouble());
+			tipoConta.transferir(inputValor);
+			menuCC(usuario, conta, contas);
 			break;
 
 		case 0:
-			System.exit(0);
+			menuPrincipal();
 			break;
 			default: 
-				System.out.println("Error 404 not Found!");
+				System.out.println("\n\nError 404 not Found!\nRedirecionando...");
 				menuPrincipal();
 		}
 		
 		sc.close();
 	}
 
-	////////////SACAR
-	public void sacar(double valorSacado, Conta conta) throws ContaException, IOException {
-		try {
-			Cliente cliente = new Cliente();
-			Conta pessoa = cliente;
-
-			if (conta.getSaldo() > valorSacado) {
-				conta.setSaldo(conta.getSaldo() - valorSacado);
-				System.out.println("\n\nOperação realizada com sucesso!");
-				System.out.printf("\n\nValor sacado: R$%.2f", valorSacado);
-				System.out.printf("\nTarifa para saque : R$%.2f", Tarifa.SAQUE);
-				System.out.printf("\nSaldo atual: R$%.2f ", conta.getSaldo());
-				List<Conta> listContas = le.leitorContas();
-				menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-
-			} else {
-				List<Conta> listContas = le.leitorContas();
-				menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-				System.out.println("\nValor inválido. Tente novamente!\n");
-			}
-
-		} catch (NullPointerException e) {
-			List<Conta> listContas = le.leitorContas( );
-			menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-			System.out.println("\nValor inválido. Tente novamente!\n");
-		}
-	}
-
-
-	////////////DEPOSITAR
-	public void depositar(double valorDepositado, Conta conta) throws ContaException, IOException {
-		try {
-			Cliente cliente = new Cliente();
-			Conta pessoa = cliente;
-
-			if (conta.getSaldo() < (Tarifa.DEPOSITO + valorDepositado)) {
-				conta.setSaldo(conta.getSaldo() + (valorDepositado - Tarifa.DEPOSITO));
-				System.out.println("\nOperação realizada com sucesso!");
-				System.out.printf("\nValor depositado: R$%.2f", valorDepositado);
-				System.out.printf("\nTarifa para depósito: R$%.2f", Tarifa.DEPOSITO);
-				System.out.printf("\nSaldo atual: R$%.2f", conta.getSaldo());
-				List<Conta> listContas = le.leitorContas();
-				menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-
-			} else {
-				List<Conta> listContas = le.leitorContas();
-				menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-				System.out.println("\nValor inválido. Tente novamente!\n");
-			}
-
-		} catch (NullPointerException e) {
-			List<Conta> listContas = le.leitorContas();
-			menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-			System.out.println("\nValor inválido. Tente novamente!\n");
-		}
-	}
-
-
-	////////////TRANSFERIR
-	public void transferir(double valorTransferido, Conta conta) throws ContaException, IOException {
-		try {
-			Cliente cliente = new Cliente();
-			Conta pessoa = cliente;
-
-			if (conta.getSaldo() >= 0 || conta.getSaldo() > valorTransferido) {
-				conta.setSaldo(conta.getSaldo() - valorTransferido - Tarifa.TRANSFERENCIA);
-				System.out.println("\nOperação realizada com sucesso!");
-				System.out.printf("\nValor transferido: R$%.2f", valorTransferido);
-				System.out.printf("\nTarifa para transferência: R$%.2f", Tarifa.TRANSFERENCIA);
-				System.out.printf("\nSaldo atual: R$%.2f", conta.getSaldo());
-				List<Conta> listContas = le.leitorContas();
-				menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-
-			} else {
-				System.out.println("\nValor inválido. Tente novamente\n");
-				List<Conta> listContas = le.leitorContas();
-				menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-				System.out.println("\nValor inválido. Tente novamente!\n");
-			}
-
-		} catch (NullPointerException e) {
-			List<Conta> listContas = le.leitorContas( );
-			menuCC(pessoa.getCpf(), pessoa.getNumeroConta(), listContas);
-			System.out.println("Valor inválido. Tente novamente!");
-		}
-	}
-
-	@Override
-	public void menuCC() {
-	}
 
 	@Override
 	public void menuCP() {
-	}
+		}
 
 	@Override
 	public void menuFuncionario() throws ContaException {
 	}
+
 
 }

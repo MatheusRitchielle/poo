@@ -12,5 +12,8 @@ public interface Tarifa {
 	double tarifarTransferencia(double valorTransferido);
 	
 	double jurosRendimento(double rendimentoConta);
+
+
+	void sacar(double valorSacado, Conta conta) throws ContaException;
 	
 }

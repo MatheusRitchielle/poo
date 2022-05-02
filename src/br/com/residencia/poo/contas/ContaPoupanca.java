@@ -111,4 +111,10 @@ public class ContaPoupanca extends Conta implements Movimentacao {
 				+ this.numeroConta + "\tSaldo = " + this.saldo + "\tCPF = " + this.cpf + "\n";
 	}
 
+	@Override
+	public void sacar(double valorSacado, Conta conta) throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

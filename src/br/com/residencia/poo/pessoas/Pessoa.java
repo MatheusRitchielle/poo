@@ -11,9 +11,7 @@ public abstract class Pessoa extends Conta {
 
 	public Pessoa() {
 
-	}
-
-	
+	}	
 	public String getSenha() {
 		return senha;
 	}

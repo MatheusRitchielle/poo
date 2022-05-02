@@ -13,7 +13,10 @@ public interface InterfaceMenu {
 
 	public void menuFuncionario()throws ContaException;
 	
-	void menuCC() throws ContaException;
+	static void menuCC() throws ContaException {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	void menuCP() throws ContaException;
 
